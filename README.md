@@ -1,2 +1,2 @@
-# cresspressoentertainment.github.io
+# cresspresso.github.io
 Official Cresspresso Entertainment website
