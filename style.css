@@ -1,6 +1,293 @@
-h1 {
-    background: red;
+body {
+    margin: 0;
+    padding: 0;
+    background: #222229;
+    color: #ddd;
+    text-shadow: 0.5px 1px #000;
+    
+    font-family: "Arial";
+    min-width: 200px;
 }
-p {
-    color: blue;
+
+h1,
+h2,
+h3 {
+    font-family: "Arial Narrow", sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
+
+a {
+    color: #9bf;
+    text-decoration: none;
+}
+a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* HEADER & FOOTER */
+
+header,
+footer {
+    width: 100%;
+}
+header a,
+footer a {
+    font-family: "Arial Narrow";
+}
+
+header>div,
+footer>div {
+    position: relative;
+    margin: auto;
+    height: 100%;
+}
+
+/* HEADER */
+
+header {
+    position: static;
+    padding-top: 16px;
+    height: auto;
+    
+    background: linear-gradient(to top, rgba(68, 68, 85, 0), rgb(68, 68, 85) 2px, rgb(17, 17, 34));
+}
+
+#title {
+    position: static;
+    display: block;
+    margin-bottom: 16px;
+    text-align: center;
+}
+header h1,
+footer h1 {
+    margin: 0;
+    font-family: "Arial", sans-serif;
+    letter-spacing: 0;
+    text-transform: none;
+}
+header h1 {
+    font-size: 1.2em;
+}
+footer h1 {
+    font-size: 2em;
+}
+
+header h2,
+footer h2 {
+    margin: 0;
+    font-size: 1em;
+    letter-spacing: 2px;
+}
+header h2 {
+    margin-left: 1px;
+    font-size: 0.8em;
+    /*letter-spacing: 6.3px;*/
+}
+
+header nav {
+    position: static;
+    margin-bottom: 6px;
+    text-align: center;
+    
+    padding: 0;
+}
+
+header a {
+    text-decoration: none;
+    text-transform: uppercase;
+}
+#title {
+    color: #ddf;
+}
+header nav a {
+    padding: 0 12px;
+    position: relative;
+    display: block;
+    height: 30px;
+    
+    vertical-align: middle;
+    font-size: 13pt;
+}
+
+header a:hover,
+#title:hover,
+footer a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+header nav a:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+nav span {
+    position: relative;
+    display: block;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+/* SECTION */
+
+section,
+article,
+footer>div {
+    width: 90%;
+}
+
+section,
+article {
+    margin: auto;
+    text-align: justify;
+}
+section {
+    padding-top: 26px;
+}
+
+section h1,
+article h1 {
+    display: block;
+    margin: auto;
+    text-align: center;
+    padding-bottom: 4px;
+    border-bottom: 2px groove #676767;
+}
+hr {
+    border: none;
+    border-bottom: 2px groove #676767;
+}
+
+code {
+    border: 1px solid rgb(0, 102, 153);
+    background: rgba(0, 102, 153, 0.4);
+    border-radius: 3px;
+    padding: 1px 3px;
+    display: inline-flex;
+    text-align: left;
+    font-family: "consolas", monospace;
+    font-size: 0.9em;
+    text-shadow: none;
+}
+
+.WIP {
+    color: #ff9393;
+}
+
+
+/* FOOTER */
+
+footer {
+    position: relative; /* for child pos */
+    
+    background: linear-gradient(rgba(68, 68, 85, 0), rgb(68, 68, 85) 2px, rgb(17, 17, 34));
+}
+footer>div {
+    padding: 15px 0 40px 0;
+}
+footer h2 {
+    margin-left: 5px;
+    margin-bottom: 10px;
+}
+
+footer nav ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    vertical-align: top;
+}
+footer nav li {
+    margin: 0;
+}
+
+#copyright {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    font-size: 9pt;
+    font-family: "Arial";
+}
+
+/* LARGER SCREENS */
+
+@media only screen and (min-width: 500px) {
+    #title {
+        position: absolute;
+        left: 25px;
+        top: 7px;
+        margin-bottom: 0;
+    }
+    header {
+        position: fixed;
+        height: 73px;
+        top: 0;
+        padding: 0;
+    }
+    header h1 {
+        font-size: 2em;
+    }
+    header h2 {
+        margin-left: 3px;
+        font-size: 1em;
+        letter-spacing: 6.3px;
+    }
+    header nav {
+        position: absolute;
+        right: 20px;
+        bottom: 7px;
+        top: 6px;
+        width: 250px;
+        margin-bottom: 0;
+
+        text-align: right;
+    }
+    header nav a {
+        height: 33.333%;
+        display: inline-block;
+    }
+    section {
+        padding-top: 100px;
+    }
+}
+
+@media only screen and (min-width: 660px) {
+    section,
+    article,
+    footer>div {
+        width: 600px;
+    }
+    header>div {
+        width: 650px;
+    }
+    header nav {
+        width: auto;
+        left: 230px;
+        top: 5px;
+        writing-mode: tb-lr;
+    }
+    header nav a {
+        height: 50%;
+        font-size: 14pt;
+    }
+}
+
+@media only screen and (min-width: 960px) {
+    section,
+    article,
+    footer>div {
+        width: 900px;
+    }
+    header>div {
+        width: 960px;
+    }
+    header nav {
+        top: 0;
+        bottom: 1px;
+    }
+    header nav a {
+        height: 100%;
+        font-size: 16pt;
+    }
+}
+
+
