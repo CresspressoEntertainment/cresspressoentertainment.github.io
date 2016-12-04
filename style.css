@@ -1,4 +1,6 @@
 body {
+    min-width: 200px;
+    
     margin: 0;
     padding: 0;
     background: #222229;
@@ -6,7 +8,7 @@ body {
     text-shadow: 0.5px 1px #000;
     
     font-family: "Arial";
-    min-width: 200px;
+    font-size: 14pt;
 }
 
 h1,
@@ -15,6 +17,12 @@ h3 {
     font-family: "Arial Narrow", sans-serif;
     letter-spacing: 2px;
     text-transform: uppercase;
+}
+h1 {
+    font-size: 2em;
+}
+h2 {
+    font-size: 1.2em;
 }
 
 a {
@@ -66,30 +74,25 @@ footer h1 {
     font-family: "Arial", sans-serif;
     letter-spacing: 0;
     text-transform: none;
-}
-header h1 {
-    font-size: 1.2em;
-}
-footer h1 {
-    font-size: 2em;
+    font-size: 1.8em;
 }
 
 header h2,
 footer h2 {
     margin: 0;
-    font-size: 1em;
+    font-size: 1.1em;
     letter-spacing: 2px;
 }
 header h2 {
     margin-left: 1px;
-    font-size: 0.8em;
+    font-size: 1.2em;
     /*letter-spacing: 6.3px;*/
 }
 
 header nav {
     position: static;
-    margin-bottom: 6px;
     text-align: center;
+    margin-bottom: 14px;
     
     padding: 0;
 }
@@ -105,10 +108,10 @@ header nav a {
     padding: 0 12px;
     position: relative;
     display: block;
-    height: 30px;
+    height: 40px;
     
     vertical-align: middle;
-    font-size: 13pt;
+    font-size: 18pt;
 }
 
 header a:hover,
@@ -197,6 +200,7 @@ footer nav ul {
     vertical-align: top;
 }
 footer nav li {
+    font-size: 16pt;
     margin: 0;
 }
 
@@ -210,8 +214,9 @@ footer nav li {
 
 /* LARGER SCREENS */
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 520px) {
     #title {
+        visibility: hidden;
         position: absolute;
         left: 25px;
         top: 7px;
@@ -219,16 +224,18 @@ footer nav li {
     }
     header {
         position: fixed;
-        height: 73px;
+        height: 83px;
         top: 0;
         padding: 0;
     }
     header h1 {
-        font-size: 2em;
+        text-align: left;
+        font-size: 1.8em;
+        margin-left: 0;
     }
     header h2 {
         margin-left: 3px;
-        font-size: 1em;
+        font-size: 0.95em;
         letter-spacing: 6.3px;
     }
     header nav {
@@ -236,13 +243,13 @@ footer nav li {
         right: 20px;
         bottom: 7px;
         top: 6px;
-        width: 250px;
+        left: 20px;
         margin-bottom: 0;
 
-        text-align: right;
+        text-align: left;
     }
     header nav a {
-        height: 33.333%;
+        height: 50%;
         display: inline-block;
     }
     section {
@@ -251,6 +258,9 @@ footer nav li {
 }
 
 @media only screen and (min-width: 660px) {
+    #title {
+        visibility: visible;
+    }
     section,
     article,
     footer>div {
@@ -263,11 +273,11 @@ footer nav li {
         width: auto;
         left: 230px;
         top: 5px;
-        writing-mode: tb-lr;
+        
+        text-align: right;
     }
     header nav a {
-        height: 50%;
-        font-size: 14pt;
+        height: 33.333%;
     }
 }
 
@@ -287,6 +297,14 @@ footer nav li {
     header nav a {
         height: 100%;
         font-size: 16pt;
+    }
+}
+@media only screen and (min-width: 1060px) {
+    header>div {
+        width: 1060px;
+    }
+    header nav a {
+        font-size: 19pt;
     }
 }
 
