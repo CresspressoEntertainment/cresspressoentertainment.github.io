@@ -142,7 +142,7 @@ footer>div {
 section,
 article {
     margin: auto;
-    text-align: justify;
+    text-align: left;
 }
 section {
     padding-top: 26px;
@@ -254,6 +254,10 @@ footer nav li {
     }
     section {
         padding-top: 100px;
+    }
+    section,
+    article {
+        text-align: justify;
     }
 }
 
