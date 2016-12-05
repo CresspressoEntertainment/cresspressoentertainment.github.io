@@ -186,7 +186,7 @@ footer {
     background: linear-gradient(rgba(68, 68, 85, 0), rgb(68, 68, 85) 2px, rgb(17, 17, 34));
 }
 footer>div {
-    padding: 15px 0 40px 0;
+    padding: 15px 0 15px 0;
 }
 footer h2 {
     margin-left: 5px;
@@ -194,7 +194,9 @@ footer h2 {
 }
 
 footer nav ul {
+    float: left;
     margin: 0;
+    margin-right: 15px;
     list-style: none;
     padding: 0;
     vertical-align: top;
@@ -204,10 +206,28 @@ footer nav li {
     margin: 0;
 }
 
+footer .icons {
+    text-align: right;
+    right: 0;
+    bottom: 0;
+    padding-bottom: -8px;
+}
+footer .icons a {
+    display: inline-block;
+}
+
+footer .icons img {
+    width: 42px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: block;
+}
+
 #copyright {
-    position: absolute;
-    right: 15px;
-    bottom: 10px;
+    clear: both;
+    padding-top: 10px;
+    text-align: right;
     font-size: 9pt;
     font-family: "Arial";
 }
