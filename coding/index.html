@@ -1,0 +1,28 @@
+---
+layout: page
+title: Coding
+permalink: /coding/
+categories:
+  - mainpages
+order: 3
+icon: coding.png
+---
+<section>
+    <h2>Coding</h2>
+    <p>You never saw this coming.</p>
+    
+    {% assign script = site.scripts | where: 'scriptname', 'randomthing.cs' | first %}
+    {% include codeblock.html block=true codetype=script.codetype content=script.content %}
+</section>
+
+<article>
+    <h2>All Scripts</h2>
+</article>
+
+{% for script in site.scripts %}
+<article>
+    <p>{{ script.scriptname }}</p>
+    {% include codeblock.html block=true codetype=script.codetype content=script.content %}
+    <hr/>
+</article>
+{% endfor %}

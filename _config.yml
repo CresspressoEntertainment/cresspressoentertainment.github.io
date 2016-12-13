@@ -1,0 +1,36 @@
+title: Cresspresso Entertainment
+email: cresspresso@gmail.com
+description: > # this means to ignore newlines until "baseurl:"
+  Amazing fun things, from music to videos, gameplay, and programming code.
+baseurl: "" # the subpath of your site, e.g. /blog
+#twitter_username: jekyllrb
+github_username: Cresspresso
+
+permalink: /:categories/:year-:month-:day/:title/
+
+include:
+  - _scripts
+collections:
+  - scripts
+  - socialsites
+
+# Build settings
+excerpt_separator: ""
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+#theme: minima
+
+highlightcss: native.scss
+sass:
+  sass_dir: _sass
+
+gems:
+  - jekyll-feed
+  - rouge
+exclude:
+  - Gemfile
+  - Gemfile.lock

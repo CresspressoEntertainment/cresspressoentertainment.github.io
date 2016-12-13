@@ -1,0 +1,45 @@
+<header>
+    <!-- title -->
+    <a id="title" href="{{ site.baseurl }}/">
+        <h1>Cresspresso</h1>
+        <h2>Entertainment</h2>
+    </a>
+
+    <!-- menu toggle button -->
+    <input id="menu-toggle" type="checkbox"/>
+    <label for="menu-toggle" title="Menu">
+        <img class="menu-open" src="{{ site.baseurl }}/assets/images/menu_open.png" alt="menu-open"/>
+        <img class="menu-close" src="{{ site.baseurl }}/assets/images/menu_close.png" alt="menu-close"/>
+    </label>
+
+    <!-- navigation links dropdown -->
+    <div id="nav-bg">
+        <nav>
+            <!-- main pages -->
+            <ul class="mainpages">
+                {% assign mainpages = "" | split:"|" %}
+                {% for page in site.pages %}
+                    {% for pc in page.categories %}
+                        {% if pc == 'mainpages' %}
+                            {% assign mainpages = mainpages | push: page %}
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+                {% assign mainpages = mainpages | sort: 'order' %}
+                {% for page in mainpages %}
+                    <li>
+                        <a href="{{ site.baseurl }}{{ page.url }}">
+                            <div>
+                                <span>{{ page.title }}</span>
+                                <img src="{{ site.baseurl }}/assets/images/icons/{{ page.icon }}"/>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </nav>
+    </div>
+    
+    <!-- -->
+    <div id="fade"></div>
+</header>
