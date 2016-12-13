@@ -24,10 +24,6 @@ kramdown:
   hard_wrap: false
 #theme: minima
 
-highlightcss: native.scss
-sass:
-  sass_dir: _sass
-
 gems:
   - jekyll-feed
   - rouge

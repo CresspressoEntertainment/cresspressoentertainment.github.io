@@ -3,8 +3,8 @@ scriptname: stylesheet.css
 codetype: css
 ---
 html {
-    color: red;
+	color: red;
 }
 body {
-    background: blue;
+	background: blue;
 }
