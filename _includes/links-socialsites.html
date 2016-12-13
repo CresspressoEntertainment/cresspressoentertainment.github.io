@@ -1,0 +1,10 @@
+{% for page in site.socialsites %}
+    <li>
+        <a href="{{ page.link }}">
+            <div>
+                <span>{{ page.title }}</span>
+                <img src="{{ site.baseurl }}/assets/images/socialsiteicons/{{ page.icon }}"/>
+            </div>
+        </a>
+    </li>
+{% endfor %}

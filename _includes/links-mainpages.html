@@ -1,0 +1,19 @@
+{% assign mainpages = "" | split:"|" %}
+{% for page in site.pages %}
+    {% for pc in page.categories %}
+        {% if pc == 'mainpages' %}
+            {% assign mainpages = mainpages | push: page %}
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+{% assign mainpages = mainpages | sort: 'order' %}
+{% for page in mainpages %}
+    <li>
+        <a href="{{ site.baseurl }}{{ page.url }}">
+            <div>
+                <span>{{ page.title }}</span>
+                <img src="{{ site.baseurl }}/assets/images/icons/{{ page.icon }}"/>
+            </div>
+        </a>
+    </li>
+{% endfor %}

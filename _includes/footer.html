@@ -1,36 +1,49 @@
 <footer>
-    <div>
-        <h2>Quick Links</h2>
-        <nav>
-            <ul class="mainpages">
-                {% assign mainpages = "" | split:"|" %}
-                {% for page in site.pages %}
-                    {% for pc in page.categories %}
-                        {% if pc == 'mainpages' %}
-                            {% assign mainpages = mainpages | push: page %}
-                        {% endif %}
-                    {% endfor %}
-                {% endfor %}
-                {% assign mainpages = mainpages | sort: 'order' %}
-                {% for page in mainpages %}
-                <li>
-                    <a href="{{ site.baseurl }}{{ page.url }}">
-                        <img src="{{ site.baseurl }}/assets/images/icons/{{ page.icon }}"/>
-                        <span>{{ page.title }}</span>
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-            <ul class="socialsites">
-                {% for social in site.socialsites %}
-                <li>
-                    <a href="{{ social.link }}">
-                        <img src="{{ site.baseurl }}/assets/images/socialsiteicons/{{ social.icon }}"/>
-                    </a>
-                </li>
-                {% endfor %}
+    <!-- shadow effect -->
+    <div class="fade"></div>
+    
+    <!-- mainpages -->
+    <div class="expandable">
+        <!-- menu toggle button -->
+        <input id="footer-toggle-mainpages" class="toggle mainpages" type="checkbox"/>
+        <label for="footer-toggle-mainpages" title="Menu">
+            <div>
+                <h3>Quick Links</h3>
+                <img class="open" src="{{ site.baseurl }}/assets/images/menu_open.png" alt="open"/>
+                <img class="close" src="{{ site.baseurl }}/assets/images/menu_close.png" alt="close"/>
             </div>
-        </nav>
-        <div id="copyright">&copy Copyright Cresspresso Entertainment 2016</div>
+        </label>
+
+        <!-- navigation links dropdown -->
+        <div class="nav-bg">
+            <nav>
+                <ul class="mainpages">
+                    {% include links-mainpages.html %}
+                </ul>
+            </nav>
+        </div>
     </div>
+    
+    <!-- socialsites -->
+    <div class="expandable">
+        <!-- menu toggle button -->
+        <input id="footer-toggle-socialsites" class="toggle socialsites" type="checkbox"/>
+        <label for="footer-toggle-socialsites" title="Social">
+            <div>
+                <h3>Social Sites</h3>
+                <img class="open" src="{{ site.baseurl }}/assets/images/menu_open.png" alt="open"/>
+                <img class="close" src="{{ site.baseurl }}/assets/images/menu_close.png" alt="close"/>
+            </div>
+        </label>
+        
+        <div class="nav-bg">
+            <nav>
+                <ul class="socialsites">
+                    {% include links-socialsites.html %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+    
+    <div id="copyright">&copy Copyright Cresspresso Entertainment 2016</div>
 </footer>

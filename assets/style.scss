@@ -5,9 +5,19 @@
 
 /* variables */
 
-$title-height: 84px;
-$nav-li-height: 64px;
 $header-bg-color: rgb(17, 17, 34);
+$header-bg-color-dark: rgb(14, 14, 28);
+$title-height: 84px;
+$fade-height: 8px;
+
+$icon-bg-color: rgba(0,0,0,0.1);
+$icon-width: 48px;
+
+$icon-padding: 3px;
+$nav-a-div-height: $icon-width + $icon-padding * 2;
+$nav-li-height: $nav-a-div-height + 12px;
+
+$nav-padding: 6px;
 
 /* mixins */
 
@@ -25,6 +35,14 @@ $header-bg-color: rgb(17, 17, 34);
 @mixin filter($properties) {
     -webkit-filter: $properties;
     filter: $properties;
+}
+
+@mixin transform($properties) {
+    transform: $properties;
+    -webkit-transform: $properties;
+    -o-transform: $properties;
+    -moz-transform: $properties;
+    -ms-transform: $properties;
 }
 
 /* syntax highlighting */
@@ -57,15 +75,21 @@ pre.highlight {
 /* main */
 
 body {
-    min-width: 200px;
+    min-width: 280px;
     
     margin: 0;
     padding: 0;
-    background: #222229;
     color: #ddd;
+    background: $header-bg-color;
     
     font-family: "Arial";
     font-size: 12pt;
+}
+main {
+    margin: 0;
+    margin-top: -6px;
+    padding: 26px 0 50px 0;
+    background: #222229;
 }
 
 hr {
@@ -98,97 +122,109 @@ a:hover {
 
 /* HEADER & FOOTER */
 
-header,
-footer {
-    width: 100%;
-}
-header a,
-footer a {
-    font-family: "Arial Narrow";
-}
-
-footer>div {
-    position: relative;
-    margin: auto;
-    height: 100%;
-}
-
 /* MENU TOGGLE */
 
-#menu-toggle,
-#menu-toggle ~ label {
+.toggle,
+.toggle ~ label {
     visibility: visible;
     position: absolute;
-    left: 0;
     top: 0;
-    width: 100px;
-    height: $title-height;
+    left: 0;
+    width: 100%;
     
     z-index: 4;
     
     cursor: pointer;
 }
-#menu-toggle {
+header .toggle,
+header .toggle ~ label {
+    width: 100px;
+    height: $title-height;
+}
+.toggle {
     display: none;
-    z-index: 1;
+}
+.toggle ~ label {
+    display: block;
 }
 
-#menu-toggle ~ label img {
-    position: absolute;
-    left: 20px;
+/* toggle icons - open/close */
+
+.toggle ~ label img {
+    position: relative;
     top: 20px;
     width: 40px;
     height: 40px;
     
     @include transition-filter(0.2s);
 }
-#menu-toggle ~ label:hover img {
+header .toggle ~ label img {
+    left: 20px;
+}
+
+.toggle ~ label:hover img {
     @include filter(brightness(150%));
 }
 
-#menu-toggle ~ label img.menu-close,
-#menu-toggle:checked ~ label img.menu-open {
+.toggle ~ label img.close,
+.toggle:checked ~ label img.open {
     display: none;
 }
-#menu-toggle:checked ~ label img.menu-close,
-#menu-toggle ~ label img.menu-open {
+.toggle:checked ~ label img.close,
+.toggle ~ label img.open {
     display: inline-block;
 }
 
 /* when menu is open */
-#menu-toggle:checked ~ #nav-bg {
-    height: $nav-li-height * 6 + 12px;
+.toggle.mainpages:checked ~ .nav-bg {
+    height: $nav-li-height * 6 + $nav-padding * 2;
+}
+.toggle.socialsites:checked ~ .nav-bg {
+    height: $nav-li-height * 3 + $nav-padding * 2;
 }
 
-/* HEADER */
-
-header {
-    height: auto;
-}
-div#fade {
-    height: 8px;
+header,
+footer {
     width: 100%;
-    position: relative;
+    height: auto;
+    position: relative; /* for child positioning */
+}
+
+.fade {
+    height: $fade-height;
+    width: 100%;
+    position: absolute;
+}
+header .fade {
+    bottom: -$fade-height;
     background: linear-gradient(rgba(16, 16, 32, 0.5),rgba(16, 16, 32, 0));
 }
+footer .fade {
+    top: -$fade-height;
+    background: linear-gradient(rgba(16, 16, 32, 0), rgba(16, 16, 32, 0.5));
+}
 
-#nav-bg {
+.nav-bg {
     position: relative; /* for child positioning */
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 0;
+    height: 3px;
+    overflow: hidden;
     
     z-index: 1;
     
     @include transition (height 0.3s);
-    background-color: $header-bg-color;
+    background-color: $header-bg-color-dark;
+}
+header .nav-bg {
+    height: 0;
 }
 
-#nav-bg nav {
+.nav-bg nav {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    padding: 6px 0;
+    padding: $nav-padding 0;
     margin: 0;
     
     z-index: 2;
@@ -220,9 +256,8 @@ div#fade {
 header h1,
 footer h1 {
     margin: 0;
-    font-family: "Arial", sans-serif;
-    letter-spacing: 0;
-    text-transform: none;
+    font-family: "Arial Narrow", sans-serif;
+    letter-spacing: 1pt;
     font-size: 22pt;
 }
 
@@ -233,106 +268,143 @@ footer h2 {
     letter-spacing: 2px;
 }
 header h2 {
-    margin-left: 1px;
-    /*letter-spacing: 6.3px;*/
-}
-footer h2 {
+    color: #78f;
     font-size: 14pt;
+    font-weight: lighter;
+    
+    display: none; /* screen-size-dependant */
+}
+header h2 span {
+    font-size: 18pt;
+    text-transform: capitalize;
 }
 
-/*header nav {
-    position: static;
-    text-align: left;
-    margin-bottom: 14px;
-    
-    padding: 0;
-}*/
-
+header a,
+footer a {
+    font-family: "Arial Narrow";
+}
 header a {
     text-decoration: none;
     text-transform: uppercase;
 }
+
+/* NAVIGATION LINKS */
+
 nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
 }
-nav ul li a {
+nav li {
+    text-align: left;
+}
+
+nav a {
     position: relative;
     display: block;
+    
+    height: $nav-li-height;
     
     font-size: 18pt;
     
     @include transition (background 0.2s);
 }
-header nav ul li a {
-    height: $nav-li-height - 8px;
-    padding: 4px;
-}
-footer nav ul.mainpages li a {
-    height: 32px;
-}
 
-nav ul li {
-    text-align: left;
-}
-nav ul li a div {
-    text-align: right;
-    position: relative;
+nav a div,
+.toggle ~ label div {
+    position: absolute;
     display: inline-block;
-    height: 54px;
-    /*width: 54px;*/
+    top: 50%;
+    @include transform(translateY(-50%));
+}
+nav a div {
+    left: 15px;
+    height: $nav-a-div-height;
     width: 200px;
+    
+    text-align: right;
+    
     background: rgba(0,0,0,0.3);
     border-radius: 64px;
-    /*-webkit-transition: width 0.2s;*/
 }
-/*nav ul li a:hover div {
-    width: 180px;
-}*/
+.toggle ~ label div {
+    width: 240px;
+    height: 100%;
+    
+    text-align: left;
+}
 
-
-nav ul a:hover {
-    color: #9bf;
-    text-decoration: none;
-}
-nav ul.mainpages a:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-nav ul.socialsites a:hover img {
-    background: rgba(0, 0, 0, 0.3);
-    width: 56px;
-}
-nav img {
-    border-radius: 50%;
-}
-header nav img {
-    width: 48px;
-}
-footer nav img {
-    width: 32px;
-    margin-left: 0px;
-}
-nav a span {
-    display: inline-block;
-    position: relative;
-    right: 16px;
-    top: 50%;
-    transform: translateY(-50%);
-    margin: 0;
-    padding: 0;
-    /*opacity: 0;*/
-    opacity: 1;
-    /*-webkit-transition: opacity 0.1s;*/
-}
-/*nav a:hover span {
-    opacity: 1;
-    -webkit-transition: opacity 0.2s;
-}*/
 nav a img {
     position: absolute;
-    top: 3px;
-    left: 3px;
+    top: 0;
+    left: 0;
+    
+    width: $icon-width;
+    border-radius: 50%;
+    border: $icon-padding solid transparent;
+    background: $icon-bg-color;
+}
+nav a span,
+.toggle ~ label h3 {
+    display: inline-block;
+    position: relative;
+    top: 50%;
+    @include transform(translateY(-50%));
+    margin: 0;
+    padding: 0;
+}
+nav a span {
+    right: 16px;
+}
+.toggle ~ label h3 {
+    left: 80px;
+}
+
+nav a:hover {
+    color: #9bf;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* FOOTER */
+
+footer {
+    background: $header-bg-color;
+}
+
+div.expandable {
+    position: relative;
+    height: auto;
+    
+    background: $header-bg-color;
+}
+
+footer .toggle,
+footer .toggle ~ label {
+    position: relative;
+    height: $nav-li-height;
+}
+
+footer .toggle ~ label img {
+    position: absolute;
+    top: 50%;
+    @include transform(translateY(-50%));
+    left: 20px;
+}
+
+footer .toggle:checked ~ label img.close,
+footer .toggle ~ label img.open {
+    display: block;
+}
+
+
+#copyright {
+    clear: both;
+    padding: 10px 15px;
+    text-align: right;
+    font-size: 9pt;
+    font-family: "Arial";
 }
 
 
@@ -343,10 +415,6 @@ article {
     width: 90%;
     margin: auto;
     text-align: left;
-}
-
-section {
-    padding-top: 26px;
 }
 
 section h2,
@@ -363,95 +431,11 @@ article h2 {
     color: #ff9393;
 }
 
-
-/* FOOTER */
-
-footer {
-    position: relative; /* for child pos */
-    
-    background: linear-gradient(rgba(68, 68, 85, 0), rgb(68, 68, 85) 2px, rgb(17, 17, 34));
-}
-footer>div {
-    padding: 15px 0 15px 0;
-}
-footer h2 {
-    margin-left: 10px;
-    margin-bottom: 10px;
-}
-
-footer nav ul.mainpages a {
-    font-size: 16pt;
-    padding: 4px 12px;
-}
-
-footer .socialsites {
-    text-align: right;
-    right: 0;
-    bottom: 0;
-    padding-bottom: -8px;
-}
-footer .socialsites a {
-    display: inline-block;
-}
-
-footer .socialsites img {
-    width: 42px;
-    border-radius: 50%;
-    border: 2px solid transparent;
-    background-color: rgba(0, 0, 0, 0.2);
-    display: block;
-}
-
-#copyright {
-    clear: both;
-    padding-top: 10px;
-    text-align: right;
-    font-size: 9pt;
-    font-family: "Arial";
-}
-
 /* LARGER SCREENS */
-/*
-@media only screen and (min-width: 520px) {
-    #title {
-        visibility: hidden;
-        position: absolute;
-        left: 25px;
-        top: 7px;
-        margin-bottom: 0;
-    }
-    header {
-        position: fixed;
-        height: 83px;
-        top: 0;
-        padding: 0;
-    }
-    header h1 {
-        text-align: left;
-        font-size: 1.8em;
-        margin-left: 0;
-    }
-    header h2 {
-        margin-left: 3px;
-        font-size: 0.95em;
-        letter-spacing: 6.3px;
-    }
-    header nav {
-        position: absolute;
-        right: 20px;
-        bottom: 7px;
-        top: 6px;
-        left: 20px;
-        margin-bottom: 0;
 
-        text-align: left;
-    }
-    header nav a {
-        height: 50%;
-        display: inline-block;
-    }
-    section {
-        padding-top: 100px;
+@media only screen and (min-width: 480px) {
+    header h2 {
+        display: block;
     }
     section,
     article {
@@ -460,54 +444,17 @@ footer .socialsites img {
 }
 
 @media only screen and (min-width: 660px) {
-    #title {
-        visibility: visible;
-    }
     section,
-    article,
-    footer>div {
+    article {
         width: 600px;
-    }
-    header>div {
-        width: 650px;
-    }
-    header nav {
-        width: auto;
-        left: 230px;
-        top: 5px;
-        
-        text-align: right;
-    }
-    header nav a {
-        height: 33.333%;
     }
 }
 
 @media only screen and (min-width: 960px) {
     section,
-    article,
-    footer>div {
+    article {
         width: 900px;
     }
-    header>div {
-        width: 960px;
-    }
-    header nav {
-        top: 0;
-        bottom: 1px;
-    }
-    header nav a {
-        height: 100%;
-        font-size: 16pt;
-    }
 }
-@media only screen and (min-width: 1060px) {
-    header>div {
-        width: 1060px;
-    }
-    header nav a {
-        font-size: 19pt;
-    }
-}
-*/
+
 
