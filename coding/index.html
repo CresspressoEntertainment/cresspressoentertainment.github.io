@@ -15,29 +15,34 @@ icon: coding.png
 </article>
 
 <hr/>
+
+<!-- ALL SCRIPTS -->
 <section>
     <h2>All Scripts</h2>
 </section>
 
 {% for script in site.scripts %}
 <article>
-    <hr/>
     <p>{{ script.scriptname }}</p>
     {% include codeblock.html block=true codetype=script.codetype content=script.content %}
 </article>
 {% endfor %}
 
 <hr/>
+
+<!-- ALL POSTS -->
 <section>
 	<h2>All Posts</h2>
 </section>
 
 {% for post in site.posts %}
 	{% if post.categories contains 'coding' %}
-<hr/>
 <article>
-	<h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title}}</a></h3>
-	{{ post.content }}
+	<h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}<br><span style="font-size: 12pt; letter-spacing: 1px;">{{ post.date }}</span></a></h3>
+	<hr/>
+	<article>
+		{{ post.content }}
+	</article>
 </article>
 	{% endif %}
 {% endfor %}

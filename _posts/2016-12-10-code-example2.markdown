@@ -2,7 +2,9 @@
 layout: post
 title:  "Code Example (markdown post)"
 date:   2016-12-08 16:40:46 +1300
-categories: coding
+group: Coding
+categories:
+  - coding
 sources: 
   - "snippet.cpp"
   - "htmlexample.html"

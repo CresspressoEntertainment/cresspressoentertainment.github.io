@@ -7,7 +7,6 @@
 $header-bg-color: rgb(17, 17, 34);
 $header-bg-color-dark: rgb(14, 14, 28);
 $title-height: 84px;
-$fade-height: 8px;
 
 $icon-bg-color: rgba(0,0,0,0.1);
 $icon-width: 48px;
@@ -22,6 +21,10 @@ $nav-padding: 6px;
 
 $font-normal: "Arial", sans-serif;
 $font-narrow: "Arial Narrow", "Arial", sans-serif;
+
+$main-bg-color: rgb(11, 11, 13);
+$fade-color: darken($main-bg-color, 3%);
+$fade-height: 8px;
 
 /* mixins */
 
@@ -66,12 +69,16 @@ main {
     margin: 0;
     margin-top: -6px;
     padding: 26px 0 50px 0;
-    background: #222229;
+    background: $main-bg-color;
 }
 
 hr {
     border: none;
     border-bottom: 2px groove #676767;
+	margin: 10px 0;
+}
+main>hr {
+	margin: 60px 0;
 }
 
 h1,
@@ -85,7 +92,7 @@ h1 {
     font-size: 24pt;
 }
 h2 {
-    font-size: 16pt;
+	font-size: 20pt;
 }
 
 a {
@@ -93,8 +100,14 @@ a {
     text-decoration: none;
 }
 a:hover {
-    color: #fff;
-    text-decoration: underline;
+    color: #77f;
+	text-shadow: 0px 3px 2px #000;
+}
+a:visited {
+    color: #b9f;
+}
+a:visited:hover {
+    color: #86f;
 }
 
 /* HEADER & FOOTER */
@@ -172,13 +185,14 @@ footer {
     width: 100%;
     position: absolute;
 }
+$fade-darkness: 20%;
 header .fade {
     bottom: -$fade-height;
-    background: linear-gradient(rgba(16, 16, 32, 0.5),rgba(16, 16, 32, 0));
+    background: linear-gradient(rgba($fade-color, 1), rgba($fade-color, 0));
 }
 footer .fade {
     top: -$fade-height;
-    background: linear-gradient(rgba(16, 16, 32, 0), rgba(16, 16, 32, 0.5));
+    background: linear-gradient(rgba($fade-color, 0), rgba($fade-color, 1));
 }
 
 .nav-bg {
@@ -241,28 +255,28 @@ header .nav-bg {
 }
 
 /* HEADER/FOOTER continued */
-header h1,
-footer h1 {
+header h2,
+footer h2 {
     margin: 0;
     font-family: $font-narrow;
     letter-spacing: 1pt;
     font-size: 22pt;
 }
 
-header h2,
-footer h2 {
+header h3,
+footer h3 {
     margin: 0;
     font-size: 16pt;
     letter-spacing: 2px;
 }
-header h2 {
+header h3 {
     color: #78f;
     font-size: 14pt;
     font-weight: lighter;
     
     display: none; /* screen-size-dependant */
 }
-header h2 span {
+header h3 span {
     font-size: 18pt;
     text-transform: capitalize;
 }
@@ -401,24 +415,41 @@ footer .toggle ~ label img.open {
 
 /* SECTION */
 
-section,
-article {
-    width: 90%;
-    margin: auto;
+main>section,
+main>article {
     text-align: left;
-}
-section {
-	margin-top: 40px;
-}
-
-section h2,
-article h2 {
-    display: block;
-    margin: auto;
-    font-size: 24pt;
-    text-align: center;
-    padding-bottom: 4px;
-    /*border-bottom: 2px groove #676767;*/
+	/*border: 1px outset #40779f;*/
+	background: rgba(34, 34, 41, 0.7);
+	border-radius: 5px;
+	padding: 8px 10px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	margin-left: 5%; /* small-screen default */
+	margin-right: 5%; /* small-screen default */
+	
+	p,
+	h1,
+	h2,
+	h3 {
+		margin-left: 6px;
+		margin-right: 6px;
+		margin-top: 8px;
+		margin-bottom: 8px;
+	}
+	
+	h1,
+	h2 {
+		display: block;
+		margin: auto;
+		text-align: center;
+		margin-bottom: 10px;
+		margin-top: 10px;
+		/*border-bottom: 2px groove #676767;*/
+	}
+	
+	#date {
+		text-align: center;
+	}
 }
 
 .WIP {
@@ -428,7 +459,7 @@ article h2 {
 /* LARGER SCREENS */
 
 @media only screen and (min-width: 480px) {
-    header h2 {
+    header h3 {
         display: block;
     }
     
@@ -439,22 +470,24 @@ article h2 {
         font-size: 14pt;
     }
     
-    section,
-    article {
+    main>section,
+	main>article {
         text-align: justify;
     }
 }
 
 @media only screen and (min-width: 660px) {
-    section,
-    article {
+    main>section,
+	main>article {
+		margin-left: auto;
+		margin-right: auto;
         width: 600px;
     }
 }
 
 @media only screen and (min-width: 960px) {
-    section,
-    article {
+    main>section,
+	main>article {
         width: 900px;
     }
 }

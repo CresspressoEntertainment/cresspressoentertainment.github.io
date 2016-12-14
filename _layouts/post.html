@@ -6,9 +6,16 @@
         {% include head.html %}
     </head>
     <body>
-        {% include header.html %}
+        {% include header.html group=page.group %}
         <main>
-            {{ content }}
+			<section>
+				<h2>{{ page.title }}</h2>
+				<p id="date">{{ page.date }}</p>
+			</section>
+
+			<article>
+				{{ content }}
+			</article>
         </main>
         {% include footer.html %}
     </body>

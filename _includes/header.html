@@ -1,9 +1,15 @@
 <header>
     <!-- title -->
-    <a id="title" href="{{ site.baseurl }}/">
-        <h1>{{ page.title }}</h1>
-        <h2><span>Cresspresso</span> Entertainment</h2>
-		<img src="{{ site.baseurl }}/assets/images/icons/{{ page.icon }}" alt="{{ page.title }}"/>
+    <a id="title" href="{{ site.baseurl }}/{{ include.link }}">
+		{% for page in site.pages %}
+    		{% for pc in page.categories %}
+        		{% if pc == 'mainpages' and page.title == include.group %}
+        			<h2>{{ page.title }}</h2>
+        			<h3><span>Cresspresso</span> Entertainment</h3>
+					<img src="{{ site.baseurl }}/assets/images/icons/{{ page.icon }}" alt="{{ page.title }}"/>
+				{% endif %}
+			{% endfor %}
+		{% endfor %}
     </a>
 
     <!-- menu toggle button -->
