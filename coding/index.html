@@ -8,15 +8,23 @@ order: 3
 icon: coding.png
 ---
 <article>
+	<h3>Contents</h3>
+	<ul class="nav">
+		<li><a href="#scripts">All Scripts</a></li>
+		<li><a href="#posts">All Posts</a></li>
+	</ul>
+</article>
+
+<article>
     <p>You never saw this coming.</p>
     
     {% assign script = site.scripts | where: 'scriptname', 'everything.cs' | first %}
     {% include codeblock.html block=true codetype=script.codetype content=script.content %}
 </article>
 
-<hr/>
-
 <!-- ALL SCRIPTS -->
+<hr id="scripts"/>
+
 <section>
     <h2>All Scripts</h2>
 </section>
@@ -28,9 +36,9 @@ icon: coding.png
 </article>
 {% endfor %}
 
-<hr/>
-
 <!-- ALL POSTS -->
+<hr id="posts"/>
+
 <section>
 	<h2>All Posts</h2>
 </section>
@@ -38,11 +46,12 @@ icon: coding.png
 {% for post in site.posts %}
 	{% if post.categories contains 'coding' %}
 <article>
-	<h3><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}<br><span style="font-size: 12pt; letter-spacing: 1px;">{{ post.date }}</span></a></h3>
-	<hr/>
-	<article>
-		{{ post.content }}
-	</article>
+	<h3>
+		<a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}<br>
+		<span class="date">{{ post.date | date: '%-d %b %Y' }}</span></a>
+	</h3>
+	<hr style="margin-top:10px"/>
+	{{ post.content }}
 </article>
 	{% endif %}
 {% endfor %}

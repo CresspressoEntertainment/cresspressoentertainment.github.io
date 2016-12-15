@@ -11,26 +11,23 @@ sources:
   - "stylesheet.css"
   - "markdownexample.markdown"
 ---
-<div>
-    <p>This is a paragraph full of random things and snippets of code like {% include codeblock.html codetype='csharp' content='public void Destroy() { }' %} and {% include codeblock.html codetype='cpp' content='int *p = new int(4);' %}.</p>
-    <div class="codeblock highlighter-rouge"><pre class="highlight">
+<p>This is a paragraph full of random things and snippets of code like {% include codeblock.html codetype='csharp' content='public void Destroy() { }' %} as well as {% include codeblock.html codetype='cpp' content='int *p = new int(4);' %}.</p>
+<div class="codeblock highlighter-rouge"><pre class="highlight">
 Well that escalated quickly -
 a lot quicker than I expected of someone of that caliber.
 </pre>
-</div>
 </div>
 
 
 {% for scriptname in page.sources %}
 {% assign scripts = site.scripts | where: 'scriptname', {{scriptname}}%}
 {% for script in scripts %}
-<div>
-    <hr/>
+<article>
     
     <p><a href="{{ site.baseurl }}/{{ script.relative_path }}" download="{{ script.scriptname }}">Download: {{ script.scriptname }}</a></p>
     {% include codeblock.html block=true codetype=script.codetype content=script.content %}
 
-</div>
+</article>
 
 {% endfor %}
 {% endfor %}

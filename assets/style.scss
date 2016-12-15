@@ -1,12 +1,10 @@
 ---
 ---
-@import "codeblock.scss";
 
 /* variables */
 
 $header-bg-color: rgb(17, 17, 34);
-$header-bg-color-dark: rgb(14, 14, 28);
-$title-height: 84px;
+$header-bg-color-dark: rgb(10, 10, 21);
 
 $icon-bg-color: rgba(0,0,0,0.1);
 $icon-width: 48px;
@@ -15,7 +13,10 @@ $icon-padding: 3px;
 
 $nav-a-div-height: $icon-width + $icon-padding * 2;
 $nav-li-height: $nav-a-div-height + 12px;
+$title-height: $nav-li-height;
+
 $nav-a-div-padding-partial: 14px + $icon-padding * 2;
+$nav-a-div-margin: 15px;
 
 $nav-padding: 6px;
 
@@ -25,6 +26,10 @@ $font-narrow: "Arial Narrow", "Arial", sans-serif;
 $main-bg-color: rgb(11, 11, 13);
 $fade-color: darken($main-bg-color, 3%);
 $fade-height: 8px;
+
+$toggle-img-padding: 20px;
+
+//$article-border-color: rgba(44, 44, 60, 0);
 
 /* mixins */
 
@@ -52,6 +57,45 @@ $fade-height: 8px;
     -ms-transform: $properties;
 }
 
+
+/* syntax highlighting */
+
+@import "syntax_highlighting/alternative.scss";
+
+@mixin tab-size($size) {
+    tab-size: $size;
+    -moz-tab-size: $size;
+    -o-tab-size: $size;
+}
+
+.highlighter-rouge {
+    display: inline;
+    padding: 1px 4px 1px 4px;
+    overflow-x: auto;
+    
+    font-family: monospace;
+    
+    border-radius: 5px;
+	background-color: $main-bg-color;
+}
+pre.highlight {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    margin-bottom: -1em;
+}
+.codeblock {
+	display: block;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	padding: 10px;
+	
+    white-space: pre;
+	font-size: 11pt;
+	@include tab-size(16px);
+}
+
+
 /* main */
 
 body {
@@ -65,17 +109,11 @@ body {
     font-family: $font-normal;
     font-size: 12pt;
 }
-main {
-    margin: 0;
-    margin-top: -6px;
-    padding: 26px 0 50px 0;
-    background: $main-bg-color;
-}
 
 hr {
     border: none;
     border-bottom: 2px groove #676767;
-	margin: 10px 0;
+	margin: 30px 0;
 }
 main>hr {
 	margin: 60px 0;
@@ -85,8 +123,7 @@ h1,
 h2,
 h3 {
     font-family: $font-narrow;
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 h1 {
     font-size: 24pt;
@@ -108,6 +145,13 @@ a:visited {
 }
 a:visited:hover {
     color: #86f;
+}
+
+ul {
+	padding-left: 23px;
+}
+ul.nav li {
+	margin: 10px 0;
 }
 
 /* HEADER & FOOTER */
@@ -141,15 +185,14 @@ header .toggle ~ label {
 /* toggle icons - open/close */
 
 .toggle ~ label img {
-    position: relative;
-    top: 20px;
+    position: absolute;
     width: 40px;
     height: 40px;
+    left: $toggle-img-padding;
+    top: 50%;
+    @include transform(translateY(-50%));
     
     @include transition-filter(0.2s);
-}
-header .toggle ~ label img {
-    left: 20px;
 }
 
 .toggle ~ label:hover img {
@@ -166,10 +209,10 @@ header .toggle ~ label img {
 }
 
 /* when menu is open */
-.toggle.mainpages:checked ~ .nav-bg {
+.toggle.mainpages:checked ~ .toggle-content {
     height: $nav-li-height * 6 + $nav-padding * 2;
 }
-.toggle.socialsites:checked ~ .nav-bg {
+.toggle.socialsites:checked ~ .toggle-content {
     height: $nav-li-height * 3 + $nav-padding * 2;
 }
 
@@ -195,7 +238,7 @@ footer .fade {
     background: linear-gradient(rgba($fade-color, 0), rgba($fade-color, 1));
 }
 
-.nav-bg {
+.toggle-content {
     position: relative; /* for child positioning */
     margin: 0;
     padding: 0;
@@ -208,11 +251,11 @@ footer .fade {
     @include transition (height 0.3s);
     background-color: $header-bg-color-dark;
 }
-header .nav-bg {
+header .toggle-content {
     height: 0;
 }
 
-.nav-bg nav {
+.toggle-content nav {
     position: absolute;
     bottom: 0; left: 0; right: 0;
     padding: $nav-padding 0;
@@ -228,8 +271,7 @@ header .nav-bg {
 #title {
     position: relative;
     display: block;
-    height: $title-height - 12px;
-    padding-top: 12px;
+    height: $title-height;
     text-align: center;
     
     z-index: 3;
@@ -240,14 +282,13 @@ header .nav-bg {
     @include transition (background 0.2s);
 }
 #title:hover {
-    color: #fff;
     text-decoration: none;
     
     background: rgb(25, 25, 41);
 }
 #title img {
 	position: absolute;
-	right: 20px;
+	right: $toggle-img-padding;
 	top: 50%;
 	@include transform(translateY(-50%));
 	width: $icon-width;
@@ -256,28 +297,47 @@ header .nav-bg {
 
 /* HEADER/FOOTER continued */
 header h2,
+header h3 {
+    text-transform: uppercase;
+}
+header h2,
 footer h2 {
-    margin: 0;
+	margin: 0;
+	padding: 0;
     font-family: $font-narrow;
     letter-spacing: 1pt;
+}
+header h2 {
+	/* small-screen default */
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	@include transform(translate(-50%,-50%));
+}
+footer h2 {
     font-size: 22pt;
 }
 
 header h3,
 footer h3 {
     margin: 0;
+	padding: 0;
+}
+footer h3 {
     font-size: 16pt;
-    letter-spacing: 2px;
 }
 header h3 {
+	margin-top: -6px;
+	
     color: #78f;
-    font-size: 14pt;
+    font-size: 13pt;
     font-weight: lighter;
+    letter-spacing: 2px;
     
     display: none; /* screen-size-dependant */
 }
 header h3 span {
-    font-size: 18pt;
+    font-size: 16pt;
     text-transform: capitalize;
 }
 
@@ -323,8 +383,8 @@ nav a div,
     @include transform(translateY(-50%));
 }
 nav a div {
-    margin-left: 15px;
-    margin-right: 15px;
+    margin-left: $nav-a-div-margin;
+    margin-right: $nav-a-div-margin;
     height: $nav-a-div-height;
     /*width: 200px;*/
     
@@ -354,7 +414,7 @@ nav a span,
     @include transform(translateY(-50%));
     margin: 0;
     padding: 0;
-    padding-right: 20px;
+    padding-right: $toggle-img-padding;
     overflow-x: visible;
 }
 nav a span {
@@ -366,9 +426,15 @@ nav a span {
 }
 
 nav a:hover {
-    color: #9bf;
+    color: #bbf;
     text-decoration: none;
     background: rgba(255, 255, 255, 0.05);
+}
+nav a:visited {
+	color: #9bf;
+}
+nav a:visited:hover {
+	color: #bbf;
 }
 
 
@@ -391,13 +457,6 @@ footer .toggle ~ label {
     height: $nav-li-height;
 }
 
-footer .toggle ~ label img {
-    position: absolute;
-    top: 50%;
-    @include transform(translateY(-50%));
-    left: 20px;
-}
-
 footer .toggle:checked ~ label img.close,
 footer .toggle ~ label img.open {
     display: block;
@@ -413,19 +472,26 @@ footer .toggle ~ label img.open {
 }
 
 
-/* SECTION */
+/* MAIN, SECTION, ARTICLE */
 
-main>section,
-main>article {
-    text-align: left;
-	/*border: 1px outset #40779f;*/
-	background: rgba(34, 34, 41, 0.7);
+$article-margin: 30px;
+
+main {
+    margin: 0;
+    margin-top: -6px;
+    padding: $article-margin 0 $article-margin 0;
+    background: $main-bg-color;
+}
+
+$article-padding: 10px;
+section,
+article {
+	padding: $article-padding;
+	
+    text-align: left; /* small-screen default */
+	
+	background: rgb(25, 25, 31);
 	border-radius: 5px;
-	padding: 8px 10px;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	margin-left: 5%; /* small-screen default */
-	margin-right: 5%; /* small-screen default */
 	
 	p,
 	h1,
@@ -444,11 +510,38 @@ main>article {
 		text-align: center;
 		margin-bottom: 10px;
 		margin-top: 10px;
-		/*border-bottom: 2px groove #676767;*/
 	}
 	
+	span.date {
+		font-size: 12pt;
+		letter-spacing: 1px;
+		text-transform: none;
+	}
 	#date {
 		text-align: center;
+	}
+}
+main>section,
+main>article {
+	margin-bottom: $article-margin;
+	margin-top: $article-margin;
+	
+	margin-left: 5%; /* small-screen default */
+	margin-right: 5%; /* small-screen default */
+	
+	section,
+	article {
+		margin-left: -$article-padding; /* small-screen default */
+		margin-right: -$article-padding; /* small-screen default */
+		
+		margin-bottom: 30px;
+		margin-top: 30px;
+		
+		$article-border-color: #484b57;
+		border-top: 2px solid $article-border-color;
+		border-bottom: 2px solid $article-border-color;
+		border-left: 1px solid transparentize($article-border-color, 0.6);
+		border-right: 1px solid transparentize($article-border-color, 0.6);
 	}
 }
 
@@ -462,6 +555,11 @@ main>article {
     header h3 {
         display: block;
     }
+	header h2 {
+		position: static;
+		@include transform(none);
+		padding-top: 7px;
+	}
     
     nav ul.socialsites a {
         font-size: 18pt;
@@ -473,6 +571,13 @@ main>article {
     main>section,
 	main>article {
         text-align: justify;
+		
+		section,
+		article {
+			margin-left: 0;
+			margin-right: 0;
+    		text-align: justify;
+		}
     }
 }
 

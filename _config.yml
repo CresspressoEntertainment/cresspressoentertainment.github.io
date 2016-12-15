@@ -13,6 +13,11 @@ include:
 collections:
   - scripts
   - socialsites
+  
+homepage:
+  title: Home
+  url: ''
+  icon: cresspresso.png
 
 # Build settings
 excerpt_separator: ""

@@ -10,7 +10,7 @@
         <main>
 			<section>
 				<h2>{{ page.title }}</h2>
-				<p id="date">{{ page.date }}</p>
+				<p id="date">{{ page.date | date: '%-d %b %Y<br>%r' }}</p>
 			</section>
 
 			<article>
