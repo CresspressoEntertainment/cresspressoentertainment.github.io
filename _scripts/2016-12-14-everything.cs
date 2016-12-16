@@ -6,6 +6,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
 /*
 multi-line
 comment
@@ -54,3 +58,16 @@ namespace MyGame
 		}
 	}
 }
+
+#if UNITY_EDITOR
+
+[CustomEditor(typeof(Controller))]
+public class Controller_Editor : Editor
+{
+	public override void OnInspectorGUI()
+	{
+		DrawDefaultInspector();
+	}
+}
+
+#endif

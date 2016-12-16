@@ -1,6 +1,7 @@
 $keyword: #678bea;
 $class: #35c7f2;
 $normal: #ddd;
+$normal-dark: #ccc;
 $constant: #e55f5f;
 
 .highlighter-rouge {
@@ -8,7 +9,7 @@ $constant: #e55f5f;
     
     .hll { background-color: $normal; }
     .err { color: #a61717; background-color: #e3d2d2; } /* Error */
-    .p { color: $normal; } /* Punctuation */
+    .p { color: $normal-dark; } /* Punctuation */
     .w { color: #666666; } /* Text.Whitespace */
     .x { @extend .p; } /* Other */
     
@@ -16,7 +17,7 @@ $constant: #e55f5f;
     .c { color: #777;  } /* Comment */
     .c1 { @extend .c; } /* Comment.Single */
     .cm { @extend .c; } /* Comment.Multiline */
-    .cp { @extend .c; } /* Comment.Preproc */
+    .cp { color: #aaa; } /* Comment.Preproc */
     .cs { color: #e50808; background-color: #520000; } /* Comment.Special */
     
     /* Generic */

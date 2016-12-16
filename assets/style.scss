@@ -3,17 +3,17 @@
 
 /* variables */
 
-$header-bg-color: rgb(17, 17, 34);
-$header-bg-color-dark: rgb(10, 10, 21);
+$header-bg-color: 		rgb(27, 27, 56);
+$header-bg-color-light: lighten($header-bg-color, 3%);
+$header-bg-color-dark: 	rgb(21, 21, 36);
 
 $icon-bg-color: rgba(0,0,0,0.1);
 $icon-width: 48px;
-
 $icon-padding: 3px;
 
-$nav-a-div-height: $icon-width + $icon-padding * 2;
-$nav-li-height: $nav-a-div-height + 12px;
-$title-height: $nav-li-height;
+$nav-a-div-height: 	$icon-width + $icon-padding * 2;
+$nav-li-height: 	$nav-a-div-height + 12px;
+$title-height: 		$nav-li-height;
 
 $nav-a-div-padding-partial: 14px + $icon-padding * 2;
 $nav-a-div-margin: 15px;
@@ -23,13 +23,18 @@ $nav-padding: 6px;
 $font-normal: "Arial", sans-serif;
 $font-narrow: "Arial Narrow", "Arial", sans-serif;
 
+$toggle-img-padding: 20px;
+
 $main-bg-color: rgb(26, 26, 29);
+$article-bg-color: rgb(55, 55, 57);
+
 $fade-color: darken($main-bg-color, 3%);
 $fade-height: 8px;
 
-$toggle-img-padding: 20px;
-
-$article-bg-color: rgb(55, 55, 57);
+$link-color: 				#9bf;
+$link-color-hover: 			#77f;
+$link-color-visited: 		#b9f;
+$link-color-visited-hover: 	#86f;
 
 /* mixins */
 
@@ -57,13 +62,6 @@ $article-bg-color: rgb(55, 55, 57);
     -ms-transform: $properties;
 }
 
-@mixin article-border($color) {
-	border-top: 3px solid $color;
-	border-bottom: 3px solid $color;
-	border-left: 2px solid transparentize($color, 0.6);
-	border-right: 2px solid transparentize($color, 0.6);
-}
-
 /* syntax highlighting */
 
 @import "syntax_highlighting/alternative.scss";
@@ -76,13 +74,14 @@ $article-bg-color: rgb(55, 55, 57);
 
 .highlighter-rouge {
     display: inline;
-    padding: 1px 4px 1px 4px;
+    padding: 1px 4px;
     overflow-x: auto;
     
     font-family: monospace;
     
     border-radius: 5px;
 	background-color: $main-bg-color;
+	font-size: 0.9em;
 }
 pre.highlight {
     display: inline-block;
@@ -95,6 +94,8 @@ pre.highlight {
 	margin-top: 1em;
 	margin-bottom: 1em;
 	padding: 10px;
+	
+	box-shadow: 0 0 8px 1px rgba(0,0,0,0.5) inset;
 	
     white-space: pre;
 	font-size: 10pt;
@@ -139,25 +140,37 @@ h2 {
 }
 
 a {
-    color: #9bf;
+    color: $link-color;
     text-decoration: none;
+	@include transition(color 0.1s);
 }
 a:hover {
-    color: #77f;
+    color: $link-color-hover;
 	text-shadow: 0px 3px 2px #000;
 }
 a:visited {
-    color: #b9f;
+    color: $link-color-visited;
 }
 a:visited:hover {
-    color: #86f;
+    color: $link-color-visited-hover;
 }
 
 ul {
 	padding-left: 23px;
 }
-ul.nav li {
-	margin: 10px 0;
+ul.nav {
+	li {
+		margin: 10px 0;
+	}
+	a {
+    	letter-spacing: 1pt;
+	}
+	a:visited {
+		color: $link-color;
+	}
+	a:visited:hover {
+		color: $link-color-hover;
+	}
 }
 
 /* HEADER & FOOTER */
@@ -188,6 +201,10 @@ header .toggle ~ label {
     display: block;
 }
 
+.toggle ~ label:hover div {
+	
+}
+
 /* toggle icons - open/close */
 
 .toggle ~ label img {
@@ -215,12 +232,17 @@ header .toggle ~ label {
 }
 
 /* when menu is open */
+@mixin heightexpand($rows) {
+	height: $nav-li-height * $rows + $nav-padding * 2;
+}
 .toggle.mainpages:checked ~ .toggle-content {
-    height: $nav-li-height * 6 + $nav-padding * 2;
+	@include heightexpand(6);
 }
 .toggle.socialsites:checked ~ .toggle-content {
-    height: $nav-li-height * 3 + $nav-padding * 2;
+	@include heightexpand(3);
 }
+
+/* HEADER & FOOTER continued */
 
 header,
 footer {
@@ -249,12 +271,12 @@ footer .fade {
     margin: 0;
     padding: 0;
     width: 100%;
-    height: 3px;
+    height: 1px; /* acts as border-bottom when closed */
     overflow: hidden;
     
     z-index: 1;
     
-    @include transition (height 0.3s);
+    @include transition(height 0.3s);
     background-color: $header-bg-color-dark;
 }
 header .toggle-content {
@@ -269,7 +291,7 @@ header .toggle-content {
     
     z-index: 2;
     
-    @include transition (top 0.3s);
+    @include transition(top 0.3s);
 }
 
 /* TITLE */
@@ -285,12 +307,12 @@ header .toggle-content {
     color: #ddf;
     background: $header-bg-color;
     
-    @include transition (background 0.2s);
+    @include transition(background 0.2s);
 }
 #title:hover {
     text-decoration: none;
     
-    background: rgb(25, 25, 41);
+    background: $header-bg-color-light;
 }
 #title img {
 	position: absolute;
@@ -301,7 +323,8 @@ header .toggle-content {
 	border-radius: $icon-width;
 }
 
-/* HEADER/FOOTER continued */
+/* HEADER & FOOTER continued */
+
 header h2,
 header h3 {
     text-transform: uppercase;
@@ -369,7 +392,7 @@ nav a {
     text-decoration: none;
     font-size: 18pt;
     
-    @include transition (background 0.2s);
+    @include transition(background 0.2s);
 }
 nav ul.socialsites a {
     font-size: 14pt; /* small-screen-default */
@@ -431,16 +454,17 @@ nav a span {
     padding-left: 80px;
 }
 
+$nav-link-color-hover: #e1e1ff;
 nav a:hover {
-    color: #bbf;
+    color: $nav-link-color-hover;
     text-decoration: none;
     background: rgba(255, 255, 255, 0.05);
 }
 nav a:visited {
-	color: #9bf;
+	color: $link-color;
 }
 nav a:visited:hover {
-	color: #bbf;
+	color: $nav-link-color-hover;
 }
 
 
@@ -455,6 +479,10 @@ div.expandable {
     height: auto;
     
     background: $header-bg-color;
+	@include transition(background-color 0.2s);
+}
+div.expandable:hover {
+	background: $header-bg-color-light;
 }
 
 footer .toggle,
@@ -497,7 +525,8 @@ article {
     text-align: left; /* small-screen default */
 	
 	background: $article-bg-color;
-	border-radius: 5px;
+	border-radius: 8px;
+	box-shadow: 0 3px 10px 1px rgba(0,0,0,0.5);
 	
 	p,
 	h1,
@@ -537,14 +566,16 @@ main>article {
 	
 	section,
 	article {
-		margin-left: -$article-padding; /* small-screen default */
-		margin-right: -$article-padding; /* small-screen default */
+		margin-left: 3px - $article-padding; /* small-screen default */
+		margin-right: 3px - $article-padding; /* small-screen default */
 		
 		margin-bottom: 30px;
 		margin-top: 30px;
 		
-		@include article-border(#60636d);
+		border: 2px dotted #60636d;
+		//@include article-border(#60636d);
 	}
+	
 }
 
 .WIP {
@@ -556,13 +587,21 @@ main>article {
 @media only screen and (max-width: 479px) {
 	section,
 	article {
+		border-radius: 10px;
+		
 		.codeblock {
 			position: relative;
 			left: 50%;
-			width: 110%;
+			width: 98%;
 			@include transform(translateX(-50%));
-			@include article-border($article-bg-color);
+			//border-top: 1px solid #000;
+			//border-bottom: 1px solid #555;
 		}
+	}
+	main>section,
+	main>article {
+		margin-left: 1%;
+		margin-right: 1%;
 	}
 }
 @media only screen and (min-width: 480px) {
@@ -605,6 +644,7 @@ main>article {
 		margin-left: auto;
 		margin-right: auto;
         width: 600px;
+		@include transition(width 0.2s);
     }
 }
 
