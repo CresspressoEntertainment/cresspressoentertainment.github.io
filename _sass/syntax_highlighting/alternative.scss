@@ -1,25 +1,26 @@
-$grey-light: #d0d0d0;
-$keyword: #25abff;
-$class: #00ffc4;
+$keyword: #678bea;
+$class: #35c7f2;
+$normal: #ddd;
+$constant: #e55f5f;
 
 .highlighter-rouge {
-    background-color: #0b0b0d; color: #eee;
+    background-color: #0b0b0d; color: $normal;
     
-    .hll { background-color: $grey-light; }
+    .hll { background-color: $normal; }
     .err { color: #a61717; background-color: #e3d2d2; } /* Error */
-    .p { color: $grey-light; } /* Punctuation */
+    .p { color: $normal; } /* Punctuation */
     .w { color: #666666; } /* Text.Whitespace */
     .x { @extend .p; } /* Other */
     
     /* Comment */
-    .c { color: #999999;  } /* Comment */
+    .c { color: #777;  } /* Comment */
     .c1 { @extend .c; } /* Comment.Single */
     .cm { @extend .c; } /* Comment.Multiline */
     .cp { @extend .c; } /* Comment.Preproc */
     .cs { color: #e50808; background-color: #520000; } /* Comment.Special */
     
     /* Generic */
-    .g { color: $grey-light; } /* Generic */
+    .g { color: $normal; } /* Generic */
     .gd { color: #d22323; } /* Generic.Deleted */
     .ge { @extend .g; font-style: italic } /* Generic.Emph */
     .gr { color: #d22323; } /* Generic.Error */
@@ -27,7 +28,7 @@ $class: #00ffc4;
     .gi { color: #589819; } /* Generic.Inserted */
     .go { color: #cccccc; } /* Generic.Output */
     .gp { color: #aaaaaa; } /* Generic.Prompt */
-    .gs { color: $grey-light; } /* Generic.Strong */
+    .gs { color: $normal; } /* Generic.Strong */
     .gu { color: #ffffff; text-decoration: underline } /* Generic.Subheading */
     .gt { color: #d22323; } /* Generic.Traceback */
     
@@ -41,11 +42,11 @@ $class: #00ffc4;
     .kt { @extend .k; } /* Keyword.Type */
     
     /* Literal */
-    .l { color: $grey-light; } /* Literal */
-    .ld { color: $grey-light; } /* Literal.Date */
+    .l { color: $normal; } /* Literal */
+    .ld { @extend .l; } /* Literal.Date */
     
     /* Literal.Number */
-    .m { color: #ffc861; } /* Literal.Number */
+    .m { color: $normal; } /* Literal.Number */
     .mf { @extend .m; } /* Literal.Number.Float */
     .mh { @extend .m; } /* Literal.Number.Hex */
     .mi { @extend .m; } /* Literal.Number.Integer */
@@ -53,7 +54,7 @@ $class: #00ffc4;
     .mo { @extend .m; } /* Literal.Number.Oct */
     
     /* Literal.String */
-    .s { color: #ff953a; } /* Literal.String */
+    .s { color: $constant; } /* Literal.String */
     .sb { @extend .s; } /* Literal.String.Backtick */
     .sc { @extend .s; } /* Literal.String.Char */
     .sd { @extend .s; } /* Literal.String.Doc */
@@ -67,30 +68,30 @@ $class: #00ffc4;
     .ss { @extend .s; } /* Literal.String.Symbol */
     
     /* Name */
-    .n { color: $grey-light; } /* Name */
-    .na { color: #bbbbbb; } /* Name.Attribute */
+    .n { color: $normal; } /* Name */
+    .na { color: $class; } /* Name.Attribute */
     .nb { color: #24909d; } /* Name.Builtin */
     .bp { @extend .nb; } /* Name.Builtin.Pseudo */
     .nc { color: $class; } /* Name.Class */
-    .no { color: #40ffff; } /* Name.Constant */
+    .no { color: $constant; } /* Name.Constant */
     .nd { color: #ffa500; } /* Name.Decorator */
     .ni { @extend .n; } /* Name.Entity */
     .ne { color: #bbbbbb; } /* Name.Exception */
-    .nf { color: $class; } /* Name.Function */
-    .nl { @extend .n; } /* Name.Label */
-    .nn { color: $class; } /* Name.Namespace */
+    .nf { @extend .n; } /* Name.Function */
+    .nl { color: $class; } /* Name.Label */
+    .nn { color: $normal; } /* Name.Namespace */
     .nx { @extend .n; } /* Name.Other */
     .py { @extend .n; } /* Name.Property */
     .nt { @extend .k; } /* Name.Tag */
     
     /* Name.Variable */
-    .nv { color: #40ffff; } /* Name.Variable */
+    .nv { color: $class; } /* Name.Variable */
     .vc { @extend .nv; } /* Name.Variable.Class */
     .vg { @extend .nv; } /* Name.Variable.Global */
     .vi { @extend .nv; } /* Name.Variable.Instance */
     
     /* Operator */
-    .o { color: #939393; } /* Operator */
+    .o { color: $normal; } /* Operator */
     .ow { @extend .k; } /* Operator.Word */
 }
 

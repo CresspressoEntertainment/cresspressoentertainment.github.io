@@ -23,13 +23,13 @@ $nav-padding: 6px;
 $font-normal: "Arial", sans-serif;
 $font-narrow: "Arial Narrow", "Arial", sans-serif;
 
-$main-bg-color: rgb(11, 11, 13);
+$main-bg-color: rgb(26, 26, 29);
 $fade-color: darken($main-bg-color, 3%);
 $fade-height: 8px;
 
 $toggle-img-padding: 20px;
 
-//$article-border-color: rgba(44, 44, 60, 0);
+$article-bg-color: rgb(55, 55, 57);
 
 /* mixins */
 
@@ -57,6 +57,12 @@ $toggle-img-padding: 20px;
     -ms-transform: $properties;
 }
 
+@mixin article-border($color) {
+	border-top: 3px solid $color;
+	border-bottom: 3px solid $color;
+	border-left: 2px solid transparentize($color, 0.6);
+	border-right: 2px solid transparentize($color, 0.6);
+}
 
 /* syntax highlighting */
 
@@ -91,8 +97,8 @@ pre.highlight {
 	padding: 10px;
 	
     white-space: pre;
-	font-size: 11pt;
-	@include tab-size(16px);
+	font-size: 10pt;
+	@include tab-size(2); /* small-screen default */
 }
 
 
@@ -490,7 +496,7 @@ article {
 	
     text-align: left; /* small-screen default */
 	
-	background: rgb(25, 25, 31);
+	background: $article-bg-color;
 	border-radius: 5px;
 	
 	p,
@@ -537,11 +543,7 @@ main>article {
 		margin-bottom: 30px;
 		margin-top: 30px;
 		
-		$article-border-color: #484b57;
-		border-top: 2px solid $article-border-color;
-		border-bottom: 2px solid $article-border-color;
-		border-left: 1px solid transparentize($article-border-color, 0.6);
-		border-right: 1px solid transparentize($article-border-color, 0.6);
+		@include article-border(#60636d);
 	}
 }
 
@@ -551,6 +553,18 @@ main>article {
 
 /* LARGER SCREENS */
 
+@media only screen and (max-width: 479px) {
+	section,
+	article {
+		.codeblock {
+			position: relative;
+			left: 50%;
+			width: 110%;
+			@include transform(translateX(-50%));
+			@include article-border($article-bg-color);
+		}
+	}
+}
 @media only screen and (min-width: 480px) {
     header h3 {
         display: block;
@@ -579,9 +593,13 @@ main>article {
     		text-align: justify;
 		}
     }
+	
+	.codeblock {
+		@include tab-size(4);
+	}
 }
 
-@media only screen and (min-width: 660px) {
+@media only screen and (min-width: 700px) {
     main>section,
 	main>article {
 		margin-left: auto;
@@ -590,7 +608,7 @@ main>article {
     }
 }
 
-@media only screen and (min-width: 960px) {
+@media only screen and (min-width: 1000px) {
     main>section,
 	main>article {
         width: 900px;

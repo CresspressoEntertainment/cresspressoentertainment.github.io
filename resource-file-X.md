@@ -1,3 +1,0 @@
-resource: true
-categories:
-  - mainpages
