@@ -7,13 +7,13 @@ categories:
 order: 3
 icon: coding.png
 ---
-<article>
+<section>
 	<h3>Contents</h3>
 	<ul class="nav">
 		<li><a href="#scripts">All Scripts</a></li>
 		<li><a href="#posts">All Posts</a></li>
 	</ul>
-</article>
+</section>
 
 <article>
     <p>You never saw this coming.</p>
@@ -46,11 +46,13 @@ icon: coding.png
 {% for post in site.posts %}
 	{% if post.categories contains 'coding' %}
 <article>
-	<h3>
-		<a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}<br>
-		<span class="date">{{ post.date | date: '%-d %b %Y' }}</span></a>
-	</h3>
-	<hr style="margin-top:10px"/>
+	<a class="post-header" href="{{ site.baseurl }}{{ post.url }}">
+		<h3>
+			{{ post.title }}<br>
+			
+		</h3>
+		<p class="date">{{ post.date | date: '%-d %b %Y' }}</p>
+	</a>
 	{{ post.content }}
 </article>
 	{% endif %}
