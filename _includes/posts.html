@@ -1,0 +1,11 @@
+{% for post in site.posts %}
+	{% if post.group == page.group %}
+<article>
+	<a class="article-header" href="{{ site.baseurl }}{{ post.url }}">
+		<h3>{{ post.title }}</h3>
+		<p class="date">{{ post.date | date: '%-d %b %Y, %R' }}</p>
+	</a>
+	<p>{{ post.description }}</p>
+</article>
+	{% endif %}
+{% endfor %}

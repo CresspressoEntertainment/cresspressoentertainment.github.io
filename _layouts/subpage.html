@@ -8,14 +8,7 @@
     <body>
         {% include header.html group=page.group %}
         <main>
-			<section>
-				<p id="date">{{ page.date | date: '%-d %b %Y, %R' }}</p>
-				<h1>{{ page.title }}</h1>
-			</section>
-
-			<article>
-				{{ content }}
-			</article>
+			{{ content }}
         </main>
         {% include footer.html %}
     </body>

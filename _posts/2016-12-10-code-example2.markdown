@@ -10,6 +10,7 @@ sources:
   - "htmlexample.html"
   - "stylesheet.css"
   - "markdownexample.markdown"
+description: "This is a paragraph full of random things and snippets of code like `public void Destroy() { }` and..."
 ---
 This is a paragraph full of random things and snippets of code like {% include codeblock.md content='public void Destroy() { }' codetype='csharp' %} and {% include codeblock.md content='int *p = new int(4);' codetype='cpp' %}.
 

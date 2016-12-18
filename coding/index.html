@@ -22,16 +22,4 @@ icon: coding.png
 	</nav>
 </section>
 
-<!-- ALL POSTS -->
-
-{% for post in site.posts %}
-	{% if post.categories contains 'coding' %}
-<article>
-	<a class="article-header" href="{{ site.baseurl }}{{ post.url }}">
-		<h3>{{ post.title }}</h3>
-		<p class="date">{{ post.date | date: '%-d %b %Y, %R' }}</p>
-	</a>
-	{{ post.content }}
-</article>
-	{% endif %}
-{% endfor %}
+{% include posts.html %}

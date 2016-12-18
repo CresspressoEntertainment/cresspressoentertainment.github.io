@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Code Example (html Post)"
-date:   2016-12-08 16:40:46 +1300
+date:   2016-12-08 16:41:46 +1300
 group: Coding
 categories:
   - coding
@@ -10,6 +10,7 @@ sources:
   - "htmlexample.html"
   - "stylesheet.css"
   - "markdownexample.markdown"
+description: "This is a paragraph full of random things and snippets of code like `public void Destroy() { }` and..."
 ---
 <p>This is a paragraph full of random things and snippets of code like {% include codeblock.html codetype='csharp' content='public void Destroy() { }' %} as well as {% include codeblock.html codetype='cpp' content='int *p = new int(4);' %}.</p>
 <div class="codeblock highlighter-rouge"><pre class="highlight">
@@ -20,14 +21,11 @@ a lot quicker than I expected of someone of that caliber.
 
 
 {% for scriptname in page.sources %}
-{% assign scripts = site.scripts | where: 'scriptname', {{scriptname}}%}
-{% for script in scripts %}
+	{% assign scripts = site.scripts | where: 'scriptname', {{scriptname}}%}
+	{% for script in scripts %}
 <article>
-    
-    <p><a href="{{ site.baseurl }}/{{ script.relative_path }}" download="{{ script.scriptname }}">Download: {{ script.scriptname }}</a></p>
-    {% include codeblock.html block=true codetype=script.codetype content=script.content %}
-
+	<p><a href="{{ site.baseurl }}/{{ script.relative_path }}" download="{{ script.scriptname }}">Download: {{ script.scriptname }}</a></p>
+	{% include codeblock.html block=true codetype=script.codetype content=script.content %}
 </article>
-
-{% endfor %}
+	{% endfor %}
 {% endfor %}

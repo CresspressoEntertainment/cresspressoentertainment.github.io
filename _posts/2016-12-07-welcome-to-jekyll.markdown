@@ -5,6 +5,7 @@ date:   2016-12-07 10:37:30 +1300
 group: Home
 categories:
   - update
+description: "You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your..."
 ---
 You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
 
