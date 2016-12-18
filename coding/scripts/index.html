@@ -1,0 +1,26 @@
+---
+layout: page
+title: Scripts
+permalink: /coding/scripts/
+group: Coding
+categories:
+  - subpages
+order: 31
+icon: coding.png
+---
+<section>
+	<h1>{{ page.title }}</h1>
+	<p>All of my sourcecode files used on this site. Click the file's name to download.</p>
+	<p>Note that when downloading certain files ({% include codeblock.html codetype='' content=".html .markdown .md" %}) on mobile devices, the file name extension may have a trailing underscore {% include codeblock.html codetype='' content="_" %} which will need to be removed.</p>
+</section>
+
+{% assign scripts = site.scripts | order: 'date' %}
+{% for script in scripts %}
+<article>
+	<a class="article-header" href="{{ site.baseurl }}/{{ script.relative_path }}" download="{{ script.scriptname }}">
+		<h3>{{ script.scriptname }}</h3>
+		<p class="date">{{ script.date | date: '%-d %b %Y, %R' }}</p>
+	</a>
+    {% include codeblock.html block=true codetype=script.codetype content=script.content %}
+</article>
+{% endfor %}

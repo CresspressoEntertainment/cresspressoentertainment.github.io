@@ -2,56 +2,34 @@
 layout: page
 title: Coding
 permalink: /coding/
+group: Coding
 categories:
   - mainpages
-order: 3
+order: 30
 icon: coding.png
 ---
 <section>
-	<h3>Contents</h3>
-	<ul class="nav">
-		<li><a href="#scripts">All Scripts</a></li>
-		<li><a href="#posts">All Posts</a></li>
-	</ul>
+	<h1>{{ page.title }}</h1>
+    <p>You will find many of my programming tips and tricks in this blog, with explanations, examples and sourcecode.</p>
+	
+	<nav>
+		<a href="{{ site.baseurl }}/coding/scripts/">
+			<div class="link">
+				<span>Scripts</span>
+				<img src="{{ site.baseurl }}/assets/images/icons/{{ page.icon }}"/>
+			</div>
+		</a>
+	</nav>
 </section>
-
-<article>
-    <p>You never saw this coming.</p>
-    
-    {% assign script = site.scripts | where: 'scriptname', 'everything.cs' | first %}
-    {% include codeblock.html block=true codetype=script.codetype content=script.content %}
-</article>
-
-<!-- ALL SCRIPTS -->
-<hr id="scripts"/>
-
-<section>
-    <h2>All Scripts</h2>
-</section>
-
-{% for script in site.scripts %}
-<article>
-    <p>{{ script.scriptname }}</p>
-    {% include codeblock.html block=true codetype=script.codetype content=script.content %}
-</article>
-{% endfor %}
 
 <!-- ALL POSTS -->
-<hr id="posts"/>
-
-<section>
-	<h2>All Posts</h2>
-</section>
 
 {% for post in site.posts %}
 	{% if post.categories contains 'coding' %}
 <article>
-	<a class="post-header" href="{{ site.baseurl }}{{ post.url }}">
-		<h3>
-			{{ post.title }}<br>
-			
-		</h3>
-		<p class="date">{{ post.date | date: '%-d %b %Y' }}</p>
+	<a class="article-header" href="{{ site.baseurl }}{{ post.url }}">
+		<h3>{{ post.title }}</h3>
+		<p class="date">{{ post.date | date: '%-d %b %Y, %R' }}</p>
 	</a>
 	{{ post.content }}
 </article>

@@ -1,6 +1,7 @@
 ---
 scriptname: everything.cs
 codetype: csharp
+date: 2016-12-18 13:05:56 +1300
 ---
 using UnityEngine;
 using UnityEngine.UI;

@@ -5,63 +5,83 @@
 
 $header-bg-color: 		rgb(35, 35, 77);
 $header-bg-color-light: lighten($header-bg-color, 3%);
-$header-bg-color-dark: 	darken($header-bg-color, 12%); //rgb(21, 21, 36)
+$header-bg-color-dark: 	darken($header-bg-color, 6%); //rgb(21, 21, 36)
 
-$icon-bg-color: rgba(0,0,0,0.1);
-$icon-width: 48px;
-$icon-padding: 3px;
+$icon-bg-color: 	rgba(0,0,0,0.1);
+$icon-padding: 		3px;
+$icon-width: 		48px;
+$icon-small-width: 	36px;
 
-$nav-a-div-height: 	$icon-width + $icon-padding * 2;
-$nav-li-height: 	$nav-a-div-height + 12px;
-$title-height: 		$nav-li-height;
+$nav-a-div-bg-color: rgba(0,0,0,0.3);
 
-$nav-a-div-padding-partial: 14px + $icon-padding * 2;
-$nav-a-div-margin: 15px;
+$nav-a-div-height: 			$icon-width + $icon-padding * 2;
+$nav-a-div-padding-partial: 14px + $icon-width + $icon-padding * 2;
+$nav-a-div-margin: 			15px;
+$nav-li-height: 			$nav-a-div-height + 12px;
+
+$nav-a-div-small-height: 			$icon-small-width + $icon-padding * 2;
+$nav-a-div-small-padding-partial: 	12px + $icon-small-width + $icon-padding * 2;
+$nav-a-div-small-margin: 			28px;
+$nav-li-small-height: 				$nav-a-div-small-height + 12px;
+
+$title-height: $nav-li-height;
+
+$toggle-img-padding: 20px;
 
 $nav-padding: 6px;
 
 $font-normal: "Arial", sans-serif;
 $font-narrow: "Arial Narrow", "Arial", sans-serif;
 
-$toggle-img-padding: 20px;
+$shadow-color: rgba(0,0,0,0.5);
 
 $main-bg-color: rgb(26, 26, 29);
+
+$article-padding: 10px;
+$article-marginY: 30px;
+$article-marginX-smallscreen: 3px;
+
 $article-bg-color: rgb(55, 55, 57);
+$article-box-shadow: 0 3px 10px 1px $shadow-color;
 
-$shadow-color: rgba(0,0,0,0.5);//darken($main-bg-color, 3%)
-$fade-height: 6px;
-
+$link-hover-transition: color 0.1s, text-shadow 0.2s;
 $link-color: 				#9bf;
-$link-color-hover: 			#88f;
+$link-color-hover: 			#7af;
 $link-color-visited: 		#b9f;
-$link-color-visited-hover: 	#97f;
+$link-color-visited-hover: 	#a7f;
 
 /* mixins */
 
-@mixin transition($properties...) {
-    transition: $properties;
-    -webkit-transition: $properties;
-    -moz-transition: $properties;
-    -o-transition: $properties;
+@mixin transition($values...) {
+    transition: $values;
+    -webkit-transition: $values;
+    -moz-transition: $values;
+    -o-transition: $values;
 }
 
+@mixin transform($values...) {
+    transform: $values;
+    -webkit-transform: $values;
+    -o-transform: $values;
+    -moz-transform: $values;
+    -ms-transform: $values;
+}
+
+@mixin box-shadow($values...) {
+	box-shadow: $values;
+	-webkit-box-shadow: $values;
+	-moz-box-shadow: $values;
+}
+
+
+@mixin filter($values...) {
+    -webkit-filter: $values;
+    filter: $values;
+}
 @mixin transition-filter($time) {
     transition: filter $time, -webkit-filter $time;
     -webkit-transition: -webkit-filter $time;
 }
-@mixin filter($properties...) {
-    -webkit-filter: $properties;
-    filter: $properties;
-}
-
-@mixin transform($properties...) {
-    transform: $properties;
-    -webkit-transform: $properties;
-    -o-transform: $properties;
-    -moz-transform: $properties;
-    -ms-transform: $properties;
-}
-
 /* syntax highlighting */
 
 @import "syntax_highlighting/alternative.scss";
@@ -77,11 +97,12 @@ $link-color-visited-hover: 	#97f;
     padding: 1px 4px;
     overflow-x: auto;
     
+	font-size: 0.9em;
     font-family: monospace;
     
-    //border-radius: 5px;
+    border-radius: 3px;
 	background-color: $main-bg-color;
-	font-size: 0.9em;
+	@include box-shadow(0 0 8px 1px $shadow-color inset);
 }
 pre.highlight {
     display: inline-block;
@@ -91,15 +112,15 @@ pre.highlight {
 }
 .codeblock {
 	display: block;
-	margin-top: 1em;
-	margin-bottom: 1em;
+	//margin-top: 1em;
+	//margin-bottom: 1em;
 	padding: 10px;
-	
-	box-shadow: 0 0 8px 1px $shadow-color inset;
 	
     white-space: pre;
 	font-size: 10pt;
 	@include tab-size(2); /* small-screen default */
+	
+	border-radius: 0;
 }
 
 
@@ -120,7 +141,7 @@ body {
 hr {
     border: none;
     border-top: 1px solid lighten($article-bg-color, 20%)/*#676767*/;
-	box-shadow: 0 3px 6px 1px rgba(0,0,0,0.5);
+	@include box-shadow(0 2px 4px 0px $shadow-color);
 	margin: 30px 0;
 }
 main>hr {
@@ -139,15 +160,19 @@ h1 {
 h2 {
 	font-size: 20pt;
 }
+h3 {
+	font-size: 14pt;
+}
 
 a {
     color: $link-color;
     text-decoration: none;
-	@include transition(color 0.1s);
+	text-shadow: 0 0px 2px rgba(0,0,0,0);
+	@include transition($link-hover-transition);
 }
 a:hover {
     color: $link-color-hover;
-	text-shadow: 0px 3px 2px #000;
+	text-shadow: 0 2px 2px rgba(0,0,0,1);
 }
 a:visited {
     color: $link-color-visited;
@@ -208,14 +233,15 @@ header .toggle ~ label {
 
 /* toggle icons - open/close */
 
-.toggle ~ label img {
+.toggle ~ label img,
+ {
     position: absolute;
     width: 40px;
     height: 40px;
     left: $toggle-img-padding;
     top: 50%;
     @include transform(translateY(-50%));
-    
+	 
 	@include filter(brightness(140%));
     @include transition-filter(0.2s);
 }
@@ -234,11 +260,14 @@ header .toggle ~ label {
 }
 
 /* when menu is open */
+@mixin heightexpand2($normal, $small) {
+	height: $nav-padding * 2 + $nav-li-height * $normal + $nav-li-small-height * $small;
+}
 @mixin heightexpand($rows) {
-	height: $nav-li-height * $rows + $nav-padding * 2;
+	height: $nav-padding * 2 + $nav-li-height * $rows;
 }
 .toggle.mainpages:checked ~ .toggle-content {
-	@include heightexpand(6);
+	@include heightexpand2(4, 3);
 }
 .toggle.socialsites:checked ~ .toggle-content {
 	@include heightexpand(3);
@@ -253,21 +282,6 @@ footer {
     position: relative; /* for child positioning */
 }
 
-.fade {
-    height: $fade-height;
-    width: 100%;
-    position: absolute;
-}
-$fade-darkness: 20%;
-header .fade {
-    bottom: -$fade-height;
-    background: linear-gradient($shadow-color, rgba($shadow-color, 0));
-}
-footer .fade {
-    top: -$fade-height;
-    background: linear-gradient(rgba($shadow-color, 0), $shadow-color);
-}
-
 .toggle-content {
     position: relative; /* for child positioning */
     margin: 0;
@@ -277,19 +291,23 @@ footer .fade {
     overflow: hidden;
     
     z-index: 1;
+	
+	@include box-shadow(
+        inset 0px 11px 8px -10px $shadow-color,
+		inset 0px -11px 8px -10px $shadow-color);
     
     @include transition(height 0.3s);
     background-color: $header-bg-color-dark;
 }
 header .toggle-content {
     height: 0;
+	@include box-shadow(
+        inset 0px 11px 8px -10px $shadow-color);
 }
 
 .toggle-content nav {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    padding: $nav-padding 0;
-    margin: 0;
     
     z-index: 2;
     
@@ -307,9 +325,9 @@ header .toggle-content {
     z-index: 3;
     
     color: #ddf;
-    background: $header-bg-color;
+    background-color: $header-bg-color;
     
-    @include transition(background 0.2s);
+    @include transition(background-color 0.2s);
 }
 #title:hover {
     text-decoration: none;
@@ -323,6 +341,8 @@ header .toggle-content {
 	@include transform(translateY(-50%));
 	width: $icon-width;
 	border-radius: $icon-width;
+	border: 1px solid transparent;
+	background: $icon-bg-color;
 }
 
 /* HEADER & FOOTER continued */
@@ -375,6 +395,10 @@ header h3 span {
 
 /* NAVIGATION LINKS */
 
+nav {
+    padding: $nav-padding 0;
+    margin: 0;
+}
 nav ul {
     list-style: none;
     margin: 0;
@@ -391,10 +415,14 @@ nav a {
     height: $nav-li-height;
     
     font-family: $font-narrow;
-    text-decoration: none;
     font-size: 18pt;
+    text-decoration: none;
+	text-shadow: 0 0px 1px rgba(0,0,0,0);
     
-    @include transition(background 0.2s);
+    @include transition(background-color 0.2s, $link-hover-transition);
+}
+nav a.sublink {
+	height: $nav-li-small-height;
 }
 nav ul.socialsites a {
     font-size: 14pt; /* small-screen-default */
@@ -406,21 +434,25 @@ nav a span i {
     font-size: 12pt; /* small-screen-default */
 }
 
-nav a div,
+nav a div.link,
 .toggle ~ label div {
     position: absolute;
     display: inline-block;
     top: 50%;
     @include transform(translateY(-50%));
 }
-nav a div {
+nav a div.link {
     margin-left: $nav-a-div-margin;
     margin-right: $nav-a-div-margin;
     height: $nav-a-div-height;
     /*width: 200px;*/
     
-    background: rgba(0,0,0,0.3);
+    background: $nav-a-div-bg-color;
     border-radius: $nav-a-div-height;
+}
+nav a.sublink div.link {
+	height: $nav-a-div-small-height;
+	margin-left: $nav-a-div-small-margin;
 }
 .toggle ~ label div {
     height: 100%;
@@ -430,11 +462,14 @@ nav a img {
     position: absolute;
     top: 0;
     left: 0;
-    
     width: $icon-width;
+	
+    background: $icon-bg-color;
     border-radius: $icon-width;
     border: $icon-padding solid transparent;
-    background: $icon-bg-color;
+}
+nav a.sublink img {
+	width: $icon-small-width;
 }
 
 nav a span,
@@ -449,8 +484,11 @@ nav a span,
     overflow-x: visible;
 }
 nav a span {
-    padding-left: $icon-width + $nav-a-div-padding-partial;
+    padding-left: $nav-a-div-padding-partial;
     padding-bottom: 2px;
+}
+nav a.sublink span {
+	padding-left: $nav-a-div-small-padding-partial;
 }
 .toggle ~ label h3 {
     padding-left: 80px;
@@ -460,6 +498,7 @@ $nav-link-color-hover: #e1e1ff;
 nav a:hover {
     color: $nav-link-color-hover;
     text-decoration: none;
+	text-shadow: 0 1px 1px rgba(0,0,0,1);
     background: rgba(255, 255, 255, 0.05);
 }
 nav a:visited {
@@ -468,7 +507,6 @@ nav a:visited {
 nav a:visited:hover {
 	color: $nav-link-color-hover;
 }
-
 
 /* FOOTER */
 
@@ -510,20 +548,21 @@ footer .toggle ~ label img.open {
 
 /* MAIN, SECTION, ARTICLE */
 
-$article-margin: 30px;
-
 main {
+	position: relative; /* for child positioning */
     margin: 0;
-    margin-top: -6px;
-    padding: $article-margin 0 $article-margin 0;
+    padding: 10px 0 30px 0;
+	
     background: $main-bg-color;
+	@include box-shadow(
+        inset 0px 11px 8px -8px $shadow-color,
+		inset 0px -11px 8px -8px $shadow-color);
 }
 
-$article-padding: 10px;
 article {
 	background: $article-bg-color;
 	//border-radius: 5px;
-	box-shadow: 0 3px 10px 1px $shadow-color;
+	@include box-shadow($article-box-shadow);
 	padding: $article-padding 0;
 }
 section,
@@ -544,23 +583,6 @@ article {
 		margin-top: 8px;
 		margin-bottom: 8px;
 	}
-	a.post-header {
-		display: block;
-		position: relative;
-		top: -$article-padding;
-		width: 100%;
-		padding-top: 1px;
-		padding-bottom: 1px;
-		margin-top: 0;
-		margin-bottom: 8px;
-		margin-left: 0px;
-		margin-right: 0px;
-		background-color: rgba(255,255,255,0.05);
-		@include transition(color 0.1s, background-color 0.2s);
-	}
-	a.post-header:hover {
-		background-color: rgba(255,255,255,0.1);
-	}
 	
 	h1,
 	h2 {
@@ -570,30 +592,58 @@ article {
 		margin-bottom: 10px;
 		margin-top: 10px;
 	}
+	h1 {
+		margin-bottom: 30px;
+	}
+	
+	#date {
+		text-align: center;
+	}
+	
+	a.article-header {
+		display: block;
+		position: relative;
+		top: -$article-padding;
+		width: 100%;
+		padding-top: 1px;
+		padding-bottom: 1px;
+		margin-top: 0;
+		margin-bottom: 0;
+		margin-left: 0px;
+		margin-right: 0px;
+		
+		text-shadow: 0 0px 2px rgba(0,0,0,0);
+		background-color: rgba(255,255,255,0.05);
+		
+		@include transition(background-color 0.2s, $link-hover-transition);
+	}
+	a.article-header:hover {
+		text-shadow: 0 1px 1px rgba(0,0,0,1);
+		background-color: rgba(255,255,255,0.1);
+	}
 	
 	.date {
-		font-size: 12pt;
+		font-size: 11pt;
 		letter-spacing: 1px;
 		text-transform: none;
 	}
-	#date {
-		text-align: center;
+	.right {
+		float: right;
 	}
 }
 main>section,
 main>article {
-	margin-bottom: $article-margin;
-	margin-top: $article-margin;
-	
-	margin-left: 5%; /* small-screen default */
-	margin-right: 5%; /* small-screen default */
+	margin-bottom: $article-marginY;
+	margin-top: $article-marginY;
+	margin-left: $article-marginX-smallscreen; /* small-screen default */
+	margin-right: $article-marginX-smallscreen; /* small-screen default */
 	
 	section,
 	article,
 	div,
 	hr {
-		margin-left: 3px; /* small-screen default */
-		margin-right: 3px; /* small-screen default */
+		margin-left: $article-marginX-smallscreen; /* small-screen default */
+		margin-right: $article-marginX-smallscreen; /* small-screen default */
 	}
 	
 	section,
@@ -612,24 +662,6 @@ main>article {
 
 /* LARGER SCREENS */
 
-@media only screen and (max-width: 479px) {
-	section,
-	article {
-		//border-radius: 10px;
-		
-		.codeblock {
-			margin-left: 1%;
-			margin-right: 1%;
-			//border-top: 1px solid #000;
-			//border-bottom: 1px solid #555;
-		}
-	}
-	main>section,
-	main>article {
-		margin-left: 1%;
-		margin-right: 1%;
-	}
-}
 @media only screen and (min-width: 480px) {
     header h3 {
         display: block;
@@ -649,6 +681,8 @@ main>article {
     
     main>section,
 	main>article {
+		margin-left: 5%;
+		margin-right: 5%;
         text-align: justify;
 		
 		section,
