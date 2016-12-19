@@ -1,5 +1,7 @@
 $keyword: #678bea;
 $class: #35c7f2;
+$name: $class;
+$attribute: #24d684;
 $normal: #ddd;
 $normal-dark: #ccc;
 $constant: #dd6d64;
@@ -8,7 +10,7 @@ $constant: #dd6d64;
     background-color: #0b0b0d; color: $normal;
     
     .hll { background-color: $normal; }
-    .err { color: #a61717; background-color: #e3d2d2; } /* Error */
+    .err { color: #e83e3e; background-color: rgba(255,0,0,0.2); } /* Error */
     .p { color: $normal-dark; } /* Punctuation */
     .w { color: #666666; } /* Text.Whitespace */
     .x { @extend .p; } /* Other */
@@ -70,7 +72,7 @@ $constant: #dd6d64;
     
     /* Name */
     .n { color: $normal; } /* Name */
-    .na { color: $class; } /* Name.Attribute */
+    .na { color: $attribute; } /* Name.Attribute */
     .nb { color: #24909d; } /* Name.Builtin */
     .bp { @extend .nb; } /* Name.Builtin.Pseudo */
     .nc { color: $class; } /* Name.Class */
@@ -79,14 +81,14 @@ $constant: #dd6d64;
     .ni { @extend .n; } /* Name.Entity */
     .ne { color: #bbbbbb; } /* Name.Exception */
     .nf { @extend .n; } /* Name.Function */
-    .nl { color: $class; } /* Name.Label */
+    .nl { color: $attribute; } /* Name.Label */
     .nn { color: $normal; } /* Name.Namespace */
     .nx { @extend .n; } /* Name.Other */
     .py { @extend .n; } /* Name.Property */
-    .nt { @extend .k; } /* Name.Tag */
+    .nt { color: $keyword; } /* Name.Tag */
     
     /* Name.Variable */
-    .nv { color: $class; } /* Name.Variable */
+    .nv { color: $name; } /* Name.Variable */
     .vc { @extend .nv; } /* Name.Variable.Class */
     .vg { @extend .nv; } /* Name.Variable.Global */
     .vi { @extend .nv; } /* Name.Variable.Instance */

@@ -1,0 +1,16 @@
+---
+scriptname: _config.yml
+codetype: yml
+date: 2016-12-19 12:44:10 +1300
+---
+excerpt_separator: ""
+
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+
+gems:
+  - rouge

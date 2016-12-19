@@ -14,13 +14,23 @@ icon: coding.png
 	<p>Note that when downloading certain files ({% include codeblock.html codetype='' content=".html .markdown .md" %}) on mobile devices, the file name extension may have a trailing underscore {% include codeblock.html codetype='' content="_" %} which will need to be removed.</p>
 </section>
 
-{% assign scripts = site.scripts | order: 'date' %}
+{% assign scripts = site.scripts | sort: 'date' | reverse %}
 {% for script in scripts %}
 <article>
 	<a class="article-header" href="{{ site.baseurl }}/{{ script.relative_path }}" download="{{ script.scriptname }}">
 		<h3>{{ script.scriptname }}</h3>
 		<p class="date">{{ script.date | date: '%-d %b %Y, %R' }}</p>
 	</a>
+	
+	<ul>
+	{% for post in site.posts %}
+	{% if post.scripts contains script.scriptname %}
+		<li><a href="
+	{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+	{% endif %}
+	{% endfor %}
+	</ul>
+	
     {% include codeblock.html block=true codetype=script.codetype content=script.content %}
 </article>
 {% endfor %}
