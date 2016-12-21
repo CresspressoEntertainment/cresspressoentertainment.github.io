@@ -5,13 +5,27 @@
 {% for post in site.posts %}
 {% if post.group == page.group %}
 {% assign noPosts = false %}
+
 <article>
+{% if post.categories contains "songs" %}
+	
+	<a class="article-header" href="{{ post.link }}">
+		<h3>{{ post.title }}</h3>
+		<p class="date">{{ post.date | date: '%-d %b %Y, %R' }}</p>
+	</a>
+	{{ post.content }}
+	
+{% else %}
+	
 	<a class="article-header" href="{{ site.baseurl }}{{ post.url }}">
 		<h3>{{ post.title }}</h3>
 		<p class="date">{{ post.date | date: '%-d %b %Y, %R' }}</p>
 	</a>
 	<p>{{ post.description }}</p>
+	
+{% endif %}
 </article>
+
 {% endif %}
 {% endfor %}
 

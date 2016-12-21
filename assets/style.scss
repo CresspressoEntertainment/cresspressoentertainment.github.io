@@ -241,10 +241,6 @@ header .toggle ~ label {
     display: block;
 }
 
-.toggle ~ label:hover div {
-	
-}
-
 /* toggle icons - open/close */
 
 .toggle ~ label img,
@@ -681,6 +677,10 @@ main>article {
 	}
 	nav {
 		padding: 0;
+	}
+	div.song iframe {
+		width: 100%;
+		height: 250px;
 	}
 	
 	section,
