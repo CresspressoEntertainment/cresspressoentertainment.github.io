@@ -7,10 +7,18 @@
 {% assign noPosts = false %}
 
 <article>
-{% if post.categories contains "songs" %}
+{% if post.categories contains "tracks" %}
 	
-	<a class="article-header" href="{{ post.link }}">
-		<h3>{{ post.title }}</h3>
+	<a class="article-header" href="https://soundcloud.com/cressmusic/{{ post.soundcloud }}">
+		<h3>&#9835; {{ post.title }}</h3>
+		<p class="date">{{ post.date | date: '%-d %b %Y, %R' }}</p>
+	</a>
+	{{ post.content }}
+	
+{% elsif post.categories contains "playlists" %}
+	
+	<a class="article-header" href="https://soundcloud.com/cressmusic/{{ post.soundcloud }}">
+		<h3>&#8801; {{ post.title }}</h3>
 		<p class="date">{{ post.date | date: '%-d %b %Y, %R' }}</p>
 	</a>
 	{{ post.content }}
