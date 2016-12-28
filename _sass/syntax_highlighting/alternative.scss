@@ -1,5 +1,5 @@
-$keyword: #678bea;
-$class: #35c7f2;
+$keyword: #6d95ff;
+$class: #49cdf4;
 $name: $class;
 $attribute: #24d684;
 $normal: #ddd;
@@ -98,4 +98,24 @@ $constant: #dd6d64;
     .ow { @extend .k; } /* Operator.Word */
 }
 
+
+div.gist {
+	.blob-code-inner { color: $normal; }
+	
+	.pl-e		{ color: $class; }
+	.pl-en 		{ color: $class; }
+	.pl-ent 	{ color: $keyword; }
+	.pl-c1 		{ color: $class; }
+	.pl-k 		{ color: $keyword; }
+	.pl-smi		{ color: $normal; }
+	
+	.pl-s 		{ color: $constant; }
+	.pl-v 		{ color: $constant; }
+	.pl-pds 	{ @extend .pl-s; }
+	.pl-s .pl-pse .pl-s1 { @extend .pl-s; }
+	.pl-sr 			{ @extend .pl-s; }
+	.pl-sr .pl-cce 	{ @extend .pl-sr; }
+	.pl-sr .pl-sre 	{ @extend .pl-sr; }
+	.pl-sr .pl-sra 	{ @extend .pl-sr; }
+}
 

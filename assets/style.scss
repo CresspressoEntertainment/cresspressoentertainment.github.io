@@ -3,9 +3,9 @@
 
 /* variables */
 
-$header-bg-color: 		rgb(35, 35, 77);
-$header-bg-color-light: lighten($header-bg-color, 3%);
-$header-bg-color-dark: 	darken($header-bg-color, 6%); //rgb(21, 21, 36)
+$header-bg-color: 		rgb(39, 39, 108);
+$header-bg-color-light: lighten($header-bg-color, 5%);
+$header-bg-color-dark: 	darken($header-bg-color, 10%); //rgb(21, 21, 36)
 
 $icon-bg-color: 	rgba(0,0,0,0.1);
 $icon-padding: 		3px;
@@ -41,8 +41,13 @@ $article-padding: 10px;
 $article-marginY: 30px;
 $article-marginX-smallscreen: 3px;
 
-$article-bg-color: rgb(55, 55, 57);
-$article-box-shadow: 0 3px 10px 1px $shadow-color;
+$article-bg-color: 		rgb(63, 63, 64);
+$article-box-shadow: 	0 3px 10px 1px $shadow-color;
+$article-text-shadow: 	0 1px 1px $shadow-color;
+
+$hr-border-color: 		lighten($main-bg-color, 5%);
+$gist-border-color: 	lighten($main-bg-color, 5%);
+$code-bg-color: 		darken($article-bg-color, 12%);
 
 $link-hover-transition: color 0.1s, text-shadow 0.2s;
 $link-color: 				#9bf;
@@ -97,6 +102,7 @@ $font-color-faded: rgba(221,221,221,0.5);
 
 .highlighter-rouge,
 div.highlight {
+	text-shadow: none;
     display: inline;
     padding: 1px 4px;
     overflow-x: auto;
@@ -104,9 +110,8 @@ div.highlight {
 	font-size: 0.9em;
     font-family: monospace;
     
+	background-color: $code-bg-color;
     border-radius: 2px;
-	background-color: $main-bg-color;
-	@include box-shadow(0 0 8px 1px $shadow-color inset);
 }
 pre.highlight {
     display: inline-block;
@@ -126,6 +131,102 @@ div.highlight {
 	@include tab-size(2); /* small-screen default */
 	
 	border-radius: 0;
+	@include box-shadow(0 0 8px 1px $shadow-color inset);
+}
+
+/* github gist */
+div.gist {
+	text-shadow: none;
+
+	div {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.gist-file:last-child {
+		margin-bottom: 0;
+	}
+	.gist-file {
+		margin-bottom: 5px;
+		margin-top: 0;
+		border: none;
+		//border-radius: 0;
+		//border-color: $gist-border-color;
+	}
+	.gist-data {
+		border-bottom: none;
+		//border-bottom-color: $gist-border-color;
+		
+		* {
+			background-color: transparent;
+		}
+		border-radius: 0;
+		
+		.data {
+			border-bottom-right-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+	}
+
+	.gist-meta {
+		background-color: $article-bg-color;
+		border: 1px solid $gist-border-color;
+		border-radius: 0;
+		
+		font-family: $font-normal;
+		letter-spacing: 1px;
+		font-size: 11pt;
+		color: $font-color;
+		
+		a {
+			font-weight: normal;
+			color: $link-color;
+		}
+		a:hover {
+			color: $link-color-hover;
+		}
+		
+		a[style*="right"] {
+			margin-top: 3px;
+			margin-left: 12px;
+		}
+	}
+	.gist-data,
+	.highlight {
+		background-color: $code-bg-color;
+	}
+	.highlight {
+		line-height: inherit;
+		width: 100%;
+		@include box-shadow(0 0 8px 1px $shadow-color inset);
+		
+		tbody {
+			display: block;
+			margin-top: 6px;
+			margin-bottom: 6px;
+		}
+	}
+	.tab-size {
+		@include tab-size(2);
+	}
+
+	.blob-num,
+	.blob-code {
+		line-height: 1.4em;
+	}
+	.blob-num {
+		color: rgba(255,255,255,0.3);
+		cursor: inherit;
+		
+		padding-left: 8px !important;
+		padding-right: 5px !important;
+	}
+	.blob-num:hover {
+		color: rgba(255,255,255,0.5);
+	}
+	.blob-code {
+		padding-left: 5px !important;
+		padding-right: 5px !important;
+	}
 }
 
 
@@ -145,7 +246,7 @@ body {
 
 hr {
     border: none;
-    border-top: 1px solid lighten($main-bg-color, 5%)/*#676767*/;
+    border-top: 1px solid $hr-border-color;
 	margin: 30px 0;
 }
 main>hr {
@@ -580,7 +681,7 @@ article {
 	position: relative; /* for child positioning */
 	
     text-align: left; /* small-screen default */
-	text-shadow: 0 1px 1px $shadow-color;
+	text-shadow: $article-text-shadow;
 	
 	p,
 	h1,
@@ -630,7 +731,8 @@ article {
 		margin-right: 0px;
 		
 		text-shadow: 0 0px 2px rgba(0,0,0,0);
-		background-color: rgba(255,255,255,0.05);
+		background-color: rgba(255,255,255,0);
+		border-bottom: 1px solid $hr-border-color;
 		
 		@include transition(background-color 0.2s, $link-hover-transition);
 		
@@ -644,7 +746,7 @@ article {
 	}
 	a.article-header:hover {
 		text-shadow: 0 1px 1px rgba(0,0,0,1);
-		background-color: rgba(255,255,255,0.1);
+		background-color: rgba(255,255,255,0.05);
 	}
 	
 	.date {
@@ -740,8 +842,17 @@ main>article {
 		}
     }
 	
-	.codeblock {
+	.codeblock,
+	div.gist .tab-size {
 		@include tab-size(4);
+	}
+	
+	div.gist {
+		.blob-num,
+		.blob-code {
+			padding-left: 10px !important;
+			padding-right: 10px !important;	
+		}
 	}
 }
 
