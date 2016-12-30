@@ -1,18 +1,42 @@
 ---
 layout: post
-title:  "Code Example (html Post)"
+title:  "Code Example (html)"
 date:   2016-12-08 16:41:46 +1300
 group: Coding
 categories:
   - coding
-sources: 
-  - "snippet.cpp"
-  - "htmlexample.html"
-  - "stylesheet.css"
-  - "markdownexample.markdown"
-description: "This is a paragraph full of random things and snippets of code like `public void Destroy() { }` and..."
+gists:
+  - MyFirstGist
+description: "This post contains snippets of code."
 ---
-<p>This is a paragraph full of random things and snippets of code like {% include codeblock.html codetype='csharp' content='public void Destroy() { }' %} as well as {% include codeblock.html codetype='cpp' content='int *p = new int(4);' %}.</p>
+<p>This is a paragraph full of random things and snippets of code like {% include codeblock.html content='public void Destroy() { }' codetype='csharp' %} and {% include codeblock.html content='int *p = new int(4);' codetype='cpp' %}.</p>
+
+<hr>
+<h3>Gist</h3>
+
+{% include gist.html title=page.gists.first file='snippet.cpp' %}
+
+<hr>
+<h3>Codeblock</h3>
+
+{% capture code %}#include <iostream>
+using namespace std;
+
+struct int2 {
+public:
+	int x, y;
+	int2(int x, int y) : x(x), y(y) {}
+};
+
+int main() {
+	int2 v(3,2);
+	cout << v.x << " " << v.y << endl;
+	return 0;
+}{% endcapture %}
+{% include codeblock.html block=true content=code codetype='cpp' %}
+
+<hr>
+<h3>Manual Codeblock</h3>
 <div class="codeblock highlighter-rouge"><pre class="highlight">
 Well that escalated quickly -
 a lot quicker than I expected of someone of that caliber.
@@ -20,12 +44,3 @@ a lot quicker than I expected of someone of that caliber.
 </div>
 
 
-{% for scriptname in page.sources %}
-	{% assign scripts = site.scripts | where: 'scriptname', {{scriptname}}%}
-	{% for script in scripts %}
-<article>
-	<p><a href="{{ site.baseurl }}/{{ script.relative_path }}" download="{{ script.scriptname }}">Download: {{ script.scriptname }}</a></p>
-	{% include codeblock.html block=true codetype=script.codetype content=script.content %}
-</article>
-	{% endfor %}
-{% endfor %}

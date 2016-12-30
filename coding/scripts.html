@@ -6,31 +6,34 @@ group: Coding
 categories:
   - subpages
 order: 31
-icon: coding.png
+icon: 'Coding Symbol 128.png'
+symbol: 'Coding Symbol 128.png'
 ---
+{% include title.html %}
 <section>
-	<h1>{{ page.title }}</h1>
 	<p>All of my sourcecode files used on this site. Click the file's name to download.</p>
 	<p>Note that when downloading certain files ({% include codeblock.html codetype='' content=".html .markdown .md" %}) on mobile devices, the file name extension may have a trailing underscore {% include codeblock.html codetype='' content="_" %} which will need to be removed.</p>
 </section>
 
-{% assign scripts = site.scripts | sort: 'date' | reverse %}
-{% for script in scripts %}
+{% assign gists = site.gists | sort: 'date' | reverse %}
+{% for gist in gists %}
 <article>
-	<a class="article-header" href="{{ site.baseurl }}/{{ script.relative_path }}" download="{{ script.scriptname }}">
-		<h3>{{ script.scriptname }}</h3>
-		<p class="date">{{ script.date | date: '%-d %b %Y, %R' }}</p>
+	<a class="article-header" href="{{ gist.link }}">
+		<h3>{{ gist.title }}</h3>
+		<p class="date">{{ gist.date | date: '%-d %b %Y, %R' }}</p>
 	</a>
 	
-	<ul>
+	<ul style="margin-bottom:20px;">
 	{% for post in site.posts %}
-	{% if post.scripts contains script.scriptname %}
+	{% if post.gists contains gist.title %}
 		<li><a href="
 	{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
 	{% endif %}
 	{% endfor %}
 	</ul>
 	
-    {% include codeblock.html block=true codetype=script.codetype content=script.content %}
+	{% include gist.html title=gist.title %}
 </article>
 {% endfor %}
+
+

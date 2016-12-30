@@ -6,10 +6,16 @@ group: Music
 categories:
   - mainpages
 order: 10
-icon: music.png
+icon: 'Music Silhouette 128.png'
+symbol: 'Music Symbol 128.png'
 ---
+{% include title.html %}
 <section>
-	<h1>{{ page.title }}</h1>
+	<nav>
+		<ul class="links">
+			{% include links-socialsites.html group=page.group %}
+		</ul>
+	</nav>
 </section>
 
 {% include posts.html %}

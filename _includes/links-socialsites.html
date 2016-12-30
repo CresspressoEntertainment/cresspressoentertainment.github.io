@@ -1,4 +1,5 @@
 {% for page in site.socialsites %}
+{% if include.group == null or page.group == include.group %}
     <li>
         <a href="{{ page.link }}">
             <div class="link">
@@ -7,4 +8,5 @@
             </div>
         </a>
     </li>
+{% endif %}
 {% endfor %}

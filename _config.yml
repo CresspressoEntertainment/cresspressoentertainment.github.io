@@ -8,16 +8,42 @@ github_username: Cresspresso
 
 permalink: /:categories/:year-:month-:day/:title/
 
-include:
-  - _scripts
-collections:
-  - scripts
-  - socialsites
-  
+socialsites:
+  - 
+    group: Home
+    title: Facebook
+    username: Cresspresso Entertainment
+    icon: facebook.svg
+    link: https://www.facebook.com/Cresspresso-Entertainment-1288038001217335/
+  - 
+    group: Home
+    title: Patreon
+    username: Cresspresso
+    icon: patreon.svg
+    link: https://www.patreon.com/cresspresso
+  - 
+    group: Music
+    title: YouTube
+    username: Cress Music
+    icon: youtube.svg
+    link: https://www.youtube.com/channel/UCiPzRDLIQYkPJd6xKeDjz9A
+  - 
+    group: Music
+    title: SoundCloud
+    username: cressmusic
+    icon: patreon.svg
+    link: https://soundcloud.com/cressmusic
+
 homepage:
   title: Home
   url: ''
-  icon: cresspresso.png
+  icon: 'Cresspresso 128.png'
+
+gists:
+  - 
+    title: MyFirstGist
+    date: 2016-12-30 18:11:09 +1300
+    link: https://gist.github.com/ElijahShadbolt/f5ea9488b95399b5c65da409939fec4b
 
 # Build settings
 excerpt_separator: ""

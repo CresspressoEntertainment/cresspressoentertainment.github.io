@@ -1,25 +1,21 @@
 <header>
     <!-- title -->
-	{% assign pg_title = site.homepage.title %}
-	{% assign pg_url = site.homepage.url %}
-	{% assign pg_icon = site.homepage.icon %}
+	{% assign headerpage = site.homepage %}
 	
 	{% for pg in site.pages %}
 		{% if pg.title == include.group %}
 			{% for pc in pg.categories %}
 				{% if pc == 'mainpages' %}
-					{% assign pg_title = pg.title %}
-					{% assign pg_url = pg.url %}
-					{% assign pg_icon = pg.icon %}
+					{% assign headerpage = pg %}
 				{% endif %}
 			{% endfor %}
 		{% endif %}
 	{% endfor %}
 	
-	<a id="title" href="{{ site.baseurl }}{{ pg_url }}">
-		<h2>{{ pg_title }}</h2>
+	<a id="header-title" href="{{ site.baseurl }}{{ headerpage.url }}">
+		<h2>{{ headerpage.title }}</h2>
 		<h3><span>Cresspresso</span> Entertainment</h3>
-		<img src="{{ site.baseurl }}/assets/images/icons/{{ pg_icon }}" alt="{{ pg_title }}"/>
+		<img src="{{ site.baseurl }}/assets/images/icons/{{ headerpage.icon }}" alt="{{ headerpage.title }}"/>
 	</a>
 	
 

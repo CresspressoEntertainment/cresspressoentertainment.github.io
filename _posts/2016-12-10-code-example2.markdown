@@ -1,28 +1,38 @@
 ---
 layout: post
-title:  "Code Example (markdown post)"
+title:  "Code Example (markdown)"
 date:   2016-12-08 16:40:46 +1300
 group: Coding
 categories:
   - coding
-sources: 
-  - "snippet.cpp"
-  - "htmlexample.html"
-  - "stylesheet.css"
-  - "markdownexample.markdown"
-description: "This is a paragraph full of random things and snippets of code like `public void Destroy() { }` and..."
+gists:
+  - MyFirstGist
+description: "This post contains snippets of code."
 ---
 This is a paragraph full of random things and snippets of code like {% include codeblock.md content='public void Destroy() { }' codetype='csharp' %} and {% include codeblock.md content='int *p = new int(4);' codetype='cpp' %}.
 
-{% for scriptname in page.sources %}
-{% assign scripts = site.scripts | where: 'scriptname', {{scriptname}}%}
-{% for script in scripts %}
+---
+
+### Gist
+
+{% include gist.html title=page.gists.first file='snippet.cpp' %}
 
 ---
 
-[Download: {{ script.scriptname }}]({{ site.baseurl }}/{{ script.relative_path }}){:download="{{ script.scriptname }}"}
+### Codeblock
 
-{% include codeblock.md block=true codetype=script.codetype content=script.content %}
+{% capture code %}#include <iostream>
+using namespace std;
 
-{% endfor %}
-{% endfor %}
+struct int2 {
+public:
+	int x, y;
+	int2(int x, int y) : x(x), y(y) {}
+};
+
+int main() {
+	int2 v(3,2);
+	cout << v.x << " " << v.y << endl;
+	return 0;
+}{% endcapture %}
+{% include codeblock.md block=true content=code codetype='cpp' %}

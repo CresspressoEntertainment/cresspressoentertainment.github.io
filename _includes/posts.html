@@ -10,7 +10,7 @@
 {% if post.categories contains "tracks" %}
 	
 	<a class="article-header" href="https://soundcloud.com/cressmusic/{{ post.soundcloud }}">
-		<h3>&#9835; {{ post.title }}</h3>
+		<h3>&#9834; {{ post.title }}</h3>
 		<p class="date">{{ post.date | date: '%-d %b %Y, %R' }}</p>
 	</a>
 	{{ post.content }}
@@ -29,7 +29,11 @@
 		<h3>{{ post.title }}</h3>
 		<p class="date">{{ post.date | date: '%-d %b %Y, %R' }}</p>
 	</a>
+	{% if post.description %}
 	<p>{{ post.description }}</p>
+	{% else %}
+	<p>{{ post.content | truncate: 50 }}</p>
+	{% endif %}
 	
 {% endif %}
 </article>

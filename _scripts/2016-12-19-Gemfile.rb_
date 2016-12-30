@@ -1,9 +1,0 @@
----
-scriptname: Gemfile
-codetype: ruby
-date: 2016-12-19 13:52:50 +1300
----
-source 'https://rubygems.org'
-
-gem 'github-pages', group: :jekyll_plugins
-gem 'rouge'
