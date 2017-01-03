@@ -380,7 +380,7 @@ header .toggle ~ label {
 	@include heightexpand2({% include count-mainpages categories='mainpages' %}, {% include count-mainpages categories='subpages' %});
 }
 .toggle.socialsites:checked ~ .toggle-content {
-	@include heightexpand({{ site.socialsites | size }});
+	@include heightexpand2(0, {{ site.socialsites | size }});
 }
 
 /* HEADER & FOOTER continued */
@@ -406,7 +406,7 @@ footer {
         inset 0px 11px 8px -10px $shadow-color,
 		inset 0px -11px 8px -10px $shadow-color);
     
-    @include transition(height 0.3s);
+    //@include transition(height 0.3s);
     background-color: $header-bg-color-dark;
 }
 header .toggle-content {
@@ -538,14 +538,12 @@ nav a {
 nav a.sublink {
 	height: $nav-li-small-height;
 }
-nav ul.socialsites a {
-    font-size: 14pt; /* small-screen-default */
-}
 
 nav a span i {
+	display: none; // small-screen default
     font-style: normal;
     font-family: $font-normal;
-    font-size: 12pt; /* small-screen-default */
+    font-size: 14pt;
 }
 
 nav a div.link,
@@ -669,6 +667,9 @@ $page-icon-height: 128px;
 	top: 0;
 	@include transform(translateX(-50%));
 	height: $page-icon-height;
+	width: $page-icon-height;
+	border-radius: $page-icon-height;
+    background: $icon-bg-color;
 }
 #page-title {
 	margin-top: 0;
@@ -835,13 +836,6 @@ main>article {
 		padding-top: 7px;
 	}
     
-    nav ul.socialsites a {
-        font-size: 18pt;
-    }
-    nav a span i {
-        font-size: 14pt;
-    }
-    
     main>section,
 	main>article {
 		margin-left: 5%;
@@ -862,6 +856,10 @@ main>article {
 		}
     }
 	
+	nav a span i {
+		display: inline;
+	}
+	
 	.codeblock,
 	div.gist .tab-size {
 		@include tab-size(4);
@@ -881,6 +879,10 @@ main>article {
 	}
 	#page-title {
 		padding-top: 40px;
+	}
+	
+	.toggle-content {
+		@include transition(height 0.3s);
 	}
 }
 

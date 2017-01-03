@@ -1,10 +1,16 @@
 {% for page in site.socialsites %}
 {% if include.group == null or page.group == include.group %}
     <li>
-        <a href="{{ page.link }}">
+        <a class="sublink" href="{{ page.link }}">
             <div class="link">
-                <span>{{ page.title }} - <i>{{ page.username }}</i></span>
+				{% if page.username %}
+                <span>{{ page.title }}<i> - {{ page.username }}</i></span>
+				{% else %}
+				<span>{{ page.title }}</span>
+				{% endif %}
+				{% if page.icon %}
                 <img src="{{ site.baseurl }}/assets/images/socialsiteicons/{{ page.icon }}"/>
+				{% endif %}
             </div>
         </a>
     </li>

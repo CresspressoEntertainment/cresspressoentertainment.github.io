@@ -10,29 +10,38 @@ permalink: /:categories/:year-:month-:day/:title/
 
 socialsites:
   - 
-    group: Home
-    title: Facebook
-    username: Cresspresso Entertainment
-    icon: facebook.svg
-    link: https://www.facebook.com/Cresspresso-Entertainment-1288038001217335/
-  - 
-    group: Home
     title: Patreon
-    username: Cresspresso
     icon: patreon.svg
     link: https://www.patreon.com/cresspresso
   - 
-    group: Music
     title: YouTube
-    username: Cress Music
     icon: youtube.svg
     link: https://www.youtube.com/channel/UCiPzRDLIQYkPJd6xKeDjz9A
   - 
-    group: Music
     title: SoundCloud
-    username: cressmusic
-    icon: patreon.svg
-    link: https://soundcloud.com/cressmusic
+    icon: false
+    link: https://soundcloud.com/cresspresso
+  - 
+    title: Bandcamp
+    icon: false
+    link: https://cresspresso.bandcamp.com/
+  - 
+    title: Tumblr
+    icon: false
+    link: http://cresspresso.tumblr.com/
+  - 
+    title: Google+
+    icon: false
+    link: https://plus.google.com/109854229651423575407
+  - 
+    title: Facebook
+    icon: facebook.svg
+    link: https://www.facebook.com/cresspresso
+  - 
+    title: DeviantArt
+    username: SublimeGamer
+    icon: false
+    link: http://sublimegamer.deviantart.com/
 
 homepage:
   title: Home
