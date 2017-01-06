@@ -37,11 +37,6 @@ socialsites:
     title: Facebook
     icon: facebook.svg
     link: https://www.facebook.com/cresspresso
-  - 
-    title: DeviantArt
-    username: SublimeGamer
-    icon: false
-    link: http://sublimegamer.deviantart.com/
 
 homepage:
   title: Home
