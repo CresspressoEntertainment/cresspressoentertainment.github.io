@@ -30,13 +30,17 @@ socialsites:
     icon: false
     link: http://cresspresso.tumblr.com/
   - 
+    title: Facebook
+    icon: facebook.svg
+    link: https://www.facebook.com/cresspresso
+  - 
     title: Google+
     icon: false
     link: https://plus.google.com/109854229651423575407
   - 
-    title: Facebook
-    icon: facebook.svg
-    link: https://www.facebook.com/cresspresso
+    title: Twitch
+    icon: false
+    link: https://www.twitch.tv/cresspresso
 
 homepage:
   title: Home
