@@ -1,0 +1,7 @@
+{% assign pages = site.pages | where: 'group', page.group | sort: 'order' %}
+{% for pg in pages %}
+{% unless pg.hide %}
+<a class="nav-link" href="{{ site.baseurl }}{{ pg.permalink }}">
+{{ pg.title }}</a>
+{% endunless %}
+{% endfor %}

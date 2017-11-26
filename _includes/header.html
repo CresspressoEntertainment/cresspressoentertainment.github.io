@@ -1,6 +1,15 @@
 <header>
 	<a id="site-title" href="{{ site.baseurl }}{{ site.homepage.permalink }}">{{ site.title }}</a>
-	<nav>
-		<a href="{{ site.baseurl }}/about/">About</a>
-	</nav>
+	
+	<input id="foldout-links" class="foldout" type="checkbox"/>
+	<label for="foldout-links" class="foldout">
+		<svg height="1em" width="1em" viewBox="0 0 100 100">
+			<polygon class="foldout-arrow" points="20,40 80,40 50,70"/>
+		</svg>
+	</label>
+	<div id="foldout-links" class="foldout">
+		<nav>
+			{% include page-links.html %}
+		</nav>
+	</div>
 </header>

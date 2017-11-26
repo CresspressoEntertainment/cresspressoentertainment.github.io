@@ -2,24 +2,24 @@
 ---
 /* imports */
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro');
 
 
 /* mixins */
 
-@mixin mixparam($parameter, $values...) {
-	        #{parameter}: $values;
-	-webkit-#{parameter}: $values;
-	   -moz-#{parameter}: $values;
-	     -o-#{parameter}: $values;
-	    -ms-#{parameter}: $values;
+@mixin mixprop($property, $values...) {
+	        #{$property}: $values;
+	-webkit-#{$property}: $values;
+	   -moz-#{$property}: $values;
+	     -o-#{$property}: $values;
+	    -ms-#{$property}: $values;
 }
-@mixin mixall($parameter, $values...) {
-            #{parameter}:         $values;
-	-webkit-#{parameter}: -webkit-$values;
-	   -moz-#{parameter}:    -moz-$values;
-	     -o-#{parameter}:      -o-$values;
-	    -ms-#{parameter}:     -ms-$values;
+@mixin mixall($property, $values...) {
+            #{$property}:         $values;
+	-webkit-#{$property}: -webkit-$values;
+	   -moz-#{$property}:    -moz-$values;
+	     -o-#{$property}:      -o-$values;
+	    -ms-#{$property}:     -ms-$values;
 }
 
 @mixin transition($values...) {
@@ -56,10 +56,14 @@
 
 /* variables */
 
-$font-family: 'Open Sans', Arial, sans-serif;
-$font-size: 1.2em;
+$font-size-base: 1.2em;
 
-$footer-bg: #dce9ff;
+$font-family-base: Arial, sans-serif;
+$font-family-htop: 'Open Sans', Calibri, 'Nirmala UI Semilight', 'Nirmala UI', 'Segoe UI Semilight', 'Segoe UI', $font-family-base;
+$font-family-hsub: 'Trebuchet MS', "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, $font-family-base;
+
+
+$html-bg: #fff;
 
 
 /* main html */
@@ -70,38 +74,114 @@ html {
 		padding: 0;
 	}
 	
-	font-family: $font-family;
-	font-size: $font-size;
+	font-family: $font-family-base;
+	font-size: $font-size-base;
 	
-	background: $footer-bg;
+	background: $html-bg;
+}
+
+// TEMP
+body {
+	margin: 2em;
+}
+
+/* h's */
+
+h1, h2 {
+	font-family: $font-family-htop;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	
 }
 
 
-
-header {
-	background: #ffe0e0;
-}
-
-footer {
-	//background: $footer-bg;
-}
-
-main {
-	background: #d6ffe0;
+h3, h4, h5, h6 {
+	font-family: $font-family-hsub;
 }
 
 
 /* copyright */
-
 #copyright {
+	text-align: center;
 	font-size: 9pt;
+	letter-spacing: 0.03em;
+}
+
+/* site-title */
+#site-title {
+	display: block;
+	font-family: $font-family-htop;
+	font-size: 1.2em;
+	text-decoration: none;
+}
+
+/* nav-link */
+a.nav-link {
+	display: block;
+}
+
+
+/* foldouts */
+
+input.foldout {
+	display: none;
+	
+	+ label.foldout {
+		display: block;
+		
+		// arrow
+		.foldout-arrow {
+			fill: black;
+			
+			@include mixprop(transform-origin, 50% 35%);
+			@include transform(rotate(0deg 20 20));
+		}
+		.unchecked {
+			display: block;
+		}
+		.checked {
+			display: none;
+		}
+		
+		// content
+		+ div.foldout>* {
+			display: none;
+		}
+	}
+}
+
+input.foldout:checked {
+	+ label.foldout {
+		// arrow
+		.foldout-arrow {
+			@include transform(rotate(180deg));
+		}
+		.unchecked {
+			display: none;
+		}
+		.checked {
+			display: block;
+		}
+		
+		// content
+		+ div.foldout>* {
+			display: block;
+		}
+	}
 }
 
 
 /* media different screen sizes */
 
 @media only screen and (min-width: 34em) {
-	
+	#copyright>br {
+		display: none;
+	}
 }
 
 
