@@ -1,9 +1,11 @@
-<title>{{ page.title }} |{% if include.group %} {{ include.group }} |{% endif %} {{ site.title }}</title>
-<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/style.css"/>
-<meta name="description" content="Music, Gaming Videos and Video Games, for your entertainment."/>
-<meta name="keywords" content="music, remix, cover, game, gaming, gaming video, gaming videos, gamer, video game, video games, entertainment"/>
+<title>{% if page.tabtitle %}{{ page.tabtitle }}{% else %}{{ page.title }} |{% if page.group %} {{ page.group }} |{% endif %} {{ site.title }}{% endif %}</title>
+<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}{{ site.stylesheet }}"/>
+<meta name="description" content="{{ page.description }}"/>
+<meta name="keywords" content="{{ page.keywords }}"/>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link rel="icon" href="{{ site.baseurl }}{{ site.iconsurl }}{% if page.icon %}{{ page.icon }}{% else %}{{ site.baseicon }}{% endif %}"/>
 <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <![endif]-->
+
+<!--<meta name="viewport" content="width=device-width, initial-scale=1"/>-->

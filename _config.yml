@@ -1,71 +1,47 @@
-title: Cresspresso Entertainment
+title: Cresspresso
 email: cresspresso@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  Amazing fun things, from music to videos, gameplay, and programming code.
-baseurl: "" # the subpath of your site, e.g. /blog
-#twitter_username: jekyllrb
 github_username: Cresspresso
 
-permalink: /:categories/:year-:month-:day/:title/
-
-socialsites:
-  - 
-    title: Patreon
-    icon: patreon.svg
-    link: https://www.patreon.com/cresspresso
-  - 
-    title: YouTube
-    icon: youtube.svg
-    link: https://www.youtube.com/channel/UCiPzRDLIQYkPJd6xKeDjz9A
-  - 
-    title: SoundCloud
-    icon: false
-    link: https://soundcloud.com/cresspresso
-  - 
-    title: Bandcamp
-    icon: false
-    link: https://cresspresso.bandcamp.com/
-  - 
-    title: Tumblr
-    icon: false
-    link: http://cresspresso.tumblr.com/
-  - 
-    title: Facebook
-    icon: facebook.svg
-    link: https://www.facebook.com/cresspresso
-  - 
-    title: Google+
-    icon: false
-    link: https://plus.google.com/109854229651423575407
-  - 
-    title: Twitch
-    icon: false
-    link: https://www.twitch.tv/cresspresso
+baseurl: ''
+permalink: /:categories/:year/:month/:day/:title/
+stylesheet: /assets/style.css
+iconsurl: /assets/icons/
+baseicon: 'Coding 128.png'
 
 homepage:
-  title: Home
-  url: ''
-  icon: 'Cresspresso 128.png'
+  permalink: /
 
-gists:
-  - 
-    title: MyFirstGist
-    date: 2016-12-30 18:11:09 +1300
-    link: https://gist.github.com/ElijahShadbolt/f5ea9488b95399b5c65da409939fec4b
+include:
+- _pages
 
-# Build settings
-excerpt_separator: ""
-markdown: kramdown
-highlighter: rouge
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-  hard_wrap: false
-#theme: minima
+socialsites:
+- 
+  title: Patreon
+  link: https://www.patreon.com/cresspresso
+- 
+  title: YouTube
+  link: https://www.youtube.com/channel/UCiPzRDLIQYkPJd6xKeDjz9A
+- 
+  title: SoundCloud
+  link: https://soundcloud.com/cresspresso
+- 
+  title: Bandcamp
+  link: https://cresspresso.bandcamp.com/
+- 
+  title: Tumblr
+  link: http://cresspresso.tumblr.com/
+- 
+  title: Facebook
+  link: https://www.facebook.com/cresspresso
+- 
+  title: Google+
+  link: https://plus.google.com/109854229651423575407
+- 
+  title: Twitch
+  link: https://www.twitch.tv/cresspresso
 
 gems:
-  - jekyll-feed
-  - rouge
+- jekyll-feed
 exclude:
-  - Gemfile
-  - Gemfile.lock
+- Gemfile
+- Gemfile.lock
