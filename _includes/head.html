@@ -1,12 +1,18 @@
-<title>{% if page.tabtitle %}{{ page.tabtitle }}{% else %}{{ page.title }} |{% if page.group %} {{ page.group }} |{% endif %} {{ site.title }}{% endif %}</title>
-<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}{{ site.stylesheet }}"/>
-<meta name="description" content="{{ page.description }}"/>
-<meta name="keywords" content="{{ page.keywords }}"/>
-<link rel="icon" href="{{ site.baseurl }}{{ site.iconsurl }}{% if page.tabicon %}{{ page.tabicon }}{% else %}{{ site.basetabicon }}{% endif %}"/>
 <meta charset="utf-8"/>
+
 <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <![endif]-->
+
+<title>{% if page.tabtitle %}{{ page.tabtitle }}{% else %}{{ page.title }} - {% if page.group == site.maingroup %}{{ site.title }}{% else %}{{ page.group }}{% endif %}{% endif %}</title>
+
+<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}{{ site.stylesheet }}"/>
+
+<meta name="description" content="{{ page.description }}"/>
+
+<meta name="keywords" content="{{ page.keywords }}"/>
+
+<link rel="icon" href="{{ site.baseurl }}{{ site.iconsurl }}{% if page.tabicon %}{{ page.tabicon }}{% else %}{{ site.basetabicon }}{% endif %}"/>
 
 {% comment %}<meta name="viewport" content="width=device-width, initial-scale=1"/>{% endcomment %}
 

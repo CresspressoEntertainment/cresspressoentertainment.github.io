@@ -8,6 +8,7 @@ permalink: /:categories/:year/:month/:day/:title/
 stylesheet: /assets/style.css
 baseicon: 'Cresspresso 128.png'
 basetabicon: 'Cresspresso Symbol 128.png'
+maingroup: Main
 
 homepage:
   permalink: /

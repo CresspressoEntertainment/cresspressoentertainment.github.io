@@ -65,6 +65,7 @@ $font-family-hsub: 'Trebuchet MS', "Lucida Grande", "Lucida Sans Unicode", "Luci
 
 
 $html-bg: #fff;
+$sidebar-bg: #f3f3f3;
 
 
 /* main html */
@@ -83,8 +84,18 @@ html {
 	min-width: 270px;
 }
 
-body {
-	margin: 0.3em;
+body>* {
+	$body-padding-1: 0.3em;
+	
+	padding-left: $body-padding-1;
+	padding-right: $body-padding-1;
+	
+	&:first-child {
+		padding-top: $body-padding-1;
+	}
+	&:last-child {
+		padding-bottom: $body-padding-1;
+	}
 }
 
 /* h's */
@@ -93,10 +104,11 @@ h1, h2 {
 	font-family: $font-family-htop;
 }
 
+$header-hr-color: rgb(237, 237, 237);
 h1 {
 	font-size: 2em;
 	
-	border-top: 2px solid rgb(237, 237, 237);
+	border-top: 2px solid $header-hr-color;
 }
 
 h2 {
@@ -112,6 +124,13 @@ h3, h4, h5, h6 {
 
 p {
 	margin: 1em 0;
+}
+
+#page-date {
+	border-top: 2px solid $header-hr-color;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	font-size: $font-size-small;
 }
 
 /* a's and link buttons */
@@ -189,7 +208,7 @@ input.foldout {
 		.foldout-arrow {
 			fill: black;
 			
-			@include mixprop(transform-origin, 50% 40%);
+			@include mixprop(transform-origin, 50% 55%);
 			@include transform(rotate(0deg));
 			@include transition(transform 0.3s);
 		}
@@ -229,7 +248,7 @@ input.foldout {
 			height: auto;
 			
 			border: 1px dashed rgba(0, 0, 0, 0.1);
-			background: rgba(0, 0, 0, 0.01);
+			background: $sidebar-bg;
 		}
 	}
 }
@@ -268,6 +287,7 @@ input.foldout {
 		left: $page-title-padding-lr;
 		top: $page-title-padding-tb + 0.05em;
 		margin-top: -0.2em;
+		margin-right: 0.5em;
 		height: $page-icon-size;
 	}
 }
@@ -309,35 +329,128 @@ nav a {
 /* header */
 
 header {
-	margin-bottom: 0.5em;
+	padding-bottom: 0.5em;
 }
-
 
 /* footer */
 
 footer {
-	margin-top: 3em;
+	padding-top: 2em;
 }
 
 
 /* main */
 
 main {
-	border-top: 2px solid rgb(234, 234, 234);
+	padding-top: 1em;
+	padding-bottom: 1em;
 }
 
 
 /* media different screen sizes */
 
+$body-margin: 2em;
 @media only screen and (min-width: 24em) {	
-	body {
-		margin: 2em;
+	body>* {
+		padding-left: $body-margin;
+		padding-right: $body-margin;
+		
+		&:first-child {
+			padding-top: $body-margin;
+		}
+		&:last-child {
+			padding-bottom: $body-margin;
+		}
 	}
 }
 
 @media only screen and (min-width: 34em) {
 	#copyright>br {
 		display: none;
+	}
+}
+
+@media only screen and (min-width: 46em) {
+	
+	$body-margin-left: 1em;
+	/* CSS GRID */
+	@supports (display: grid) {
+
+		body {
+			margin: 0;
+			display: grid;
+			grid-template-columns: max-content /*(10em + 1.5*$body-margin)*/ auto;
+			grid-template-rows: auto auto auto;
+			grid-template-areas:
+				"header main"
+				"nav main"
+				"footer footer"
+				;
+		}
+
+		footer {
+			grid-area: footer;
+			padding-left: $body-margin-left;
+			padding-bottom: $body-margin;
+			padding-right: $body-margin;
+		}
+
+		main {
+			grid-area: main;
+			padding-top: $body-margin;
+			padding-right: $body-margin;
+			padding-left: $body-margin;
+		}
+
+		header {
+			grid-area: header;
+			padding-top: $body-margin !important;
+		}
+		
+		header,
+		#header-nav {
+			background: $sidebar-bg;
+			padding-left: $body-margin-left;
+			padding-right: $body-margin/2;
+		}
+
+		#header-nav {
+			grid-area: nav;
+			padding-bottom: $body-margin;
+			
+			input.foldout {
+				+ label.foldout {
+					cursor: auto;
+					
+					&:hover {
+						background: none;
+						border-color: transparent;
+					}
+				}
+				
+				&:checked {
+					+ label.foldout {
+						+ div.foldout {
+							border: none;
+							background: none;
+						}
+					}
+				}
+			}
+		}
+		#header-nav-foldout-arrow {
+			display: none;
+		}
+		
+		
+		input.foldout {
+			+ label.foldout {
+				+ div.foldout {
+					visibility: visible;
+					height: auto;
+				}
+			}
+		}
 	}
 }
 
