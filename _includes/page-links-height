@@ -1,0 +1,8 @@
+{% assign retval = 0 %}
+{% assign pages = site.pages | where: 'group', page.group | sort: 'order' %}
+{% for pg in pages %}
+{% unless pg.hide %}
+{% assign retval = retval | plus: include.line-height %}
+{% endunless %}
+{% endfor %}
+{{ retval }}

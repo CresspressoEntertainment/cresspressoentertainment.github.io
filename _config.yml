@@ -5,8 +5,8 @@ github_username: Cresspresso
 baseurl: ''
 permalink: /:categories/:year/:month/:day/:title/
 stylesheet: /assets/style.css
-iconsurl: /assets/icons/
-baseicon: 'Coding 128.png'
+iconsurl: /assets/images/icons/
+baseicon: 'Cresspresso Symbol 128.png'
 
 homepage:
   permalink: /

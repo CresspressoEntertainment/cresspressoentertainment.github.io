@@ -116,7 +116,7 @@ h3, h4, h5, h6 {
 #site-title {
 	display: block;
 	font-family: $font-family-htop;
-	font-size: 1.2em;
+	font-size: $font-size-base;
 	text-decoration: none;
 }
 
@@ -126,20 +126,83 @@ a.nav-link {
 }
 
 
+/* a's and link buttons */
+
+@mixin link-hover() {
+	border: 1px solid transparent;
+	&:hover {
+		//background: rgba(0, 157, 255, 0.1);
+		//border: 1px solid rgba(0, 177, 255, 0.1);
+		background: rgba(0, 255, 88, 0.1);
+		border: 1px solid rgba(0, 255, 88, 0.1);
+	}
+	
+	padding-left: 2px;
+	padding-right: 2px;
+}
+
+$link-color: 				rgb(13, 180, 141);
+$link-color-hover: 			$link-color;
+$link-color-visited: 		$link-color;
+$link-color-visited-hover: 	$link-color-hover;
+
+a {
+	@include link-hover();
+	
+	color: $link-color;
+	text-decoration: none;
+	
+	&:hover {
+		color: $link-color-hover;
+	}
+	&:visited {
+		color: $link-color-visited;
+	}
+	&:visited:hover {
+		color: $link-color-visited-hover;
+	}
+}
+
+
 /* foldouts */
+
+div.foldout-box {
+	position: relative;
+}
 
 input.foldout {
 	display: none;
 	
 	+ label.foldout {
 		display: block;
+		cursor: pointer;
+		
+		position: absolute;
+		z-index: 1;
+		top: 0;
+		left: 0;
+		right: 0;
+		
+		@include link-hover();
+		
+		span {
+			font-size: 0.7em;
+			text-transform: uppercase;
+		}
+		
+		svg {
+			display: inline-block;
+			vertical-align: top;
+			padding-top: 1px;
+		}
 		
 		// arrow
 		.foldout-arrow {
 			fill: black;
 			
-			@include mixprop(transform-origin, 50% 35%);
-			@include transform(rotate(0deg 20 20));
+			@include mixprop(transform-origin, 50% 40%);
+			@include transform(rotate(0deg));
+			@include transition(transform 0.3s);
 		}
 		.unchecked {
 			display: block;
@@ -149,17 +212,23 @@ input.foldout {
 		}
 		
 		// content
-		+ div.foldout>* {
-			display: none;
+		+ div.foldout {
+			overflow: hidden;
+			height: 0px;
+			
+			position: relative;
+			padding-top: $font-size-base;
+			
+			>nav>* {
+				display: block;
+			}
 		}
 	}
-}
-
-input.foldout:checked {
-	+ label.foldout {
+	
+	&:checked + label.foldout {
 		// arrow
 		.foldout-arrow {
-			@include transform(rotate(180deg));
+			@include transform(rotate(-180deg));
 		}
 		.unchecked {
 			display: none;
@@ -167,14 +236,15 @@ input.foldout:checked {
 		.checked {
 			display: block;
 		}
-		
+
 		// content
-		+ div.foldout>* {
-			display: block;
+		+ div.foldout {
+			border: 1px dashed rgba(0, 0, 0, 0.1);
+			background: rgba(0,0,0,0.01);
+			height: auto;/*{% include page-links-height line-height=1.2 %}em;*/
 		}
 	}
 }
-
 
 /* media different screen sizes */
 
