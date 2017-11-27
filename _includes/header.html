@@ -1,5 +1,8 @@
 <header>
-	<a id="site-title" href="{{ site.baseurl }}{{ site.homepage.permalink }}">{{ site.title }}</a>
+	<a id="page-title" href="{{ site.baseurl }}{{ site.homepage.permalink }}">
+		<span>{{ site.title }}</span>
+		<img id="page-icon" src="{% include iconsrc icon=page.icon %}"/>
+	</a>
 	
 	<div class="foldout-box">
 		<input id="foldout-links" class="foldout" type="checkbox"/>

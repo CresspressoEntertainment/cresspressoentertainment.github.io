@@ -3,10 +3,11 @@ email: cresspresso@gmail.com
 github_username: Cresspresso
 
 baseurl: ''
+iconsurl: /assets/images/icons/
 permalink: /:categories/:year/:month/:day/:title/
 stylesheet: /assets/style.css
-iconsurl: /assets/images/icons/
-baseicon: 'Cresspresso Symbol 128.png'
+baseicon: 'Cresspresso 128.png'
+basetabicon: 'Cresspresso Symbol 128.png'
 
 homepage:
   permalink: /

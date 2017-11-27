@@ -2,7 +2,11 @@
 {% for pg in pages %}
 {% unless pg.hide %}
 <a class="nav-link" href="{{ site.baseurl }}{{ pg.permalink }}">
-{{ pg.title }}</a>
+	{% if pg.icon %}
+	<img class="icon" src="{% include iconsrc icon=include.icon %}"/>
+	{% endif %}
+	<span>{{ pg.title }}</span>
+</a>
 {% endunless %}
 {% endfor %}
 <!-- testing unvisited links -->
