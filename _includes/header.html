@@ -1,11 +1,11 @@
 <header>
-	<a id="page-title" href="{{ site.baseurl }}{{ site.homepage.permalink }}">
+	<a id="site-title" href="{{ site.baseurl }}{{ site.homepage.permalink }}">
 		<span>{{ site.title }}</span>
 		<img id="page-icon" src="{% include iconsrc icon=page.icon %}"/>
 	</a>
 	
 	<div class="foldout-box">
-		<input id="foldout-links" class="foldout" type="checkbox"/>
+		<input id="foldout-links" class="foldout" type="checkbox" onchange="cookie_foldoutLinksChecked(this)"/>
 		<label for="foldout-links" class="foldout">
 			<span>Navigation</span>
 			<svg height="1em" width="1em" viewBox="0 0 100 100">

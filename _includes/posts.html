@@ -1,1 +1,9 @@
-<p>(POSTS)</p>
+<h3>Posts</h3>
+<nav>
+{% assign posts = site.posts | where: 'group',page.group | sort: 'date' | reverse %}
+{% for pg in posts %}
+{% unless pg.hide %}
+<a href="{{ site.baseurl }}{{ pg.url }}">{{ pg.title }}</a>
+{% endunless %}
+{% endfor %}
+</nav>

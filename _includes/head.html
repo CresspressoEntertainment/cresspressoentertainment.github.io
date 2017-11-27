@@ -2,10 +2,67 @@
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}{{ site.stylesheet }}"/>
 <meta name="description" content="{{ page.description }}"/>
 <meta name="keywords" content="{{ page.keywords }}"/>
-<link rel="icon" href="{{ site.baseurl }}{{ site.baseiconurl }}{% if page.tabicon %}{{ page.tabicon }}{% else %}{{ site.basetabicon }}{% endif %}"/>
+<link rel="icon" href="{{ site.baseurl }}{{ site.iconsurl }}{% if page.tabicon %}{{ page.tabicon }}{% else %}{{ site.basetabicon }}{% endif %}"/>
 <meta charset="utf-8"/>
 <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <![endif]-->
 
 {% comment %}<meta name="viewport" content="width=device-width, initial-scale=1"/>{% endcomment %}
+
+<!------- cookies ------->
+<script>
+	function setCookie(name,value,days) {
+		if (navigator.cookieEnabled == true) {
+			if (days) {
+				var date = new Date();
+				date.setTime(date.getTime() + (days * 24 * 60 * 60 *1000));
+				var expires = "; expires=" + date.toGMTString();
+			} else {
+				var expires = "";
+			}
+			var path = "; path={{ site.baseurl }}{{ site.homepage.permalink }}";
+			document.cookie = name + "=" + value + expires + path;
+		}
+	}
+
+	function getCookie(name) {
+		if (navigator.cookieEnabled == true) {
+			var nameEQ = name + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0;i < ca.length;i++) 
+			{
+				var c = ca[i];
+				while (c.charAt(0)==' ')
+				{
+					c = c.substring(1,c.length);
+				}
+				if (c.indexOf(nameEQ) == 0)
+				{
+					return c.substring(nameEQ.length,c.length);
+				}
+			}
+		}
+		return null;
+	}
+
+	function eraseCookie(name) {
+		setCookie(name,"",-1);
+	}
+</script>
+
+<script>
+	function checkCookies() {
+		foldoutLinksChecked = getCookie('foldoutLinksChecked')
+		if (foldoutLinksChecked != null) {
+			document.getElementById('foldout-links').checked = (foldoutLinksChecked == 'true');
+		}
+	}
+	
+	function cookie_foldoutLinksChecked(input) {
+		var checked = input.checked;
+		setCookie('foldoutLinksChecked', checked);
+	}
+</script>
+
+
