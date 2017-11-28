@@ -1,9 +1,9 @@
 {% assign pages = site.socialsites | sort: 'title' %}
 {% for pg in pages %}
 {% unless pg.hide %}
-<a href="{{ pg.link }}" title="{{ pg.title }}">
+<a class="{% if pg.icon %}aicon{% endif %}" href="{{ pg.link }}" title="{{ pg.title }}">
 	{% if pg.icon %}
-	<img class="icon socialicon" src="{{ site.baseurl }}{{ site.socialiconsurl }}{{ pg.icon }}" alt="{{ pg.title }}"/>
+	<img class="icon {% unless pg.icon_circle %}icon-square{% endunless %}" src="{{ site.baseurl }}{{ site.socialiconsurl }}{{ pg.icon }}" alt="{{ pg.title }}"/>
 	{% endif pg.icon %}
 	<span>{{ pg.title }}</span>
 </a>

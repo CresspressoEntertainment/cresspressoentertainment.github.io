@@ -21,41 +21,41 @@ include:
 
 socialsites:
 - 
+  title: Bandcamp
+  link: https://cresspresso.bandcamp.com/
+  icon: 'Music 128.png'
+- 
+  title: Facebook
+  link: https://www.facebook.com/cresspresso
+  icon: 'Personal 128.png'
+- 
+  title: GitHub
+  link: https://github.com/Cresspresso
+  icon: 'Coding 128.png'
+- 
+  title: Google+
+  link: https://plus.google.com/109854229651423575407
+  icon: 'Cresspresso 128.png'
+- 
   title: Patreon
   link: https://www.patreon.com/cresspresso
   icon: 'Art 128.png'
 - 
-  title: YouTube
-  link: https://www.youtube.com/channel/UCiPzRDLIQYkPJd6xKeDjz9A
-  icon: 'Coding 128.png'
-- 
   title: SoundCloud
   link: https://soundcloud.com/cresspresso
-  icon: 'Music 128.png'
-- 
-  title: Bandcamp
-  link: https://cresspresso.bandcamp.com/
   icon: 'Music 128.png'
 - 
   title: Tumblr
   link: http://cresspresso.tumblr.com/
   icon: 'Gaming 128.png'
 - 
-  title: GitHub
-  link: https://github.com/Cresspresso
-  icon: 'Coding 128.png'
-- 
-  title: Facebook
-  link: https://www.facebook.com/cresspresso
-  icon: 'Personal 128.png'
-- 
-  title: Google+
-  link: https://plus.google.com/109854229651423575407
-  icon: 'Cresspresso 128.png'
-- 
   title: Twitch
   link: https://www.twitch.tv/cresspresso
   icon: 'Gaming 128.png'
+- 
+  title: YouTube
+  link: https://www.youtube.com/channel/UCiPzRDLIQYkPJd6xKeDjz9A
+  icon: 'Coding 128.png'
 
 
 gems:

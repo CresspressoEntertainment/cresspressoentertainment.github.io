@@ -1,22 +1,5 @@
 <header>
-	<a id="site-title" href="{{ site.baseurl }}{{ site.homepage.permalink }}" title="{{ site.title }}">
-		<span>{{ site.title }}</span>
-		<img id="page-icon" src="{{ site.baseurl }}{{ site.iconsurl }}{% if page.icon %}{{ page.icon }}{% else %}{{ site.homepage.icon }}{% endif %}"/>
-	</a>
-	<div id="header-nav" class="foldout-box">
-		<input id="foldout-links" class="foldout" type="checkbox" onchange="cookie_foldoutLinksChecked(this)"/>
-		<label for="foldout-links" class="foldout">
-			<span>Navigation</span>
-			<svg id="header-nav-foldout-arrow" height="1em" width="1em" viewBox="0 0 100 100">
-				<polygon class="foldout-arrow" points="20,40 80,40 50,70"/>
-			</svg>
-		</label>
-		<div id="foldout-links" class="foldout">
-			<nav>
-				{% include page-links.html %}
-			</nav>
-		</div>
-	</div>
+	{% include group-title.html %}
+	{% include nav-group-links.html %}
+	{% include nav-subgroup-links.html %}
 </header>
-<!--<div id="header-nav">
-</div>-->

@@ -8,15 +8,13 @@
     <body onload="checkCookies()">
         {% include header.html %}
         <main>
-			
 			<section>
 				{% include group-back-link.html %}
 				
-				<div id="page-date">{{ page.date | date: '%-d %b %Y, %R' }}</div>
+				<div id="page-date" class="data">{{ page.date | date: '%-d %b %Y, %R' }}</div>
 				
 				<h1>{{ page.title }}</h1>
 			</section>
-
 			<article>
 				{{ content }}
 			</article>

@@ -1,3 +1,11 @@
+
 {% if page.group %}
-<a id="back-link" href="{{ site.baseurl }}{% if page.group == site.homepage.group %}{{ site.homepage.permalink }}{% else %}{{ page.group }}{% endif %}" title="{{ page.group }}">← Back to {% if page.group == site.homepage.group %}{{ site.title }}{% else %}{{ page.group }}{% endif %}</a>
+{% if page.group == site.homepage.group %}
+<a id="back-link" href="{{ site.baseurl }}{{ site.homepage.permalink }}" title="{{ site.title }}">← Back to {{ site.title }}</a>
+{% else %}
+{% assign parent = site.pages | where: 'subgroup',true | where: 'group',page.group | first %}
+<a id="back-link" href="{{ site.baseurl }}{{ parent.permalink }}" title="{{ parent.title }}">← Back to {{ parent.title }}</a>
+{% endif %}
+{% else %}
+<a id="back-link" href="{{ site.baseurl }}{{ site.homepage.permalink }}" title="{{ site.title }}">← Back to {{ site.title }}</a>
 {% endif %}

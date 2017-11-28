@@ -52,23 +52,46 @@
 		return null;
 	}
 
-	function eraseCookie(name) {
+	function deleteCookie(name) {
 		setCookie(name,"",-1);
 	}
 </script>
-
 <script>
-	function checkCookies() {
-		foldoutLinksChecked = getCookie('foldoutLinksChecked')
-		if (foldoutLinksChecked != null) {
-			document.getElementById('foldout-links').checked = (foldoutLinksChecked == 'true');
+	/*function checkCookies() {
+		// foldoutGroupLinks
+		var input_foldoutGroupLinks = document.getElementById('foldout-group-links');
+		var foldoutGroupLinks_checked = getCookie('foldoutGroupLinksChecked');
+		if (input_foldoutGroupLinks && foldoutGroupLinks_checked != null) {
+			input_foldoutGroupLinks.checked = (foldoutGroupLinks_checked == 'true');
 		}
+		
+		// foldoutSubgroupLinks
+		var input_foldoutSubgroupLinks = document.getElementById('foldout-subgroup-links');
+		var foldoutSubgroupLinks_checked = getCookie('foldoutSubgroupLinksChecked');
+		if (input_foldoutSubgroupLinks && foldoutSubgroupLinks_checked != null) {
+			input_foldoutSubgroupLinks.checked = (foldoutSubgroupLinks_checked == 'true');
+		}
+	}*/
+	
+	function checkCookies() {
+		/* obsolete cookies */
+		deleteCookie('foldoutLinksChecked');
+		deleteCookie('foldoutChildLinksChecked');
+		deleteCookie('foldoutGroupLinksChecked');
+		deleteCookie('foldoutSubgroupLinksChecked');
 	}
 	
-	function cookie_foldoutLinksChecked(input) {
-		var checked = input.checked;
-		setCookie('foldoutLinksChecked', checked);
+	
+	/* events */
+	
+	function input_onchange_foldoutGroupLinks (input) {
+ 		setCookie('foldoutGroupLinksChecked', input.checked)
 	}
+	
+	function input_onchange_foldoutSubgroupLinks (input) {
+ 		setCookie('foldoutSubgroupLinksChecked', input.checked)
+	}
+	
 </script>
 
 

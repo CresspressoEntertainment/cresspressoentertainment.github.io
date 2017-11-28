@@ -2,7 +2,7 @@
 ---
 /* imports */
 
-@import url('https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro|Khula|Roboto');
 
 
 /* mixins */
@@ -66,110 +66,25 @@
 $font-size-base: 1.2em;
 $font-size-small: 0.7em;
 
-$font-family-base: Arial, sans-serif;
-$font-family-htop: 'Open Sans', Calibri, 'Nirmala UI Semilight', 'Nirmala UI', 'Segoe UI Semilight', 'Segoe UI', $font-family-base;
-$font-family-hsub: 'Trebuchet MS', "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, $font-family-base;
+$font-family-base: 'Arial', sans-serif;
+
+$font-family-data: 'Khula', 'Nirmala UI', 'Segoe UI', $font-family-base;
+
+$font-family-h1: 'Roboto', 'Khula', 'Nirmala UI', 'Segoe UI', $font-family-base;
+
+$font-family-h2: 'Open Sans', 'Calibri', $font-family-h1;
+
+$font-family-hsub: 'Trebuchet MS', "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", 'Tahoma', $font-family-base;
 
 
 $html-bg: #fff;
 $sidebar-bg: #f3f3f3;
+$hr-color: rgb(237, 237, 237);
 
-
-/* main html */
-
-html {
-	* {
-		margin: 0;
-		padding: 0;
-	}
-	
-	font-family: $font-family-base;
-	font-size: $font-size-base;
-	
-	background: $html-bg;
-	
-	min-width: 270px;
-}
-
-body>* {
-	$body-padding-1: 0.3em;
-	
-	padding-left: $body-padding-1;
-	padding-right: $body-padding-1;
-	
-	&:first-child {
-		padding-top: $body-padding-1;
-	}
-	&:last-child {
-		padding-bottom: $body-padding-1;
-	}
-}
-
-/* h's */
-
-h1, h2 {
-	font-family: $font-family-htop;
-}
-
-$element-padding: 1em;
-$header-hr-color: rgb(237, 237, 237);
-h1 {
-	$h1-size: 2em;
-	font-size: $h1-size;
-	margin-bottom: ($element-padding / $h1-size);
-	
-	border-top: 2px solid $header-hr-color;
-	
-}
-
-h2 {
-	
-}
-
-
-h3, h4, h5, h6 {
-	font-family: $font-family-hsub;
-	margin-bottom: $element-padding;
-}
-
-/* article */
-
-p {
-	margin-top: $element-padding;
-	margin-bottom: $element-padding;
-}
-
-#page-date {
-	border-top: 2px solid $header-hr-color;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
-	font-size: $font-size-small;
-}
-#back-link {
-	display: block;
-	margin-bottom: 1em;
-}
-
-hr {
-	border: none;
-	height: 2px;
-	background: $header-hr-color;
-	
-	margin-top: 1em;
-	margin-bottom: 1em;
-}
-
-.smalltext {
-	font-size: $font-size-small;
-}
-
-/* a's and link buttons */
 
 @mixin link-hover() {
 	border: 1px solid transparent;
 	&:hover {
-		//background: rgba(0, 157, 255, 0.1);
-		//border: 1px solid rgba(0, 177, 255, 0.1);
 		background: rgba(0, 255, 88, 0.1);
 		border: 1px solid rgba(0, 255, 88, 0.1);
 	}
@@ -182,6 +97,133 @@ $link-color: 				rgb(13, 180, 141);
 $link-color-hover: 			$link-color;
 $link-color-visited: 		$link-color;
 $link-color-visited-hover: 	$link-color-hover;
+
+
+/* html */
+
+html {
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	
+	font-family: $font-family-base;
+	font-size: $font-size-base;
+	
+	background: $html-bg;
+	
+	min-width: 300px;
+}
+
+body >* {
+	$body-padding-1: 0.3em;
+	
+	padding-left: $body-padding-1;
+	padding-right: $body-padding-1;
+}
+
+
+/* copyright */
+#copyright {
+	text-align: center;
+	font-size: 9pt;
+	letter-spacing: 0.03em;
+	color: #888;
+}
+
+
+/* h's */
+
+$element-padding: 1em;
+
+h3, h4, h5, h6 {
+	font-family: $font-family-hsub;
+	margin-bottom: $element-padding;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0.02em 0.05em 0.02em rgba(0,0,0,0.1);
+}
+
+h1 {
+	font-family: $font-family-h1;
+	font-weight: lighter;
+	
+	font-size: 1.8em;
+	
+	padding-left: 18px;
+	padding-right: 18px;
+}
+
+h2 {
+	font-family: $font-family-h2;
+	font-size: 1.1em;
+	color: rgb(124, 124, 124);
+	font-weight: 100;
+	letter-spacing: 0.15em;
+	
+	margin-left: 0.7em;
+	margin-right: 0.7em;
+	
+	.smalltext {
+		letter-spacing: 0.05em;
+	}
+}
+
+h3 {
+	margin-left: 0.8em;
+	margin-right: 0.8em;
+}
+
+
+
+
+/* article */
+
+p {
+	margin-top: $element-padding;
+	margin-bottom: $element-padding;
+	margin-left: 1em;
+	margin-right: 1em;
+}
+.grayed {
+	color: #888;
+	font-style: italic;
+}
+.smalltext {
+	font-size: $font-size-small;
+}
+
+
+#page-date {
+	font-size: 0.8em;
+	
+	padding-top: 0.6em;
+	padding-bottom: 0.5em;
+	padding-left: 1.6em;
+	border-top: 2px solid $hr-color;
+}
+.data {
+	font-family: $font-family-data;
+}
+
+#back-link {
+	display: block;
+	margin-bottom: 1em;
+}
+
+
+hr {
+	border: none;
+	height: 2px;
+	background: $hr-color;
+	
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+
+/* a's and link buttons */
 
 a {
 	@include link-hover();
@@ -205,6 +247,7 @@ a {
 
 div.foldout-box {
 	position: relative;
+	margin-top: 0.3em;
 }
 
 input.foldout {
@@ -228,7 +271,7 @@ input.foldout {
 			text-transform: uppercase;
 		}
 		
-		svg {
+		.foldout-arrow-svg {
 			display: inline-block;
 			vertical-align: top;
 			padding-top: 1px;
@@ -284,32 +327,27 @@ input.foldout {
 }
 
 
-/* copyright */
-#copyright {
-	text-align: center;
-	font-size: 9pt;
-	letter-spacing: 0.03em;
-	color: #888;
-}
+/* group-title */
 
-/* site-title */
-#site-title {
+
+.page-group-title {
 	position: relative;
 	display: block;
 	
-	font-family: $font-family-htop;
-	font-size: $font-size-base;
+	font-family: $font-family-h2;
+	font-size: 1.5em;
 	text-decoration: none;
 	
-	$page-title-padding-tb: 0.3em;
 	$page-title-padding-lr: 0.3em;
-	padding: 0
+	$page-title-padding-tb: 0.6em;
+	$page-icon-size: 2em;
+	
+	padding:
+		0
 		$page-title-padding-lr
 		$page-title-padding-tb
 		$page-title-padding-lr;
 	
-	$page-icon-size: 1.5em;
-	margin-bottom: 0.3em;
 	
 	span {
 		position: relative;
@@ -317,21 +355,30 @@ input.foldout {
 	#page-icon {
 		position: relative;
 		left: $page-title-padding-lr;
-		top: $page-title-padding-tb + 0.05em;
-		margin-top: -0.2em;
+		top: $page-title-padding-tb;
+		margin-top: -0.4em;
 		margin-right: 0.5em;
 		height: $page-icon-size;
 	}
 }
 
-#page-icon,
+#site-title {
+	font-size: 1.1em;
+}
+#title-hr {
+	margin-top: 0.2em;
+	margin-bottom: 0.2em;
+}
+
+/* icons */
+
 .icon {
 	border-radius: 100%;
 	box-shadow: 0.0em 0.1em 0.1em -0.05em rgba(0,0,0,0.3);
 	border: 1px solid rgba(0,0,0,0.05);
 	background: white;
 }
-.socialicon {
+.icon-square {
 	border-radius: 0;
 }
 
@@ -341,24 +388,33 @@ nav a {
 	display: block;
 	position: relative;
 	
-	padding: 0.3em 1em;
+	$height-padding-b: 1.25em;
+	$height-padding-tb-noicon: 0.4em;
+	padding:
+		$height-padding-tb-noicon
+		1em
+		$height-padding-tb-noicon - 0.1em
+		1em;
+	
 	
 	$icon-height: 3em;
 	
 	min-height: $font-size-base;
 	
 	span {
-		display: inline-block;
-		position: absolute;
-		top: 51%;
-		@include transform(translateY(-50%));
+		position: relative;
+	}
+	
+	&.aicon {
+		padding-bottom: $height-padding-b;
 	}
 	
 	.icon {
+		position: relative;
 		height: $icon-height;
-		//margin-left: 0em;
+		top: -0.1em;
 		margin-right: 1em;
-		margin-bottom: -0.2em;
+		margin-bottom: -$height-padding-b;
 	}
 }
 
@@ -366,13 +422,18 @@ nav a {
 /* header */
 
 header {
-	//padding-bottom: 0.5em;
+	background: $sidebar-bg;
+	padding-bottom: 0.5em;
+	border-bottom: 2px solid $hr-color;
+	
+	padding-top: 0;
 }
 
 /* footer */
 
 footer {
 	padding-top: 2em;
+	padding-bottom: 2em;
 }
 
 
@@ -381,6 +442,11 @@ footer {
 main {
 	padding-top: 1em;
 	padding-bottom: 1em;
+	
+	>* {
+		padding-left: 18px;
+		padding-right: 18px;
+	}
 }
 
 
@@ -391,13 +457,6 @@ $body-margin: 2em;
 	body>* {
 		padding-left: $body-margin;
 		padding-right: $body-margin;
-		
-		&:first-child {
-			padding-top: $body-margin;
-		}
-		&:last-child {
-			padding-bottom: $body-margin;
-		}
 	}
 }
 
@@ -407,7 +466,17 @@ $body-margin: 2em;
 	}
 }
 
-@media only screen and (min-width: 46em) {
+@media only screen and (min-width: 30em) {
+	h1 {
+		font-size: 2.3em;
+		letter-spacing: 0.05em;
+	}
+	h2 {
+		font-size: 1.3em;
+	}
+}
+
+@media only screen and (min-width: 50em) {
 	
 	$body-margin-left: 1em;
 	/* CSS GRID */
@@ -427,30 +496,28 @@ $body-margin: 2em;
 		footer {
 			grid-area: footer;
 			padding-left: $body-margin-left;
-			padding-bottom: $body-margin;
 			padding-right: $body-margin;
+			//padding-bottom: $body-margin;
 		}
 
 		main {
 			grid-area: main;
 			padding-top: $body-margin;
 			padding-right: $body-margin;
-			padding-left: $body-margin;
+			padding-left: 1em;
 		}
 
 		header {
 			grid-area: header;
-			padding-top: $body-margin !important;
-		}
-		
-		header/*, #header-nav*/ {
-			background: $sidebar-bg;
+			padding-top: 1em !important;
+			
 			padding-left: $body-margin-left;
-			padding-right: $body-margin/2;
+			padding-right: 1em;
+			
+			background: $sidebar-bg;
 		}
 
-		#header-nav {
-			//grid-area: nav;
+		div.foldout-box {
 			padding-bottom: $body-margin;
 			
 			input.foldout {
@@ -465,6 +532,7 @@ $body-margin: 2em;
 				
 				&:checked {
 					+ label.foldout {
+						
 						+ div.foldout {
 							border: none;
 							background: none;
@@ -473,7 +541,7 @@ $body-margin: 2em;
 				}
 			}
 		}
-		#header-nav-foldout-arrow {
+		.foldout-arrow {
 			display: none;
 		}
 		

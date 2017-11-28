@@ -1,9 +1,14 @@
+<hr/>
 <h3>Posts</h3>
 <nav>
 {% assign posts = site.posts | where: 'group',page.group | sort: 'date' | reverse %}
+{% if posts.size > 0 %}
 {% for pg in posts %}
 {% unless pg.hide %}
 <a href="{{ site.baseurl }}{{ pg.url }}" title="{{ pg.title }}" title="{{ pg.title }}">{{ pg.title }}</a>
 {% endunless %}
 {% endfor %}
+{% else %}
+	<p class="grayed">There are no posts for {{ page.group }}.</p>
+{% endif %}
 </nav>

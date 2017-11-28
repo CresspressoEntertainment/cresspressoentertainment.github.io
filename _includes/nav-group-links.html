@@ -1,0 +1,30 @@
+{% assign pages = site.pages | where: 'group', page.group | sort: 'order' %}
+{% if pages.size > 0 %}
+<div class="foldout-box">
+	<input id="foldout-group-links" class="foldout" type="checkbox" onchange="input_onchange_foldoutGroupLinks(this)"/>
+	<label for="foldout-group-links" class="foldout">
+		<span>Navigation</span>
+		<svg class="foldout-arrow-svg" height="1em" width="1em" viewBox="0 0 100 100">
+			<polygon class="foldout-arrow" points="20,40 80,40 50,70"/>
+		</svg>
+	</label>
+	<div class="foldout">
+		<nav>
+			
+{% for pg in pages %}
+{% unless pg.hide %}
+<a class="nav-link{% if pg.icon %} aicon{% endif %}" href="{{ site.baseurl }}{{ pg.permalink }}" title="{{ pg.title }}">
+	{% if pg.icon %}
+	<img class="icon{% if pg.icon_square %} icon-square{% endif %}" src="{{ site.baseurl }}{{ site.iconsurl }}{{ pg.icon }}"/>
+	{% endif %}
+	<span>{{ pg.title }}</span>
+</a>
+{% endunless %}
+{% endfor %}
+<!-- testing unvisited links and 404 -->
+<a class="nav-link noicon" href="THIS DOES NOT EXIST">Unvisited</a>
+			
+		</nav>
+	</div>
+</div>
+{% endif %}
