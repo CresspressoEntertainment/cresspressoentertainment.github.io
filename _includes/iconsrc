@@ -1,1 +1,0 @@
-{{ site.baseurl }}{{ site.iconsurl }}{% if include.icon %}{{ include.icon }}{% else %}{{ site.baseicon }}{% endif %}

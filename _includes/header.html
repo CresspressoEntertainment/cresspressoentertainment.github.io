@@ -1,11 +1,9 @@
 <header>
-	<a id="site-title" href="{{ site.baseurl }}{{ site.homepage.permalink }}">
+	<a id="site-title" href="{{ site.baseurl }}{{ site.homepage.permalink }}" title="{{ site.title }}">
 		<span>{{ site.title }}</span>
-		<img id="page-icon" src="{% include iconsrc icon=page.icon %}"/>
+		<img id="page-icon" src="{{ site.baseurl }}{{ site.iconsurl }}{% if page.icon %}{{ page.icon }}{% else %}{{ site.homepage.icon }}{% endif %}"/>
 	</a>
-</header>
-<div id="header-nav">
-	<div class="foldout-box">
+	<div id="header-nav" class="foldout-box">
 		<input id="foldout-links" class="foldout" type="checkbox" onchange="cookie_foldoutLinksChecked(this)"/>
 		<label for="foldout-links" class="foldout">
 			<span>Navigation</span>
@@ -19,5 +17,6 @@
 			</nav>
 		</div>
 	</div>
-</div>
-<!--<div id="grid-fx"></div>-->
+</header>
+<!--<div id="header-nav">
+</div>-->

@@ -1,0 +1,3 @@
+{% if page.group %}
+<a id="back-link" href="{{ site.baseurl }}{% if page.group == site.homepage.group %}{{ site.homepage.permalink }}{% else %}{{ page.group }}{% endif %}" title="{{ page.group }}">← Back to {% if page.group == site.homepage.group %}{{ site.title }}{% else %}{{ page.group }}{% endif %}</a>
+{% endif %}

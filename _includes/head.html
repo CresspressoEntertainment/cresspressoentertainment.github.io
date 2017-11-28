@@ -4,7 +4,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <![endif]-->
 
-<title>{% if page.tabtitle %}{{ page.tabtitle }}{% else %}{{ page.title }} - {% if page.group == site.maingroup %}{{ site.title }}{% else %}{{ page.group }}{% endif %}{% endif %}</title>
+<title>{% if page.tabtitle %}{{ page.tabtitle }}{% else %}{{ page.title }} - {% if page.group == site.homepage.group %}{{ site.title }}{% else %}{{ page.group }}{% endif %}{% endif %}</title>
 
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}{{ site.stylesheet }}"/>
 
@@ -12,7 +12,7 @@
 
 <meta name="keywords" content="{{ page.keywords }}"/>
 
-<link rel="icon" href="{{ site.baseurl }}{{ site.iconsurl }}{% if page.tabicon %}{{ page.tabicon }}{% else %}{{ site.basetabicon }}{% endif %}"/>
+<link rel="icon" href="{{ site.baseurl }}{{ site.iconsurl }}{% if page.tabicon %}{{ page.tabicon }}{% else %}{{ site.homepage.tabicon }}{% endif %}"/>
 
 {% comment %}<meta name="viewport" content="width=device-width, initial-scale=1"/>{% endcomment %}
 
