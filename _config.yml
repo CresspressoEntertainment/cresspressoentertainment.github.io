@@ -1,71 +1,67 @@
-title: Cresspresso Entertainment
+title: Cresspresso
 email: cresspresso@gmail.com
-description: > # this means to ignore newlines until "baseurl:"
-  Amazing fun things, from music to videos, gameplay, and programming code.
-baseurl: "" # the subpath of your site, e.g. /blog
-#twitter_username: jekyllrb
 github_username: Cresspresso
 
-permalink: /:categories/:year-:month-:day/:title/
+baseurl: ''
+iconsurl: /assets/images/icons/
+socialiconsurl: /assets/images/socialsites/
+permalink: /:categories/:year/:month/:day/:title/
 
-socialsites:
-  - 
-    title: Patreon
-    icon: patreon.svg
-    link: https://www.patreon.com/cresspresso
-  - 
-    title: YouTube
-    icon: youtube.svg
-    link: https://www.youtube.com/channel/UCiPzRDLIQYkPJd6xKeDjz9A
-  - 
-    title: SoundCloud
-    icon: false
-    link: https://soundcloud.com/cresspresso
-  - 
-    title: Bandcamp
-    icon: false
-    link: https://cresspresso.bandcamp.com/
-  - 
-    title: Tumblr
-    icon: false
-    link: http://cresspresso.tumblr.com/
-  - 
-    title: Facebook
-    icon: facebook.svg
-    link: https://www.facebook.com/cresspresso
-  - 
-    title: Google+
-    icon: false
-    link: https://plus.google.com/109854229651423575407
-  - 
-    title: Twitch
-    icon: false
-    link: https://www.twitch.tv/cresspresso
+stylesheet: /assets/style.css
 
 homepage:
-  title: Home
-  url: ''
+  permalink: /
+  group: Main
+  icon: 'green-fern-cresspresso.svg'
+  tabicon: 'green-fern-cresspresso-32.png'
+
+include:
+- _pages
+
+
+socialsites:
+- 
+  title: Bandcamp
+  link: https://cresspresso.bandcamp.com/
+  icon: 'Music 128.png'
+- 
+  title: Facebook
+  link: https://www.facebook.com/cresspresso
+  icon: 'Personal 128.png'
+- 
+  title: GitHub
+  link: https://github.com/Cresspresso
+  icon: 'Coding 128.png'
+- 
+  title: Google+
+  link: https://plus.google.com/109854229651423575407
   icon: 'Cresspresso 128.png'
+- 
+  title: Patreon
+  link: https://www.patreon.com/cresspresso
+  icon: 'Art 128.png'
+- 
+  title: SoundCloud
+  link: https://soundcloud.com/cresspresso
+  icon: 'Music 128.png'
+- 
+  title: Tumblr
+  link: http://cresspresso.tumblr.com/
+  icon: 'Gaming 128.png'
+- 
+  title: Twitch
+  link: https://www.twitch.tv/cresspresso
+  icon: 'Gaming 128.png'
+- 
+  title: YouTube
+  link: https://www.youtube.com/channel/UCiPzRDLIQYkPJd6xKeDjz9A
+  icon: 'Coding 128.png'
 
-gists:
-  - 
-    title: MyFirstGist
-    date: 2016-12-30 18:11:09 +1300
-    link: https://gist.github.com/ElijahShadbolt/f5ea9488b95399b5c65da409939fec4b
-
-# Build settings
-excerpt_separator: ""
-markdown: kramdown
-highlighter: rouge
-kramdown:
-  input: GFM
-  syntax_highlighter: rouge
-  hard_wrap: false
-#theme: minima
 
 gems:
-  - jekyll-feed
-  - rouge
+- jekyll-feed
 exclude:
-  - Gemfile
-  - Gemfile.lock
+- Gemfile
+- Gemfile.lock
+
+

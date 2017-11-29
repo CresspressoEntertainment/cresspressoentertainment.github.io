@@ -1,46 +1,7 @@
 <footer>
-    <!-- mainpages -->
-    <div class="expandable">
-        <!-- menu toggle button -->
-        <input id="footer-toggle-mainpages" class="toggle mainpages" type="checkbox"/>
-        <label for="footer-toggle-mainpages" title="Menu">
-            <div>
-                <h3>Quick Links</h3>
-                <img class="open" src="{{ site.baseurl }}/assets/images/menu_open.png" alt="open"/>
-                <img class="close" src="{{ site.baseurl }}/assets/images/menu_close.png" alt="close"/>
-            </div>
-        </label>
-
-        <!-- navigation links dropdown -->
-        <div class="toggle-content">
-            <nav>
-                <ul class="mainpages">
-                    {% include links-mainpages.html %}
-                </ul>
-            </nav>
-        </div>
-    </div>
-    
-    <!-- socialsites -->
-    <div class="expandable">
-        <!-- menu toggle button -->
-        <input id="footer-toggle-socialsites" class="toggle socialsites" type="checkbox"/>
-        <label for="footer-toggle-socialsites" title="Social">
-            <div>
-                <h3>Social Sites</h3>
-                <img class="open" src="{{ site.baseurl }}/assets/images/menu_open.png" alt="open"/>
-                <img class="close" src="{{ site.baseurl }}/assets/images/menu_close.png" alt="close"/>
-            </div>
-        </label>
-        
-        <div class="toggle-content">
-            <nav>
-                <ul class="socialsites" itemcount=4>
-                    {% include links-socialsites.html %}
-                </ul>
-            </nav>
-        </div>
-    </div>
-    
-    <div id="copyright">&copy Copyright Cresspresso Entertainment 2016</div>
+	<div class="page-title-div">
+		{% include site-title.html %}
+	</div>
+	
+    <div id="copyright">Cresspresso &copy; Copyright 2017<br> Elijah Shadbolt</div>
 </footer>

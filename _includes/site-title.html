@@ -1,0 +1,5 @@
+{% assign homepage = site.pages | where: 'permalink', site.homepage.permalink | first %}
+<a id="site-title" class="page-group-title" href="{{ site.baseurl }}{{ site.homepage.permalink }}" title="{{ site.title }}">
+	<span>{{ site.title }}</span>
+	<img id="site-icon" class="icon {% if homepage.icon_square %}icon-square{% endif %}" src="{{ site.baseurl }}{{ site.iconsurl }}{{ site.homepage.icon }}"/>
+</a>

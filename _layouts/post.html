@@ -3,19 +3,19 @@
 <!doctype html>
 <html>
     <head>
-        {% include head.html group=page.group %}
+        {% include head.html %}
     </head>
-    <body>
-        {% include header.html group=page.group %}
+    <body onload="checkCookies()">
+        {% include header.html %}
         <main>
+			{% include group-back-link.html %}
+			<hr/>
 			<section>
-				<p id="date">{{ page.date | date: '%-d %b %Y, %R' }}</p>
+				<div id="page-date" class="data grayed">{{ page.date | date: '%-d %B %Y, %R' }} <span class="spaced">({{ page.date }})</span></div>
+				<!--  -->
+				
 				<h1>{{ page.title }}</h1>
-				{% if page.description %}
-				<p>{{ page.description }}</p>
-				{% endif %}
 			</section>
-
 			<article>
 				{{ content }}
 			</article>

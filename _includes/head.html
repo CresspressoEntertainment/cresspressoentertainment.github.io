@@ -1,9 +1,97 @@
-<title>{{ page.title }} |{% if include.group %} {{ include.group }} |{% endif %} {{ site.title }}</title>
-<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/style.css"/>
-<meta name="description" content="Music, Gaming Videos and Video Games, for your entertainment."/>
-<meta name="keywords" content="music, remix, cover, game, gaming, gaming video, gaming videos, gamer, video game, video games, entertainment"/>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
 <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <![endif]-->
+
+<title>{% if page.tabtitle %}{{ page.tabtitle }}{% else %}{{ page.title }} - {% if page.group == site.homepage.group %}{{ site.title }}{% else %}{{ page.group }}{% endif %}{% endif %}</title>
+
+<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}{{ site.stylesheet }}"/>
+
+<meta name="description" content="{{ page.description }}"/>
+
+<meta name="keywords" content="{{ page.keywords }}"/>
+
+<link rel="icon" href="{{ site.baseurl }}{{ site.iconsurl }}{% if page.tabicon %}{{ page.tabicon }}{% else %}{{ site.homepage.tabicon }}{% endif %}"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+<!------- cookies ------->
+<script>
+	function setCookie(name,value,days) {
+		if (navigator.cookieEnabled == true) {
+			if (days) {
+				var date = new Date();
+				date.setTime(date.getTime() + (days * 24 * 60 * 60 *1000));
+				var expires = "; expires=" + date.toGMTString();
+			} else {
+				var expires = "";
+			}
+			var path = "; path={{ site.baseurl }}{{ site.homepage.permalink }}";
+			document.cookie = name + "=" + value + expires + path;
+		}
+	}
+
+	function getCookie(name) {
+		if (navigator.cookieEnabled == true) {
+			var nameEQ = name + "=";
+			var ca = document.cookie.split(';');
+			for(var i=0;i < ca.length;i++) 
+			{
+				var c = ca[i];
+				while (c.charAt(0)==' ')
+				{
+					c = c.substring(1,c.length);
+				}
+				if (c.indexOf(nameEQ) == 0)
+				{
+					return c.substring(nameEQ.length,c.length);
+				}
+			}
+		}
+		return null;
+	}
+
+	function deleteCookie(name) {
+		setCookie(name,"",-1);
+	}
+</script>
+<script>
+	/*function checkCookies() {
+		// foldoutGroupLinks
+		var input_foldoutGroupLinks = document.getElementById('foldout-group-links');
+		var foldoutGroupLinks_checked = getCookie('foldoutGroupLinksChecked');
+		if (input_foldoutGroupLinks && foldoutGroupLinks_checked != null) {
+			input_foldoutGroupLinks.checked = (foldoutGroupLinks_checked == 'true');
+		}
+		
+		// foldoutSubgroupLinks
+		var input_foldoutSubgroupLinks = document.getElementById('foldout-subgroup-links');
+		var foldoutSubgroupLinks_checked = getCookie('foldoutSubgroupLinksChecked');
+		if (input_foldoutSubgroupLinks && foldoutSubgroupLinks_checked != null) {
+			input_foldoutSubgroupLinks.checked = (foldoutSubgroupLinks_checked == 'true');
+		}
+	}*/
+	
+	function checkCookies() {
+		/* obsolete cookies */
+		deleteCookie('foldoutLinksChecked');
+		deleteCookie('foldoutChildLinksChecked');
+		deleteCookie('foldoutGroupLinksChecked');
+		deleteCookie('foldoutSubgroupLinksChecked');
+	}
+	
+	
+	/* events */
+	
+	function input_onchange_foldoutGroupLinks (input) {
+ 		setCookie('foldoutGroupLinksChecked', input.checked)
+	}
+	
+	function input_onchange_foldoutSubgroupLinks (input) {
+ 		setCookie('foldoutSubgroupLinksChecked', input.checked)
+	}
+	
+</script>
+
+

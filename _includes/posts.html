@@ -1,48 +1,19 @@
-<hr id="posts">
-
-{% assign noPosts = true %}
-
-{% for post in site.posts %}
-{% if post.group == page.group %}
-{% assign noPosts = false %}
-
-<article>
-{% if post.categories contains "tracks" %}
-	
-	<a class="article-header" href="https://soundcloud.com/cressmusic/{{ post.soundcloud }}">
-		<h3>&#9834; {{ post.title }}</h3>
-		<p class="date">{{ post.date | date: '%-d %b %Y, %R' }}</p>
-	</a>
-	{{ post.content }}
-	
-{% elsif post.categories contains "playlists" %}
-	
-	<a class="article-header" href="https://soundcloud.com/cressmusic/{{ post.soundcloud }}">
-		<h3>&#8801; {{ post.title }}</h3>
-		<p class="date">{{ post.date | date: '%-d %b %Y, %R' }}</p>
-	</a>
-	{{ post.content }}
-	
-{% else %}
-	
-	<a class="article-header" href="{{ site.baseurl }}{{ post.url }}">
-		<h3>{{ post.title }}</h3>
-		<p class="date">{{ post.date | date: '%-d %b %Y, %R' }}</p>
-	</a>
-	{% if post.description %}
-	<p>{{ post.description }}</p>
-	{% else %}
-	<p>{{ post.content | truncate: 50 }}</p>
-	{% endif %}
-	
-{% endif %}
-</article>
-
-{% endif %}
+{% unless include.header == false %}
+<hr/>
+<h4>Posts</h4>
+{% endunless %}
+{% assign posts = site.posts | where: 'group',page.group | sort: 'date' | reverse %}
+{% if posts.size > 0 %}
+<nav class="posts-links">
+{% for pg in posts %}
+{% unless pg.hide %}
+<a href="{{ site.baseurl }}{{ pg.url }}" title="{{ pg.title }}" title="{{ pg.title }}">
+	<span>{{ pg.title }}</span>
+	<span class="post-date data">{{ pg.date | date: '%-d %B %Y, %R' }}</span>
+</a>
+{% endunless %}
 {% endfor %}
-
-{% if noPosts %}
-<section>
-	<p class="empty-info">( There are no posts in this section )</p>
-</section>
+</nav>
+{% else %}
+<p class="grayed data">There are no posts for {{ page.group }}.</p>
 {% endif %}

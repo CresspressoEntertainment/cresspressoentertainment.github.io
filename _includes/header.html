@@ -1,38 +1,7 @@
 <header>
-    <!-- title -->
-	{% assign headerpage = site.homepage %}
-	
-	{% for pg in site.pages %}
-		{% if pg.title == include.group %}
-			{% for pc in pg.categories %}
-				{% if pc == 'mainpages' %}
-					{% assign headerpage = pg %}
-				{% endif %}
-			{% endfor %}
-		{% endif %}
-	{% endfor %}
-	
-	<a id="header-title" href="{{ site.baseurl }}{{ headerpage.url }}">
-		<h2>{{ headerpage.title }}</h2>
-		<h3><span>Cresspresso</span> Entertainment</h3>
-		<img src="{{ site.baseurl }}/assets/images/icons/{{ headerpage.icon }}" alt="{{ headerpage.title }}"/>
-	</a>
-	
-
-    <!-- menu toggle button -->
-    <input id="header-toggle-menu" class="toggle mainpages" type="checkbox"/>
-    <label for="header-toggle-menu" title="Menu">
-        <img class="open" src="{{ site.baseurl }}/assets/images/menu_open.png" alt="open"/>
-        <img class="close" src="{{ site.baseurl }}/assets/images/menu_close.png" alt="close"/>
-    </label>
-
-    <!-- navigation links dropdown -->
-    <div class="toggle-content">
-        <nav>
-            <!-- main pages -->
-            <ul class="mainpages">
-                {% include links-mainpages.html %}
-            </ul>
-        </nav>
-    </div>
+	<div class="page-title-div">
+		{% include group-title.html %}
+	</div>
+	{% include nav-group-links.html %}
+	{% include nav-subgroup-links.html %}
 </header>
