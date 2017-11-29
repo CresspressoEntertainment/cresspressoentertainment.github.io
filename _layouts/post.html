@@ -8,10 +8,11 @@
     <body onload="checkCookies()">
         {% include header.html %}
         <main>
+			{% include group-back-link.html %}
+			<hr/>
 			<section>
-				{% include group-back-link.html %}
-				
-				<div id="page-date" class="data">{{ page.date | date: '%-d %b %Y, %R' }}</div>
+				<div id="page-date" class="data grayed">{{ page.date | date: '%-d %B %Y, %R' }} <span class="spaced">({{ page.date }})</span></div>
+				<!--  -->
 				
 				<h1>{{ page.title }}</h1>
 			</section>

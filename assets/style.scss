@@ -129,6 +129,8 @@ body >* {
 	font-size: 9pt;
 	letter-spacing: 0.03em;
 	color: #888;
+	
+	margin-top: 2em;
 }
 
 
@@ -143,6 +145,9 @@ h3, h4, h5, h6 {
 
 h1, h2, h3, h4, h5, h6 {
 	text-shadow: 0.02em 0.05em 0.02em rgba(0,0,0,0.1);
+	
+	//padding-left: 18px;
+	//padding-right: 18px;
 }
 
 h1 {
@@ -151,19 +156,19 @@ h1 {
 	
 	font-size: 1.8em;
 	
-	padding-left: 18px;
-	padding-right: 18px;
+	//padding-left: 0.4em;
+	//padding-right: 0.4em;
 }
 
 h2 {
 	font-family: $font-family-h2;
 	font-size: 1.1em;
-	color: rgb(124, 124, 124);
+	color: rgb(162, 162, 162);
 	font-weight: 100;
-	letter-spacing: 0.15em;
+	letter-spacing: 0.1em;
 	
-	margin-left: 0.7em;
-	margin-right: 0.7em;
+	//margin-left: 0.7em;
+	//margin-right: 0.7em;
 	
 	.smalltext {
 		letter-spacing: 0.05em;
@@ -183,28 +188,14 @@ h3 {
 p {
 	margin-top: $element-padding;
 	margin-bottom: $element-padding;
-	margin-left: 1em;
-	margin-right: 1em;
+	//margin-left: 1em;
+	//margin-right: 1em;
 }
 .grayed {
-	color: #888;
-	font-style: italic;
+	color: #aaa;
 }
 .smalltext {
 	font-size: $font-size-small;
-}
-
-
-#page-date {
-	font-size: 0.8em;
-	
-	padding-top: 0.6em;
-	padding-bottom: 0.5em;
-	padding-left: 1.6em;
-	border-top: 2px solid $hr-color;
-}
-.data {
-	font-family: $font-family-data;
 }
 
 #back-link {
@@ -220,6 +211,35 @@ hr {
 	
 	margin-top: 1em;
 	margin-bottom: 1em;
+}
+
+
+/* post date */
+
+#page-date {
+	font-size: 0.8em;
+	
+	padding-top: 0.6em;
+	padding-bottom: 0.5em;
+	margin-top: -1em;
+}
+.data {
+	font-family: $font-family-data;
+	
+	.spaced {
+		margin-left: 0.3em;
+		word-spacing: 0.1em;
+		letter-spacing: 0.02em;
+	}
+}
+.post-date {
+	position: relative;
+	display: inline-block;
+	font-size: 0.8em;
+	
+	margin-left: 1em;
+	top: -0.08em;
+	margin-bottom: -1em;
 }
 
 
@@ -329,7 +349,13 @@ input.foldout {
 
 /* group-title */
 
+$page-title-padding-lr: 0.3em;
+$page-title-padding-tb: 0.6em;
+$page-icon-size: 2em;
 
+.page-title-div {
+	position: relative;
+}
 .page-group-title {
 	position: relative;
 	display: block;
@@ -338,33 +364,31 @@ input.foldout {
 	font-size: 1.5em;
 	text-decoration: none;
 	
-	$page-title-padding-lr: 0.3em;
-	$page-title-padding-tb: 0.6em;
-	$page-icon-size: 2em;
-	
 	padding:
 		0
 		$page-title-padding-lr
 		$page-title-padding-tb
 		$page-title-padding-lr;
 	
-	
 	span {
 		position: relative;
 	}
-	#page-icon {
-		position: relative;
-		left: $page-title-padding-lr;
-		top: $page-title-padding-tb;
-		margin-top: -0.4em;
-		margin-right: 0.5em;
-		height: $page-icon-size;
-	}
 }
-
 #site-title {
 	font-size: 1.1em;
 }
+
+#page-icon,
+#site-icon {
+	position: relative;
+	left: $page-title-padding-lr;
+	top: $page-title-padding-tb;
+	margin-top: -0.4em;
+	margin-right: 0.5em;
+	height: $page-icon-size;
+}
+
+
 #title-hr {
 	margin-top: 0.2em;
 	margin-bottom: 0.2em;
@@ -384,20 +408,22 @@ input.foldout {
 
 
 /* nav-link */
+
+main nav {
+	margin-left: -1em;
+}
+
+$nav-a-height-padding-tb-noicon: 0.4em;
+
 nav a {
 	display: block;
 	position: relative;
 	
-	$height-padding-b: 1.25em;
-	$height-padding-tb-noicon: 0.4em;
 	padding:
-		$height-padding-tb-noicon
+		$nav-a-height-padding-tb-noicon
 		1em
-		$height-padding-tb-noicon - 0.1em
+		$nav-a-height-padding-tb-noicon - 0.1em
 		1em;
-	
-	
-	$icon-height: 3em;
 	
 	min-height: $font-size-base;
 	
@@ -406,15 +432,16 @@ nav a {
 	}
 	
 	&.aicon {
-		padding-bottom: $height-padding-b;
+		padding-bottom: 0.55em;
 	}
 	
 	.icon {
 		position: relative;
-		height: $icon-height;
-		top: -0.1em;
 		margin-right: 1em;
-		margin-bottom: -$height-padding-b;
+		
+		height: 1.8em;
+		top: -0.2em;
+		margin-bottom: -0.75em;
 	}
 }
 
@@ -427,15 +454,29 @@ header {
 	border-bottom: 2px solid $hr-color;
 	
 	padding-top: 0;
+	
+	>* {
+		margin-left: 24px;
+		margin-right: 24px;
+	}
 }
 
 /* footer */
 
 footer {
-	padding-top: 2em;
+	position: relative;
+	padding-top: 1em;
 	padding-bottom: 2em;
+	
+	border-top: 2px solid $hr-color;
 }
 
+footer .page-title-div {
+	text-align: center;
+	>* {
+		display: inline-block;
+	}
+}
 
 /* main */
 
@@ -444,25 +485,26 @@ main {
 	padding-bottom: 1em;
 	
 	>* {
-		padding-left: 18px;
-		padding-right: 18px;
+		padding-left: 32px;
+		padding-right: 32px;
 	}
 }
 
 
 /* media different screen sizes */
 
-$body-margin: 2em;
-@media only screen and (min-width: 24em) {	
-	body>* {
-		padding-left: $body-margin;
-		padding-right: $body-margin;
-	}
-}
-
 @media only screen and (min-width: 24em) {
 	#copyright>br {
 		display: none;
+	}
+}
+
+$body-margin: 2em;
+
+@media only screen and (min-width: 30em) {	
+	body>* {
+		padding-left: $body-margin;
+		padding-right: $body-margin;
 	}
 }
 
@@ -473,6 +515,19 @@ $body-margin: 2em;
 	}
 	h2 {
 		font-size: 1.3em;
+	}
+}
+
+@media only screen and (min-width: 24em) {
+	nav a {
+		&.aicon {
+			padding-bottom: 1.25em;
+		}
+		.icon {
+			height: 3em;
+			top: -0.1em;
+			margin-bottom: -1.25em;
+		}
 	}
 }
 
@@ -504,21 +559,27 @@ $body-margin: 2em;
 			grid-area: main;
 			padding-top: $body-margin;
 			padding-right: $body-margin;
-			padding-left: 1em;
+			padding-left: 2em;
 		}
 
 		header {
 			grid-area: header;
 			padding-top: 1em !important;
 			
-			padding-left: $body-margin-left;
-			padding-right: 1em;
+			padding-left: 32px;
+			padding-right: 32px;
 			
 			background: $sidebar-bg;
+			
+	
+			>* {
+				margin-left: 0;
+				margin-right: 0;
+			}
 		}
 
 		div.foldout-box {
-			padding-bottom: $body-margin;
+			padding-bottom: 1em;
 			
 			input.foldout {
 				+ label.foldout {

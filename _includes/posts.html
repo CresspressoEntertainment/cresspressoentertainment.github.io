@@ -1,14 +1,19 @@
+{% unless include.header == false %}
 <hr/>
-<h3>Posts</h3>
-<nav>
+<h4>Posts</h4>
+{% endunless %}
 {% assign posts = site.posts | where: 'group',page.group | sort: 'date' | reverse %}
 {% if posts.size > 0 %}
+<nav class="posts-links">
 {% for pg in posts %}
 {% unless pg.hide %}
-<a href="{{ site.baseurl }}{{ pg.url }}" title="{{ pg.title }}" title="{{ pg.title }}">{{ pg.title }}</a>
+<a href="{{ site.baseurl }}{{ pg.url }}" title="{{ pg.title }}" title="{{ pg.title }}">
+	<span>{{ pg.title }}</span>
+	<span class="post-date data">{{ pg.date | date: '%-d %B %Y, %R' }}</span>
+</a>
 {% endunless %}
 {% endfor %}
-{% else %}
-	<p class="grayed">There are no posts for {{ page.group }}.</p>
-{% endif %}
 </nav>
+{% else %}
+<p class="grayed data">There are no posts for {{ page.group }}.</p>
+{% endif %}

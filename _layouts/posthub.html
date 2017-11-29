@@ -1,0 +1,20 @@
+---
+---
+<!doctype html>
+<html>
+	<head>
+		{% include head.html %}
+	</head>
+	<body onload="checkCookies()">
+		{% include header.html %}
+		<main>
+			<section>
+				<h1>{{ page.title }}</h1>
+			</section>
+			{{ content }}
+			<hr/>
+			{% include posts.html header=false %}
+		</main>
+		{% include footer.html %}
+	</body>
+</html>
