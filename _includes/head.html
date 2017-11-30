@@ -4,17 +4,37 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 <![endif]-->
 
-<title>{% if page.tabtitle %}{{ page.tabtitle }}{% else %}{{ page.title }} - {% if page.group == site.homepage.group %}{{ site.title }}{% else %}{{ page.group }}{% endif %}{% endif %}</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}{{ site.stylesheet }}"/>
+
+<title>{% if page.tabtitle %}{{ page.tabtitle }}{% else %}{{ page.title }}{% unless page.subgroup %}{% if page.group %} - {{ page.group }}{% else %}{{ page.parent }}{% endif %}{% endunless %}{% endif %}</title>
+
+
+{% assign tabicon = site.homepage.tabicon %}
+
+{% if page.tabicon %}
+{% assign tabicon = page.tabicon %}
+
+{% elsif page.group %}
+{% assign parent = site.pages | where: 'group',page.group | where: 'subgroup',true | first %}
+{% if parent.tabicon %}
+{% assign tabicon = parent.tabicon %}
+{% endif %}
+
+{% elsif page.parent %}
+{% assign parent = site.pages | where: 'group',page.parent | where: 'subgroup',true | first %}
+{% if parent.tabicon %}
+{% assign tabicon = parent.tabicon %}
+{% endif %}
+
+{% endif %}
+<link rel="icon" href="{{ site.baseurl }}{{ site.iconsurl }}{{ tabicon }}"/>
+
 
 <meta name="description" content="{{ page.description }}"/>
 
 <meta name="keywords" content="{{ page.keywords }}"/>
-
-<link rel="icon" href="{{ site.baseurl }}{{ site.iconsurl }}{% if page.tabicon %}{{ page.tabicon }}{% else %}{{ site.homepage.tabicon }}{% endif %}"/>
-
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
 
 <!------- cookies ------->
 <script>

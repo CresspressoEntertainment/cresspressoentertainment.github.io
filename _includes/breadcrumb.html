@@ -1,0 +1,36 @@
+{% assign breadcrumb = site.emptyarray %}
+
+{% assign breadcrumb = breadcrumb | push: page %}
+	
+{% if page.group %}
+{% unless page.subgroup %}
+	
+{% assign parent = site.pages | where: 'group',page.group | where: 'subgroup',true | first %}
+{% assign breadcrumb = breadcrumb | push: parent %}
+	
+{% endunless %}
+{% endif %}
+	
+	
+{% if page.parent %}
+
+{% assign parent = site.pages | where: 'group',page.parent | where: 'subgroup',true | first %}
+{% assign breadcrumb = breadcrumb | push: parent %}
+
+{% for while in (0..9) %}
+{% if parent.parent %}
+{% assign newparent = site.pages | where: 'group',parent.parent | where: 'subgroup',true | first %}
+{% unless newparent == parent %}
+{% assign parent = newparent %}
+{% assign breadcrumb = breadcrumb | push: parent %}
+{% endunless %}
+
+{% endif %}
+{% endfor %}
+
+{% endif %}
+
+	
+<div class="breadcrumb">
+	{% for pg in breadcrumb reversed %}<span>{% unless forloop.first %}<svg height="1em" width="1em" viewBox="0 0 100 100"><polygon points="30,20 70,50 30,80"/></svg>{% endunless %}<a href="{{ site.baseurl }}{{ pg.permalink }}">{{ pg.title }}</a></span>{% endfor %}
+</div>

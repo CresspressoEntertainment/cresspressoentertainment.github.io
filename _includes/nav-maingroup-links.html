@@ -1,25 +1,24 @@
-{% assign pages = site.pages | where: 'parent', page.group | sort: 'parentorder' %}
+{% assign pages = site.pages | where: 'parent', site.homepage.group | sort: 'parentorder' %}
 
-{% assign show_subgrouplinks = false %}
+{% assign show_maingrouplinks = false %}
 {% if pages.size > 0 %}
 {% assign firstpage = pages | first %}
 {% unless pages.size == 1 and firstpage.parenthide %}
-{% assign show_subgrouplinks = true %}
+{% assign show_maingrouplinks = true %}
 {% endunless %}
 {% endif %}
-{% if show_subgrouplinks %}
+{% if show_maingrouplinks %}
 
 <div class="foldout-box">
-	<input id="foldout-subgroup-links" class="foldout" type="checkbox" onchange="input_onchange_foldoutSubgroupLinks"/>
-	<label for="foldout-subgroup-links" class="foldout">
-		<span>≡ {{ page.group }}</span>
+	<input id="foldout-maingroup-links" class="foldout" type="checkbox" onchange="input_onchange_foldoutSubgroupLinks"/>
+	<label for="foldout-maingroup-links" class="foldout">
+		<span>≡ Cresspresso</span>
 		<svg class="foldout-arrow-svg" height="1em" width="1em" viewBox="0 0 100 100">
 			<polygon class="foldout-arrow" points="20,40 80,40 50,70"/>
 		</svg>
 	</label>
 	<div class="foldout">
 		<nav>
-			
 {% for pg in pages %}
 {% unless pg.subhide %}
 <a class="nav-link{% if pg.icon %} aicon{% endif %}" href="{{ site.baseurl }}{{ pg.permalink }}" title="{{ pg.title }}">

@@ -1,7 +1,10 @@
 <header>
 	<div class="page-title-div">
-		{% include group-title.html %}
+	{% include group-title.html %}
 	</div>
+	{% unless page.permalink == site.homepage.permalink %}
+		{% include breadcrumb.html %}
+	{% endunless %}
+	
 	{% include nav-group-links.html %}
-	{% include nav-subgroup-links.html %}
 </header>

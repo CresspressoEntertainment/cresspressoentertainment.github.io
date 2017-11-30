@@ -1,7 +1,14 @@
 {% unless include.header == false %}
 <hr/>
-<h4>Posts</h4>
+{% assign parent = site.pages | where: 'layout','posthub' | where: 'group',page.group | first %}
+{% if parent %}
+<h4 class="posts-div"><a href="{{ site.baseurl }}{{ parent.permalink }}">{{ parent.title }}</a></h4>
+{% else %}
+{% assign parent = site.pages | where: 'subgroup',true | where: 'group',page.group | first %}
+<h4 class="posts-div">Posts</h4>
+{% endif %}
 {% endunless %}
+
 {% assign posts = site.posts | where: 'group',page.group | sort: 'date' | reverse %}
 {% if posts.size > 0 %}
 <nav class="posts-links">

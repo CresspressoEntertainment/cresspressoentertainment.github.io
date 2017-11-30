@@ -1,5 +1,6 @@
 ---
 ---
+
 /* imports */
 
 @import url('https://fonts.googleapis.com/css?family=Open+Sans|Source+Sans+Pro|Khula|Roboto');
@@ -80,6 +81,7 @@ $font-family-hsub: 'Trebuchet MS', "Lucida Grande", "Lucida Sans Unicode", "Luci
 $html-bg: #fff;
 $sidebar-bg: #f3f3f3;
 $hr-color: rgb(237, 237, 237);
+$foldout-box-checked-border: rgb(227, 227, 227);
 
 
 @mixin link-hover() {
@@ -155,9 +157,6 @@ h1 {
 	font-weight: lighter;
 	
 	font-size: 1.8em;
-	
-	//padding-left: 0.4em;
-	//padding-right: 0.4em;
 }
 
 h2 {
@@ -167,19 +166,18 @@ h2 {
 	font-weight: 100;
 	letter-spacing: 0.1em;
 	
-	//margin-left: 0.7em;
-	//margin-right: 0.7em;
-	
 	.smalltext {
 		letter-spacing: 0.05em;
 	}
 }
 
-h3 {
-	margin-left: 0.8em;
-	margin-right: 0.8em;
+h4 {
+	font-size: 1.3em;
+	
+	&.posts-div a {
+		margin-left: -0.3em;
+	}
 }
-
 
 
 
@@ -268,6 +266,20 @@ a {
 div.foldout-box {
 	position: relative;
 	margin-top: 0.3em;
+	
+	div.foldout-box {
+		margin: 0.2em 0.2em;
+	}
+}
+
+.navhr {
+	height: 0;
+	border-top: 1px dashed $foldout-box-checked-border;
+	
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
 }
 
 input.foldout {
@@ -288,6 +300,7 @@ input.foldout {
 		span {
 			font-size: $font-size-small;
 			padding-left: 0.2em;
+			word-spacing: 0.4em;
 			text-transform: uppercase;
 		}
 		
@@ -320,6 +333,11 @@ input.foldout {
 			
 			position: relative;
 			padding-top: $font-size-base + 0.2em;
+			
+			// hide nested foldouts
+			div.foldout-box input.foldout + label.foldout + div.foldout {
+				visibility: hidden;
+			}
 		}
 	}
 	
@@ -340,8 +358,13 @@ input.foldout {
 			visibility: visible;
 			height: auto;
 			
-			border: 1px dashed rgba(0, 0, 0, 0.1);
-			background: $sidebar-bg;
+			border: 1px dashed $foldout-box-checked-border;
+			background: rgba(0,0,0,0.02);
+			
+			// show nested foldouts if checked
+			div.foldout-box input.foldout:checked + label.foldout + div.foldout {
+				visibility: visible;
+			}
 		}
 	}
 }
@@ -407,6 +430,30 @@ $page-icon-size: 2em;
 }
 
 
+/* breadcrumb */
+
+.breadcrumb {
+	font-size: 0.9em;
+	padding-left: 0.2em;
+	//border: 1px dashed $foldout-box-checked-border;
+	
+	span {
+		display: inline-block;
+		
+		a {
+			padding: 0em 0.2em;
+		}
+		
+		svg {
+			margin-bottom: -0.1em;
+			
+			polygon {
+				fill: #bbb;
+			}
+		}
+	}
+}
+
 /* nav-link */
 
 main nav {
@@ -437,7 +484,7 @@ nav a {
 	
 	.icon {
 		position: relative;
-		margin-right: 1em;
+		margin-right: 0.3em;
 		
 		height: 1.8em;
 		top: -0.2em;
@@ -527,7 +574,12 @@ $body-margin: 2em;
 			height: 3em;
 			top: -0.1em;
 			margin-bottom: -1.25em;
+			margin-right: 1em;
 		}
+	}
+	
+	div.foldout-box div.foldout-box {
+		margin: 0.2em 1em;
 	}
 }
 
@@ -571,6 +623,8 @@ $body-margin: 2em;
 			
 			background: $sidebar-bg;
 			
+			max-width: 18em;
+			
 	
 			>* {
 				margin-left: 0;
@@ -578,7 +632,7 @@ $body-margin: 2em;
 			}
 		}
 
-		div.foldout-box {
+		div.foldout-box#navbox {
 			padding-bottom: 1em;
 			
 			input.foldout {
@@ -589,29 +643,24 @@ $body-margin: 2em;
 						background: none;
 						border-color: transparent;
 					}
+					
+					.foldout-arrow {
+						display: none;
+					}
+					
+					+ div.foldout {
+						visibility: visible;
+						height: auto;
+					}
 				}
 				
 				&:checked {
 					+ label.foldout {
-						
 						+ div.foldout {
 							border: none;
 							background: none;
 						}
 					}
-				}
-			}
-		}
-		.foldout-arrow {
-			display: none;
-		}
-		
-		
-		input.foldout {
-			+ label.foldout {
-				+ div.foldout {
-					visibility: visible;
-					height: auto;
 				}
 			}
 		}

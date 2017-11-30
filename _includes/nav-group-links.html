@@ -1,6 +1,15 @@
-{% assign pages = site.pages | where: 'group', page.group | sort: 'order' %}
-{% if pages.size > 0 %}
-<div class="foldout-box">
+{% assign pages_grouplinks = site.pages | where: 'group', page.group | sort: 'order' %}
+
+{% assign show_grouplinks = false %}
+{% if pages_grouplinks.size > 0 %}
+{% assign firstpage = pages_grouplinks | first %}
+
+{% unless pages_grouplinks.size == 1 and firstpage.hide %}
+{% assign show_grouplinks = true %}
+{% endunless %}
+{% endif %}
+
+<div class="foldout-box" id="navbox">
 	<input id="foldout-group-links" class="foldout" type="checkbox" onchange="input_onchange_foldoutGroupLinks(this)"/>
 	<label for="foldout-group-links" class="foldout">
 		<span>Navigation</span>
@@ -9,9 +18,17 @@
 		</svg>
 	</label>
 	<div class="foldout">
+		{% include nav-maingroup-links.html %}
+
+		{% unless page.group == site.homepage.group %}
+		{% include nav-subgroup-links.html %}
+		{% endunless %}
+		
+{% if show_grouplinks %}
+		<hr class="navhr"/>
 		<nav>
 			
-{% for pg in pages %}
+{% for pg in pages_grouplinks %}
 {% unless pg.hide %}
 <a class="nav-link{% if pg.icon %} aicon{% endif %}" href="{{ site.baseurl }}{{ pg.permalink }}" title="{{ pg.title }}">
 	{% if pg.icon %}
@@ -22,6 +39,6 @@
 {% endunless %}
 {% endfor %}
 		</nav>
+{% endif %}
 	</div>
 </div>
-{% endif %}
