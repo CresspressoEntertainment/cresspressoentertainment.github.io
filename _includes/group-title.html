@@ -5,7 +5,8 @@
 	<img id="page-icon" class="icon{% if homepage.icon_square %} icon-square{% endif %}" src="{{ site.baseurl }}{{ site.iconsurl }}{{ site.homepage.icon }}"/>
 </a>
 {% else %}
-{% assign parent = site.pages | where: 'subgroup',true | where: 'group', page.group | first %}
+
+{% assign parent = site.pages | where: 'subgroup',true | where: 'group',page.group | first %}
 <a id="parent-title" class="page-group-title" href="{{ site.baseurl }}{{ parent.permalink }}" title="{{ parent.title }}">
 	<span>{{ parent.title }}</span>
 	<img id="page-icon" class="icon{% if parent.icon_square %} icon-square{% endif %}" src="{{ site.baseurl }}{{ site.iconsurl }}{% if parent.icon %}{{ parent.icon }}{% else %}{{ site.homepage.icon }}{% endif %}"/>

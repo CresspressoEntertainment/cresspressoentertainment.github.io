@@ -159,7 +159,8 @@ h1 {
 	font-size: 1.8em;
 }
 
-h2 {
+h2,
+.subtitle {
 	font-family: $font-family-h2;
 	font-size: 1.1em;
 	color: rgb(162, 162, 162);
@@ -635,7 +636,7 @@ $body-margin: 2em;
 		div.foldout-box#navbox {
 			padding-bottom: 1em;
 			
-			input.foldout {
+			>input.foldout {
 				+ label.foldout {
 					cursor: auto;
 					
@@ -651,6 +652,14 @@ $body-margin: 2em;
 					+ div.foldout {
 						visibility: visible;
 						height: auto;
+						
+						// hide nested foldouts
+						div.foldout-box > input.foldout + label.foldout + div.foldout {
+							visibility: hidden;
+						}
+						div.foldout-box > input.foldout:checked + label.foldout + div.foldout {
+							visibility: visible;
+						}
 					}
 				}
 				
@@ -659,6 +668,14 @@ $body-margin: 2em;
 						+ div.foldout {
 							border: none;
 							background: none;
+							
+							// show nested foldouts
+							div.foldout-box > input.foldout + label.foldout + div.foldout {
+								visibility: hidden;
+							}
+							div.foldout-box > input.foldout:checked + label.foldout + div.foldout {
+								visibility: visible;
+							}
 						}
 					}
 				}

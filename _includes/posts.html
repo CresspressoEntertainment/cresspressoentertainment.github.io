@@ -10,6 +10,14 @@
 {% endunless %}
 
 {% assign posts = site.posts | where: 'group',page.group | sort: 'date' | reverse %}
+{% if page.group == site.homepage.group %}
+{% for pg in site.posts %}
+{% unless pg.group %}
+{% assign posts = posts | push: pg %}
+{% endunless %}
+{% endfor %}
+{% endif %}
+
 {% if posts.size > 0 %}
 <nav class="posts-links">
 {% for pg in posts %}

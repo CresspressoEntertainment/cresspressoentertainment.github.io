@@ -8,6 +8,10 @@
 
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}{{ site.stylesheet }}"/>
 
+<meta name="description" content="{{ page.description }}"/>
+
+<meta name="keywords" content="{{ page.keywords }}"/>
+
 <title>{% if page.tabtitle %}{{ page.tabtitle }}{% else %}{{ page.title }}{% unless page.subgroup %}{% if page.group %} - {{ page.group }}{% else %}{{ page.parent }}{% endif %}{% endunless %}{% endif %}</title>
 
 
@@ -32,10 +36,7 @@
 <link rel="icon" href="{{ site.baseurl }}{{ site.iconsurl }}{{ tabicon }}"/>
 
 
-<meta name="description" content="{{ page.description }}"/>
-
-<meta name="keywords" content="{{ page.keywords }}"/>
-
+{% comment %}
 <!------- cookies ------->
 <script>
 	function setCookie(name,value,days) {
@@ -100,18 +101,7 @@
 		deleteCookie('foldoutGroupLinksChecked');
 		deleteCookie('foldoutSubgroupLinksChecked');
 	}
-	
-	
-	/* events */
-	
-	function input_onchange_foldoutGroupLinks (input) {
- 		setCookie('foldoutGroupLinksChecked', input.checked)
-	}
-	
-	function input_onchange_foldoutSubgroupLinks (input) {
- 		setCookie('foldoutSubgroupLinksChecked', input.checked)
-	}
-	
 </script>
+{% endcomment %}
 
 
