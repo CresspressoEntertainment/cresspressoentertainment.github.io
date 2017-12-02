@@ -24,7 +24,7 @@
 {% unless pg.hide %}
 <a href="{{ site.baseurl }}{{ pg.url }}" title="{{ pg.title }}" title="{{ pg.title }}">
 	<span>{{ pg.title }}</span>
-	<span class="post-date data">{{ pg.date | date: '%-d %B %Y, %R' }}</span>
+	<span class="data">{{ pg.date | date: '%-d %B %Y, %R' }}</span>
 </a>
 {% endunless %}
 {% endfor %}

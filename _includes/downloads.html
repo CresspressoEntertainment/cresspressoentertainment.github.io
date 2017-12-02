@@ -1,0 +1,53 @@
+{% assign pg = site.pages | where: 'layout','downloads' | where: 'group',page.group | first %}
+
+{% unless include.header == false %}
+<hr/>
+{% if pg %}
+<h2 class="header-link"><a href="{{ site.baseurl }}{{ pg.permalink }}">{{ pg.title }}</a></h2>
+{% else %}
+<h2>Downloads</h2>
+{% endif %}
+{% endunless %}
+
+
+{% unless include.all == false %}
+<h2>Releases</h2>
+<div class="scroll">
+<table>
+	<tr>
+		<th>Release</th>
+		<th>Download</th>
+		<th>Source Code</th>
+		<th>GitHub Release</th>
+	</tr>
+{% for release in pg.releases %}
+	<tr>
+		<td>{{ release.title }}</td>
+		<td><a href="{{ release.release_zip }}">
+			download.zip
+		</a></td>
+		<td><a href="{{ release.source_zip }}">
+			source.zip
+		</a></td>
+		<td><a href="{{ release.release_gh }}">
+			github release
+			</a></td>
+	</tr>
+{% endfor %}
+</table>
+</div>
+{% endunless %}
+
+
+<h2>GitHub</h2>
+<nav>
+	<a href="{{ pg.currentRelease.latest_gh }}">
+		Latest Release - {{ pg.currentRelease.title }}
+	</a>
+	<a href="{{ pg.currentRelease.releases_gh }}">
+		All Releases
+	</a>
+	<a href="{{ pg.currentRelease.source_gh }}">
+		Source Code Repository
+	</a>
+</nav>
