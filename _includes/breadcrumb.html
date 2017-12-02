@@ -1,29 +1,30 @@
 {% assign breadcrumb = site.emptyarray %}
-
 {% assign breadcrumb = breadcrumb | push: page %}
 	
+{% assign parent = page %}
+
 {% if page.group %}
-{% if page.subgroup %}
+{% unless page.subgroup %}
 
-{% assign pg = page %}
+{% if page.layout == 'post' %}
 
-{% else %}
-	
-{% assign parent = site.pages | where: 'group',page.group | where: 'subgroup',true | first %}
-{% assign breadcrumb = breadcrumb | push: parent %}
-{% assign pg = parent %}
-	
-{% endif %}
-{% endif %}
-	
-	
-{% if pg.parent %}
-
-{% assign parent = site.pages | where: 'group',pg.parent | where: 'subgroup',true | first %}
+{% assign parent = site.pages | where: 'layout','posthub' | where: 'group',page.group | first %}
 {% assign breadcrumb = breadcrumb | push: parent %}
 
+{% endif %}
+	
+{% assign newparent = site.pages | where: 'group',parent.group | where: 'subgroup',true | first %}
+{% unless newparent == parent %}
+{% assign parent = newparent %}
+{% assign breadcrumb = breadcrumb | push: parent %}
+{% endunless %}
+	
+{% endunless %}
+{% endif %}
+	
 {% for while in (0..9) %}
 {% if parent.parent %}
+
 {% assign newparent = site.pages | where: 'group',parent.parent | where: 'subgroup',true | first %}
 {% unless newparent == parent %}
 {% assign parent = newparent %}
@@ -32,8 +33,6 @@
 
 {% endif %}
 {% endfor %}
-
-{% endif %}
 
 	
 <div class="breadcrumb">

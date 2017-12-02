@@ -2,10 +2,10 @@
 <hr/>
 {% assign parent = site.pages | where: 'layout','posthub' | where: 'group',page.group | first %}
 {% if parent %}
-<h2 class="posts-div"><a href="{{ site.baseurl }}{{ parent.permalink }}">{{ parent.title }}</a></h2>
+<h2 class="header-link"><a href="{{ site.baseurl }}{{ parent.permalink }}">{{ parent.title }}</a></h2>
 {% else %}
 {% assign parent = site.pages | where: 'subgroup',true | where: 'group',page.group | first %}
-<h2 class="posts-div">Posts</h2>
+<h2>Posts</h2>
 {% endif %}
 {% endunless %}
 
