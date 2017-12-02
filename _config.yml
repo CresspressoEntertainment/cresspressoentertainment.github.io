@@ -5,6 +5,7 @@ github_username: Cresspresso
 baseurl: ''
 iconsurl: /assets/images/icons/
 socialiconsurl: /assets/images/socialsites/
+postimagesurl: /assets/images/posts/
 permalink: /:categories/:year/:month/:day/:title/
 
 stylesheet: /assets/style.css

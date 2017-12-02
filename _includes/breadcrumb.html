@@ -3,18 +3,23 @@
 {% assign breadcrumb = breadcrumb | push: page %}
 	
 {% if page.group %}
-{% unless page.subgroup %}
+{% if page.subgroup %}
+
+{% assign pg = page %}
+
+{% else %}
 	
 {% assign parent = site.pages | where: 'group',page.group | where: 'subgroup',true | first %}
 {% assign breadcrumb = breadcrumb | push: parent %}
+{% assign pg = parent %}
 	
-{% endunless %}
+{% endif %}
 {% endif %}
 	
 	
-{% if page.parent %}
+{% if pg.parent %}
 
-{% assign parent = site.pages | where: 'group',page.parent | where: 'subgroup',true | first %}
+{% assign parent = site.pages | where: 'group',pg.parent | where: 'subgroup',true | first %}
 {% assign breadcrumb = breadcrumb | push: parent %}
 
 {% for while in (0..9) %}

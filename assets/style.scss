@@ -140,44 +140,58 @@ body >* {
 
 $element-padding: 1em;
 
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0.02em 0.05em 0.02em rgba(0,0,0,0.1);
+}
+
 h3, h4, h5, h6 {
-	font-family: $font-family-hsub;
 	margin-bottom: $element-padding;
 }
 
-h1, h2, h3, h4, h5, h6 {
-	text-shadow: 0.02em 0.05em 0.02em rgba(0,0,0,0.1);
-	
-	//padding-left: 18px;
-	//padding-right: 18px;
+h3, h4, h5, h6 {
+	font-family: $font-family-hsub;
 }
+
 
 h1 {
 	font-family: $font-family-h1;
-	font-weight: lighter;
-	
 	font-size: 1.8em;
+	font-weight: 800;
+}
+
+h2 {
+	font-size: 1.5em;
+	font-weight: 200;
+	letter-spacing: 0.1em;
+	
+	margin-bottom: 0.5em;
 }
 
 h2,
 .subtitle {
-	font-family: $font-family-h2;
-	font-size: 1.1em;
-	color: rgb(162, 162, 162);
-	font-weight: 100;
-	letter-spacing: 0.1em;
-	
 	.smalltext {
 		letter-spacing: 0.05em;
 	}
 }
 
+.subtitle {
+	font-family: $font-family-h2;
+	font-size: 1.3em;
+	font-weight: 400;
+	letter-spacing: 0.1em;
+	color: rgb(162, 162, 162);
+}
+
+.posts-div a {
+	margin-left: -0.3em;
+}
+
+h3 {
+	font-size: 1.3em;
+}
+
 h4 {
 	font-size: 1.3em;
-	
-	&.posts-div a {
-		margin-left: -0.3em;
-	}
 }
 
 
@@ -187,11 +201,11 @@ h4 {
 p {
 	margin-top: $element-padding;
 	margin-bottom: $element-padding;
-	//margin-left: 1em;
-	//margin-right: 1em;
 }
+
+$grayed-color: #888;
 .grayed {
-	color: #aaa;
+	color: $grayed-color;
 }
 .smalltext {
 	font-size: $font-size-small;
@@ -532,12 +546,38 @@ main {
 	padding-top: 1em;
 	padding-bottom: 1em;
 	
+	max-width: 40em;
+	
 	>* {
 		padding-left: 32px;
 		padding-right: 32px;
 	}
+	
+	
+	.icon {
+		width: 5em;
+	}
+	
+	.side {
+		float: right;
+		display: inline-block;
+		
+		margin-left: 2em;
+		margin-bottom: 1em;
+	}
+	
+	&:after {
+		content:"";
+		display: block;
+		clear: both;
+	}
 }
 
+.figure-label {
+	text-align: center;
+	margin-top: 0;
+	color: $grayed-color;
+}
 
 /* media different screen sizes */
 
@@ -562,7 +602,10 @@ $body-margin: 2em;
 		letter-spacing: 0.05em;
 	}
 	h2 {
-		font-size: 1.3em;
+		font-size: 1.8em;
+	}
+	.subtitle {
+		font-size: 1.4em;
 	}
 }
 
