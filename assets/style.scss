@@ -156,28 +156,28 @@ h3, h4, h5, h6 {
 h1 {
 	font-family: $font-family-h1;
 	font-size: 1.8em;
-	font-weight: 800;
+	font-weight: normal;
 }
 
 h2 {
 	font-size: 1.5em;
-	font-weight: 200;
-	letter-spacing: 0.1em;
+	letter-spacing: 0.05em;
 	
 	margin-bottom: 0.5em;
 }
 
 h2,
 .subtitle {
+	font-family: $font-family-h2;
+	font-weight: normal;
+	
 	.smalltext {
 		letter-spacing: 0.05em;
 	}
 }
 
 .subtitle {
-	font-family: $font-family-h2;
 	font-size: 1.3em;
-	font-weight: 400;
 	letter-spacing: 0.1em;
 	color: rgb(162, 162, 162);
 }
@@ -554,7 +554,7 @@ main {
 	}
 	
 	
-	.icon {
+	.side img {
 		width: 5em;
 	}
 	
