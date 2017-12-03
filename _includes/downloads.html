@@ -23,15 +23,33 @@
 {% for release in pg.releases %}
 	<tr>
 		<td>{{ release.title }}</td>
-		<td><a href="{{ release.release_zip }}">
-			download.zip
-		</a></td>
-		<td><a href="{{ release.source_zip }}">
+		<td>
+			{% if release.release_zip %}
+			<a href="{{ release.release_zip }}">
+				download.zip
+			</a>
+			{% else %}
+			-
+			{% endif %}
+		</td>
+		<td>
+			{% if release.source_zip %}
+			<a href="{{ release.source_zip }}">
 			source.zip
-		</a></td>
-		<td><a href="{{ release.release_gh }}">
+			</a>
+			{% else %}
+			-
+			{% endif %}
+		</td>
+		<td>
+			{% if release.release_gh %}
+			<a href="{{ release.release_gh }}">
 			github release
-			</a></td>
+			</a>
+			{% else %}
+			-
+			{% endif %}
+		</td>
 	</tr>
 {% endfor %}
 </table>
@@ -39,15 +57,25 @@
 {% endunless %}
 
 
+{% if pg.githublinks %}
 <h2>GitHub</h2>
 <nav>
+	{% if pg.githublinks.latest_gh %}
 	<a href="{{ pg.currentRelease.latest_gh }}">
 		Latest Release - {{ pg.currentRelease.title }}
 	</a>
+	{% endif %}
+	
+	{% if pg.githublinks.releases_gh %}
 	<a href="{{ pg.currentRelease.releases_gh }}">
 		All Releases
 	</a>
+	{% endif %}
+	
+	{% if pg.githublinks.source_gh %}
 	<a href="{{ pg.currentRelease.source_gh }}">
 		Source Code Repository
 	</a>
+	{% endif %}
 </nav>
+{% endif %}

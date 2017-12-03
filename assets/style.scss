@@ -140,8 +140,8 @@ body >* {
 
 $element-padding: 1em;
 
-h1, h2, h3, h4, h5, h6 {
-	text-shadow: 0.02em 0.05em 0.02em rgba(0,0,0,0.1);
+h1, h2, h3, h4, h5, h6, .subtitle {
+	text-shadow: 0.02em 0.05em 0.02em rgba(0,0,0,0.2);
 }
 
 h3, h4, h5, h6 {
