@@ -1,5 +1,6 @@
 ---
 layout: post
+_layout: post
 title: "New Downloads Page"
 date: 2017-12-03 09:34:50 +1300
 group: Defunct

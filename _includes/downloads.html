@@ -1,4 +1,4 @@
-{% assign pg = site.pages | where: 'layout','downloads' | where: 'group',page.group | first %}
+{% assign pg = site.pages | where: '_layout','downloads' | where: 'group',page.group | first %}
 
 {% unless include.header == false %}
 <hr/>
@@ -26,7 +26,7 @@
 		<td>
 			{% if release.release_zip %}
 			<a href="{{ release.release_zip }}">
-				download.zip
+				download <span class="data">.zip</span>
 			</a>
 			{% else %}
 			-
@@ -35,7 +35,7 @@
 		<td>
 			{% if release.source_zip %}
 			<a href="{{ release.source_zip }}">
-			source.zip
+			source <span class="data">.zip</span>
 			</a>
 			{% else %}
 			-
@@ -62,7 +62,7 @@
 <nav>
 	{% if pg.githublinks.latest_gh %}
 	<a href="{{ pg.currentRelease.latest_gh }}">
-		Latest Release - {{ pg.currentRelease.title }}
+		Latest Release {% if pg.githublinks.title %}- {{ pg.githublinks.title }}{% endif %}
 	</a>
 	{% endif %}
 	

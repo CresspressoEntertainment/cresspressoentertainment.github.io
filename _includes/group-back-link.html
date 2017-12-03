@@ -1,6 +1,6 @@
 
 {% if page.group %}
-{% assign parent = site.pages | where: 'layout','posthub' | where: 'group',page.group | first %}
+{% assign parent = site.pages | where: '_layout','posthub' | where: 'group',page.group | first %}
 {% unless parent %}
 {% assign parent = site.pages | where: 'subgroup',true | where: 'group',page.group | first %}
 {% endunless %}

@@ -1,6 +1,6 @@
 {% unless include.header == false %}
 <hr/>
-{% assign parent = site.pages | where: 'layout','posthub' | where: 'group',page.group | first %}
+{% assign parent = site.pages | where: '_layout','posthub' | where: 'group',page.group | first %}
 {% if parent %}
 <h2 class="header-link"><a href="{{ site.baseurl }}{{ parent.permalink }}">{{ parent.title }}</a></h2>
 {% else %}

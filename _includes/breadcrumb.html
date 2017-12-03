@@ -6,9 +6,9 @@
 {% if page.group %}
 {% unless page.subgroup %}
 
-{% if page.layout == 'post' %}
+{% if page._layout == 'post' %}
 
-{% assign parent = site.pages | where: 'layout','posthub' | where: 'group',page.group | first %}
+{% assign parent = site.pages | where: '_layout','posthub' | where: 'group',page.group | first %}
 {% assign breadcrumb = breadcrumb | push: parent %}
 
 {% endif %}

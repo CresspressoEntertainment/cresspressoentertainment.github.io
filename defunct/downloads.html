@@ -1,5 +1,6 @@
 ---
 layout: downloads
+_layout: downloads
 title: Downloads
 permalink: /defunct/downloads/
 
@@ -7,15 +8,37 @@ group: Defunct
 order: 1
 
 githublinks:
-  title: 1.03
+  title: 1.1
   source_gh: https://github.com/Cresspresso/Defunct
   latest_gh: https://github.com/Cresspresso/Defunct/releases/latest
   releases_gh: https://github.com/Cresspresso/Defunct/releases
-  title: 1.03
 
 releases:
+  - title: 1.1
+    release_zip: https://github.com/Cresspresso/Defunct/releases/download/1.1/17-12-03_18-33-58_v1.1_defunct.zip
+    source_zip: https://github.com/Cresspresso/Defunct/archive/1.1.zip
+    release_gh: https://github.com/Cresspresso/Defunct/releases/tag/1.1
   - title: 1.03
     release_zip: https://github.com/Cresspresso/Defunct/releases/download/1.03/17-11-23_11-14-00_v1.03_defunct_win.zip
     source_zip: https://github.com/Cresspresso/Defunct/archive/1.03.zip
     release_gh: https://github.com/Cresspresso/Defunct/releases/tag/1.03
 ---
+<h2>Installation <span class="smalltext">: Windows</span></h2>
+<ol>
+	<li>
+		<p>Click 'download.zip' for the latest release {% if page.githublinks.title %}({{ page.githublinks.title }}){% endif %} to download Defunct.</p>
+	</li>
+	<li>
+		<p>Unzip the folder 'defunct' to a memorable location.</p>
+	</li>
+	<li>
+		<p>In the Command Prompt, cd to the unzipped location. For example:</p>
+		<code>cd "&lt;unzipped location&gt;\defunct\"</code>
+	</li>
+	<li>
+		<p>You can now run 'defunct.exe' with the following command, which will then show you valid arguments you can use.</p>
+		<code>defunct</code>
+		<p>To run a script, pass in the file path as a parameter.</p>
+		<code>defunct "examples/example01.txt"</code>
+	</li>
+</ol>
