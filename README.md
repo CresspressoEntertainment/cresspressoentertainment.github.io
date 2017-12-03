@@ -1,3 +1,3 @@
-# cresspresso.github.io
-Official Cresspresso Entertainment website
-Still a WIP
+# [cresspresso.github.io](https://cresspresso.github.io/)
+
+Official website for Cresspresso
