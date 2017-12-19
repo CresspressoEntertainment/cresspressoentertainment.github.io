@@ -65,7 +65,7 @@ function checkCookies() {
 	deleteCookie('foldoutGroupLinksChecked');
 	deleteCookie('foldoutSubgroupLinksChecked');
 }
- 
+
 {% endcomment %}
 
 function checkCookies() {}
