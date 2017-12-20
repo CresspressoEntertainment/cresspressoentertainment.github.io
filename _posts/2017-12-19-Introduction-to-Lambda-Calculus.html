@@ -1,0 +1,581 @@
+---
+layout: post
+_layout: post
+title: "Introduction to Lambda Calculus"
+date: 2017-12-19 16:42:14 +1300
+group: Defunct
+categories:
+  - defunct
+  - posts
+
+defunct_gh: https://github.com/Cresspresso/Defunct
+defunct_install: https://cresspresso.github.io/defunct/downloads/
+
+description: "An introduction to Lambda Calculus and Defunct."
+keywords: "Defunct, defunct, lambda, lambda calculus, calculus, LambdaSalt, lambda salt, introduction, reduction, beta reduction, alpha reduction, functions, functional programming"
+---
+<p>Lambda calculus, what a wonderful study of logic and maths! It allows us to represent all kinds of data using just functions. And with God's help I have created an interpretive programming language for the express purpose of simplifying lambda calculus expressions.</p>
+
+<div class="sidestory">
+	<p>First, a brief history of Defunct. I found out about lambda calculus last year, and made a simple interpreter called LambdaSalt ("land assault", get it?), which was the precursor to Defunct. LambdaSalt was written in C#, but now Defunct is proudly written in Python. The open source code is <a href="{{page.defunct_gh}}">available on GitHub here</a>, and can be <a href="{{page.defunct_install}}">installed on Windows</a>.</p>
+
+	<p>A simple Defunct script, where <span class="code">&lt;expr&gt;</span> is an expression:</p>
+
+<code>
+def myFunc (&lt;expr&gt;)<br>
+do (print myFunc)
+</code>
+
+	<p>Save it as a file (myscript.txt) and use Windows Command Prompt to run defunct.exe with it. <a href="{{page.defunct_install}}">[More help]</a></p>
+
+<code>
+defunct "myscript.txt"
+</code>
+</div>
+
+<blockquote>
+	<p class="fancy">Notwithstanding in thy days I will not do it for David thy father's sake: but I will rend it out of the hand of thy son. <a href="https://www.bible.com/en-GB/bible/1/1KI.11.12.kjv">1 Kings 11:12, KJV</a></p>
+<hr>
+<p>God keeps his promises.</p>
+</blockquote>
+
+<p>The most fundamental idea of lambda calculus is that <b><i>everything is a function</i></b>. Numbers? Made of functions. Booleans, true and false? Functions. Comparisons like greater than, equal to, or less than? Also functions. These aren't your typical programming lanugage 'functions' like in C# or Java, no, these functions are more like data structures than procedures. So what is a function in lambda calculus?</p>
+
+
+
+<h3>Functions</h3>
+
+<p>A function takes another function as a parameter (its one and only argument), and always returns (is reduced to) another function or expression. The argument has a name, which can be referenced multiple times within the body of the function. These references are called <b>variables</b>.</p>
+
+<p>A function is declared like so:</p>
+
+<div class="scroll">
+<table class="code">
+<thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td><code>
+
+<span class="highlight-func" title="Function Declaration">&lambda;</span><span class="highlight-argname" title="Variable Declaration">&lt;varname&gt;</span><span class="highlight-func" title="Function Body">.</span><span class="highlight-expr" title="Expression">&lt;expr&gt;</span>
+<br>
+
+</code></td>
+<td><code>
+
+<span class="highlight-func" title="Function Declaration">[</span><span class="highlight-argname" title="Variable Declaration">&lt;varname&gt;</span><span class="highlight-func" title="Function Body">.</span><span class="highlight-expr" title="Expression">&lt;expr&gt;</span><span class="highlight-func" title="End of Function">]</span>
+
+</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<div class="scroll">
+<code>
+where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>:=</span> <span class="highlight-argref" title="Variable Reference">&lt;varname&gt;</span><br>
+<span class="whitespace">             or </span><span class="highlight-func" title="Function">&lt;function&gt;</span><br>
+<span class="whitespace">             or </span><span class="highlight-bracket" title="Start of Bracketed Series">'('</span> <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span class="highlight-bracket" title="End of Bracketed Series">')'</span><br>
+<span class="whitespace">             or </span><span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span class="highlight-optional" title="(Start of Optional)">[</span> <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span class="highlight-optional" title="(Start of Optional)">[</span> <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span class="highlight-optional" title="(Recurring Optional)">...</span> <span class="highlight-optional" title="(End of Optional)">]</span> <span class="highlight-optional" title="(End of Optional)">]</span>
+</code>
+</div>
+
+<p class="tip">Hover over the coloured code to see tooltips.</p>
+
+
+<p>Here are some examples:</p>
+
+<div class="scroll">
+<table class="code">
+<thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td><code>
+<!-- Lambda ONE -->
+
+<span class="highlight-func" title="Function Declaration">&lambda;</span><span class="highlight-argname" title="Variable Declaration 'x'">x</span><span class="highlight-func" title="Function Body">.</span><span class="highlight-argref" title="Variable Reference 'x'">x</span>
+<br>
+
+</code></td>
+<td><code>
+<!-- Defunct ONE -->
+
+<span class="highlight-func" title="Function Declaration">[</span><span class="highlight-argname" title="Variable Declaration 'x'">x</span><span class="highlight-func" title="Function Body">.</span><span class="highlight-argref" title="Variable Reference 'x'">x</span><span class="highlight-func" title="End of Function">]</span>
+
+</code></td>
+</tr>
+<tr>
+<td><code>
+<!-- Lambda TWO -->
+
+<span class="highlight-func" title="Function Declaration">&lambda;</span><span class="highlight-argname" title="Variable Declaration 'y'">y</span><span class="highlight-func" title="Function Body">.</span><span class="highlight-func" title="Function Declaration">&lambda;</span><span class="highlight-argname" title="Variable Declaration 'x'">x</span><span class="highlight-func" title="Function Body">.</span><span class="highlight-argref" title="Variable Reference 'x'">x</span><span class="highlight-argref" title="Variable Reference 'y'">y</span>
+<br>
+	
+<span class="highlight-func" title="Function Series Declaration">&lambda;</span><span class="highlight-argname" title="Variable Declaration 'y'">y</span><span class="highlight-argname" title="Variable Declaration 'x'">x</span><span class="highlight-func" title="Function Series Body">.</span><span class="highlight-argref" title="Variable Reference 'x'">x</span><span class="highlight-argref" title="Variable Reference 'y'">y</span>
+
+</code></td>
+<td><code>
+<!-- Defunct TWO -->
+
+<span class="highlight-func" title="Function Declaration">[</span><span class="highlight-argname" title="Variable Declaration 'y'">y</span><span class="highlight-func" title="Function Body">.</span><span class="highlight-func" title="Function Declaration">[</span><span class="highlight-argname" title="Variable Declaration 'x'">x</span><span class="highlight-func" title="Function Body">.</span><span class="highlight-argref" title="Variable Reference 'x'">x</span> <span class="highlight-argref" title="Variable Reference 'y'">y</span><span class="highlight-func" title="End of Function">]</span><span class="highlight-func" title="End of Function">]</span><br>
+	
+<span class="highlight-func" title="Function Series Declaration">[</span><span class="highlight-argname" title="Variable Declaration 'y'">y</span> <span class="highlight-argname" title="Variable Declaration 'x'">x</span><span class="highlight-func" title="Function Series Body">.</span><span class="highlight-argref" title="Variable Reference 'x'">x</span> <span class="highlight-argref" title="Variable Reference 'y'">y</span><span class="highlight-func" title="End of Function Series">]</span>
+
+</code></td>
+</tr>
+<tr>
+<td><code>
+<!-- Lambda THREE -->
+
+<span class="highlight-func" title="Function Series Declaration">&lambda;</span><span class="highlight-argname" title="Variable Declaration 'w'">w</span><span class="highlight-argname" title="Variable Declaration 'y'">y</span><span class="highlight-argname" title="Variable Declaration 'x'">x</span><span class="highlight-func" title="Function Series Body">.</span><span class="highlight-argref" title="Variable Reference 'y'">y</span><span class="highlight-bracket" title="Start of Bracketed Series">(</span><span class="highlight-argref" title="Variable Reference 'w'">w</span><span class="highlight-argref" title="Variable Reference 'y'">y</span><span class="highlight-argref" title="Variable Reference 'x'">x</span><span class="highlight-bracket" title="End of Bracketed Series">)</span>
+<br>
+
+</code></td>
+<td><code>
+<!-- Defunct THREE -->
+
+<span class="highlight-func" title="Function Declaration">[</span><span class="highlight-argname" title="Variable Declaration 'w'">w</span> <span class="highlight-argname" title="Variable Declaration 'y'">y</span> <span class="highlight-argname" title="Variable Declaration 'x'">x</span><span class="highlight-func" title="Function Series Body">.</span><span class="highlight-argref" title="Variable Reference 'y'">y</span><span class="highlight-bracket" title="Start of Bracketed Series">(</span><span class="highlight-argref" title="Variable Reference 'w'">w</span> <span class="highlight-argref" title="Variable Reference 'y'">y</span> <span class="highlight-argref" title="Variable Reference 'x'">x</span><span class="highlight-bracket" title="End of Bracketed Series">)</span><span class="highlight-func" title="End of Function Series">]</span>
+<br>
+
+</code></td>
+</tr>
+<tr>
+<td><code>
+<!-- Lambda FOUR -->
+
+<span class="highlight-bracket" title="Start of Bracketed Series">(</span><span class="highlight-func" title="Function Declaration">&lambda;</span><span class="highlight-argname" title="Variable Declaration 'x'#1">x</span><span class="highlight-func" title="Function Body">.</span><span class="highlight-argref" title="Variable Reference 'x'#1">x</span><span class="highlight-bracket" title="End of Bracketed Series">)</span><span class="highlight-bracket" title="Start of Bracketed Series">(</span><span class="highlight-func" title="Function Declaration">&lambda;</span><span class="highlight-argname" title="Variable Declaration 'x'#2">x</span><span class="highlight-func" title="Function Body">.</span><span class="highlight-argref" title="Variable Reference 'x'#2">x</span><span class="highlight-bracket" title="End of Bracketed Series">)</span><br>
+	
+<span class="highlight-bracket" title="Start of Bracketed Series">(</span><span class="highlight-func" title="Function Declaration">&lambda;</span><span class="highlight-argname" title="Variable Declaration 'x'">x</span><span class="highlight-func" title="Function Body">.</span><span class="highlight-argref" title="Variable Reference 'x'">x</span><span class="highlight-bracket" title="End of Bracketed Series">)</span><span class="highlight-bracket" title="Start of Bracketed Series">(</span><span class="highlight-func" title="Function Declaration">&lambda;</span><span class="highlight-argname" title="Variable Declaration 'y'">y</span><span class="highlight-func" title="Function Body">.</span><span class="highlight-argref" title="Variable Reference 'y'">y</span><span class="highlight-bracket" title="End of Bracketed Series">)</span><br>
+
+</code></td>
+<td><code>
+<!-- Defunct FOUR -->
+
+<span class="highlight-func" title="Function Declaration">[</span><span class="highlight-argname" title="Variable Declaration 'x'#1">x</span><span class="highlight-func" title="Function Body">.</span><span class="highlight-argref" title="Variable Reference 'x'#1">x</span><span class="highlight-func" title="End of Function">]</span><span class="highlight-func" title="Function Declaration">[</span><span class="highlight-argname" title="Variable Declaration 'x'#2">x</span><span class="highlight-func" title="Function Body">.</span><span class="highlight-argref" title="Variable Reference 'x'#2">x</span><span class="highlight-func" title="End of Function">]</span><br>
+
+<span class="highlight-func" title="Function Declaration">[</span> <span class="highlight-argname" title="Variable Declaration 'x'">x</span> <span class="highlight-func" title="Function Body">.</span> <span class="highlight-argref" title="Variable Reference 'x'">x</span> <span class="highlight-func" title="End of Function">]</span> <span class="highlight-func" title="Function Declaration">[</span> <span class="highlight-argname" title="Variable Declaration 'y'">y</span> <span class="highlight-func" title="Function Body">.</span> <span class="highlight-argref" title="Variable Reference 'y'">y</span> <span class="highlight-func" title="End of Function">]</span><br>
+
+</code></td>
+</tr>
+<tr>
+<td><code>
+<!-- Lambda FIVE -->
+
+&lambda;xyz.y
+
+</code></td>
+<td><code>
+<!-- Defunct FIVE -->
+
+[me myself i.myself]
+
+</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p class="tip">Each table row is equivalent in meaning between lambda calculus and Defunct.</p>
+
+<p>Note that in lambda calculus all variable names must be one symbol/character, and there are no spaces anywhere. In Defunct, names can be any length, and they end when a Space character or syntax/punctuation character <span class="code">[].()</span> is encountered.</p>
+
+
+
+<h4>Variable Scope</h4>
+
+<p>Variables within an expression or sub-expression can either be <i>free</i> or <i>bound</i>.</p>
+
+<div class="scroll">
+<table class="code">
+<thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td><code>
+
+	<span class="highlight-blue" title="Function declaring variable y">&lambda;y.</span><span class="highlight-red" title="Function declaring variable x">(&lambda;x.</span><span class="highlight-blue2" title="Variable reference y | Free within red | Bound within blue">y</span><span class="highlight-red2" title="Variable reference x | Bound within red | Bound within blue">x</span><span class="highlight-red" title="End of Function">)</span>
+
+</code></td>
+<td><code>
+
+	<span class="highlight-blue" title="Function declaring variable y">[y.</span><span  class="highlight-red" title="Function declaring variable x">[x.</span><span class="highlight-blue2" title="Variable reference y | Free within red | Bound within blue">y</span> <span class="highlight-red2" title="Variable reference x | Bound within red | Bound within blue">x</span><span class="highlight-red" title="End of Function">]</span><span class="highlight-blue" title="End of Function">]</span>
+
+</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>In the expression above, <span class="highlight-red2">x</span> is a <i>bound</i> variable within the red function, which means it references a function's argument within the expression. It is also <i>bound</i> within the blue function, because the red function (whose argument it is referencing) is within the body of the blue function.</p>
+
+<p>Within the blue function, <span class="highlight-blue2">y</span> is also a <i>bound</i> variable, because it references the argument <span class="highlight-blue">y</span>.</p>
+
+<p><b>However</b>, within the red function, <span class="highlight-blue2">y</span> is a <i>free</i> variable, because there is no declaration of a variable <span class="highlight-red">y</span> within the red function's scope.</p>
+
+<p>Here's another example:</p>
+
+<div class="scroll">
+<table class="code">
+<thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td><code>
+
+	<span class="highlight-blue" title="Function declaring variable a">&lambda;a.</span><span class="highlight-blue2" title="Bound variable a">a</span><span class="highlight-red2" title="Free variable b">b</span>
+
+</code></td>
+<td><code>
+
+	<span class="highlight-blue" title="Function declaring variable a">[a.</span><span class="highlight-blue2" title="Bound variable a">a</span> <span class="highlight-red2" title="Free variable b">b</span><span class="highlight-blue" title="End of Function">]</span>
+
+</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>In this expression, <span class="highlight-blue2">a</span> is bound and <span class="highlight-red2">b</span> is free.</p>
+
+
+<h3>Reduction</h3>
+
+<p>We can reduce (simplify, evaluate) expressions of functions using these three techniques:</p>
+
+<ul class="gaps">
+	<li><b>&alpha;-conversion</b> (alpha conversion): <br>
+		<span class="whitespace">      </span>Changing variable names to avoid confusion.
+	</li>
+	<li><b>&beta;-reduction</b> (beta reduction): <br>
+		<span class="whitespace">      </span>Applying functions (passing in parameters).<br>
+	</li>
+	<li><b>&eta;-reduction</b> (eta reduction): <br>
+		<span class="whitespace">      </span>Removing redundant wrapper functions.<br>
+	</li>
+</ul>
+
+
+<p> </p>
+<h4>Alpha Conversion</h4>
+
+<p>Say you have this expression:</p>
+
+<div class="scroll">
+<table class="code">
+<thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td><code>
+<!-- Lambda ONE -->
+
+<span class="highlight-blue" title="Functions 1 and 2, with variables x and y">(&lambda;xy.yx)</span><span class="highlight-red" title="Function 3, with variable x">(&lambda;x.xx)</span>
+
+</code></td>
+<td><code>
+<!-- Defunct ONE -->
+	
+<span class="highlight-blue" title="Function 1 and 2, with variables x and y">[x y.y x]</span><span class="highlight-red" title="Function 3, with variable x">[x.x x]</span>
+
+</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>The first function has variables <span class="highlight-blue">x</span> and <span class="highlight-blue">y</span>, while the second function has variable <span class="highlight-red">x</span>. But these are two entirely separate functions, with their own bound variables! Therefore, we can change one of the variable names to something different, say <span class="highlight-green">z</span>, and the expression will still be identical.</p>
+
+<div class="scroll">
+<table class="code">
+<thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td><code>
+<!-- Lambda ONE -->
+
+<span class="highlight-blue" title="Functions 1 and 2, with variables x and y">(&lambda;xy.yx)</span><span class="highlight-green" title="Function 3, with variable z">(&lambda;z.zz)</span>
+
+</code></td>
+<td><code>
+<!-- Defunct ONE -->
+	
+<span class="highlight-blue" title="Functions 1 and 2, with variables x and y">[x y.y x]</span><span class="highlight-green" title="Function 3, with variable z">[z.z z]</span>
+
+</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>Defunct treats all functions as having their own unique variable, so you don't <i>need</i> to do any alpha conversions yourself.</p>
+
+
+<h4>Beta Reduction</h4>
+
+<p>A function can be <i>applied</i> to another function, which means the second function is copied into all the places where the first function's variable is being referenced. For example:</p>
+
+<div class="scroll">
+<table class="code">
+<thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td><code>
+<!-- Lambda ONE -->
+
+<span class="highlight-blue" title="Function x">(&lambda;x.</span><span class="highlight-green" title="Function y">&lambda;y.y</span><span class="highlight-blue2" title="Function x reference">x</span><span class="highlight-blue" title="Function x">)</span><span class="highlight-red" title="Function z">(&lambda;z.zz)</span>
+	<br>
+<!-- Lambda TWO -->
+
+<span class="highlight-green" title="Function y">&lambda;y.y</span><span class="highlight-red" title="Function z">(&lambda;z.zz)</span>
+
+
+</code></td>
+<td><code>
+<!-- Defunct ONE -->
+	
+<span class="highlight-blue" title="Function x">[x.</span><span class="highlight-green" title="Function y">[y.y</span> <span class="highlight-blue2" title="Function x reference">x</span><span class="highlight-green" title="Function y">]</span><span class="highlight-blue" title="Function x">]</span><span class="highlight-red" title="Function z">[z.z z]</span>
+	<br>
+<!-- Defunct TWO -->
+	
+<span class="highlight-green" title="Function y">[y.y</span><span class="highlight-red" title="Function z">[z.z z]</span><span class="highlight-green" title="Function y">]</span>
+
+</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>The <span class="highlight-blue">x</span> function is being applied to the <span class="highlight-red">z</span> function, so all references to <span class="highlight-blue2">x</span> will be replaced with the <span class="highlight-red">z</span> function.</p>
+
+<p>Also note that the remaining expression cannot be further simplified. The variable reference <span class="highlight-green" title="Function y">y</span> cannot be applied to function <span class="highlight-red" title="Function y">z</span> until it has been replaced/substituted with a function.</p>
+
+<p>This example demonstrates that you can apply a function to a variable reference:</p>
+
+<div class="scroll">
+<table class="code">
+<thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td><code>
+<!-- Lambda ONE -->
+
+<span class="highlight-blue" title="Function y">&lambda;y.</span><span class="highlight-red" title="Function x">(&lambda;x.xxx)</span><span class="highlight-blue" title="Function y">y</span>
+	<br>
+<!-- Lambda TWO -->
+
+<span class="highlight-blue" title="Function y">&lambda;y.yyy</span>
+
+
+</code></td>
+<td><code>
+<!-- Defunct ONE -->
+	
+<span class="highlight-blue" title="Function y">[y.</span><span class="highlight-red" title="Function x">[x.x x x]</span><span class="highlight-blue" title="Function y">y]</span>
+	<br>
+<!-- Defunct TWO -->
+	
+<span class="highlight-blue" title="Function y">[y.y y y]</span>
+
+</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+<h4>Brackets and Series of Expressions</h4>
+
+<p>Just like normal maths, technically there are brackets everywhere, we just hide them for easy reading. This is why we need order of operations.</p>
+
+<p>The inner-most pairs of brackets are always evaluated (reduced as much as possible) first, before any outer pairs of brackets.</p>
+
+<p>Series of expressions are evaluated from <b>left to right</b>. This means these expressions are all identical (equivalent):</p>
+
+<div class="scroll">
+<table class="code">
+<thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td><code>
+<!-- Lambda ONE -->
+
+	<span class="highlight-blue">ab</span><span class="highlight-red">c</span>
+<br>
+	<span><span class="highlight-blue">(a</span><span class="highlight-green">b</span><span class="highlight-blue">)</span><span class="highlight-red">c</span>
+<br>
+	<span class="highlight-red">(<span class="highlight-blue">((a)</span><span class="highlight-green">(b)</span><span class="highlight-blue">)</span>(c))</span>
+
+</code></td>
+<td><code>
+<!-- Defunct ONE -->
+	
+	<span class="highlight-blue">a b</span> <span class="highlight-red">c</span>
+<br>
+	<span><span class="highlight-blue">(a </span><span class="highlight-green">b</span><span class="highlight-blue">)</span><span class="highlight-red">c</span>
+<br>
+	<span class="highlight-red">(<span class="highlight-blue">((a)</span><span class="highlight-green">(b)</span><span class="highlight-blue">)</span>(c))</span>
+
+</code></td>
+</tr>
+	</tbody>
+</table>
+</div>
+
+<p>And so are these two:</p>
+
+<div class="scroll">
+<table class="code">
+<thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td><code>
+<!-- Lambda ONE -->
+
+<span class="highlight-blue" title="Function a">(&lambda;a.a)</span><span class="highlight-red" title="Function b">(&lambda;b.bb)</span><span class="highlight-green" title="Functions x and y">(&lambda;xy.y)</span>
+	<br>
+<!-- Lambda TWO -->
+
+<span class="highlight-yellow">(</span><span class="highlight-blue" title="Function a">(&lambda;a.a)</span><span class="highlight-red" title="Function b">(&lambda;b.bb)</span><span class="highlight-yellow">)</span><span class="highlight-green" title="Functions x and y">(&lambda;xy.y)</span>
+
+
+</code></td>
+<td><code>
+<!-- Defunct ONE -->
+	
+<span class="highlight-blue" title="Function a">[a.a]</span><span class="highlight-red" title="Function b">[b.b b]</span><span class="highlight-green" title="Functions x and y">[x y.y]</span>
+	<br>
+<!-- Defunct TWO -->
+
+<span class="highlight-yellow">(</span><span class="highlight-blue" title="Function a">[a.a]</span><span class="highlight-red" title="Function b">[b.b b]</span><span class="highlight-yellow">)</span><span class="highlight-green" title="Functions x and y">[x y.y]</span>
+
+</code></td>
+</tr>
+	</tbody>
+</table>
+</div>
+
+<p>But of these three, none are equivalent:</p>
+
+<div class="scroll">
+<table class="code">
+<thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td><code>
+<!-- Lambda ONE -->
+
+<span class="highlight-blue">ab</span><span class="highlight-red">c</span><span class="highlight-green">d</span>
+	<br>
+<span class="highlight-blue">a</span><span class="highlight-red">(bc)</span><span class="highlight-green">d</span>
+	<br>
+<span class="highlight-blue">a(</span><span class="highlight-red">bc</span><span class="highlight-green">d</span><span class="highlight-blue">)</span>
+
+</code></td>
+<td><code>
+<!-- Defunct ONE -->
+	
+<span class="highlight-blue">a b</span> <span class="highlight-red">c</span> <span class="highlight-green">d</span>
+	<br>
+<span class="highlight-blue">a</span><span class="highlight-red">(b c)</span><span class="highlight-green">d</span>
+	<br>
+<span class="highlight-blue">a(</span><span class="highlight-red">b c</span> <span class="highlight-green">d</span><span class="highlight-blue">)</span>
+
+</code></td>
+</tr>
+	</tbody>
+</table>
+</div>
+
+<p class="tip">Defunct stores all expressions as a syntax tree of Pairs (a left-hand-side expression and a right-hand-side expression), which is used to determine the evaluation order.</p>
+
+
+
+<h4>Eta Reduction</h4>
+
+<p>When a function's sole purpose is to pass its variable into another function, it can be reduced to just that inner function.</p>
+
+<div class="scroll">
+<table class="code">
+<thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td><code>
+<!-- Lambda ONE -->
+
+	<span class="highlight-red" title="Outer function x">&lambda;x.</span><span class="highlight-blue" title="Inner function with no free variable x">M</span><span class="highlight-red" title="Outer variable x">x</span>
+<br>
+	<span class="highlight-blue" title="Inner function with no free variable x">M</span>
+
+</code></td>
+<td><code>
+<!-- Defunct ONE -->
+	
+	<span class="highlight-red" title="Outer function x">[x.</span><span class="highlight-blue" title="Inner function with no free variable x">M</span> <span class="highlight-red" title="Outer variable x">x]</span>
+<br>
+	<span class="highlight-blue" title="Inner function with no free variable x">M</span>
+
+</code></td>
+</tr>
+<tr>
+<td><code>
+<!-- Lambda TWO -->
+
+	<span class="highlight-red" title="Outer function x">&lambda;x.</span><span class="highlight-blue" title="Inner function with no free variable x">(&lambda;y.yy)</span><span class="highlight-red" title="Outer variable x">x</span>
+<br>
+	<span class="highlight-red" title="Outer function x, beta-reduced">&lambda;x.xx</span>
+<br>
+	<span class="highlight-blue2" title="Outer function x, alpha-converted to y, equivalent to inner function y">&lambda;y.yy</span>
+
+</code></td>
+<td><code>
+<!-- Defunct TWO -->
+	
+	<span class="highlight-red" title="Outer function x">[x.</span><span class="highlight-blue" title="Inner function y with no free variable x">[y.y y]</span><span class="highlight-red" title="Outer variable x">x]</span>
+<br>
+	<span class="highlight-red" title="Outer function x, beta-reduced">[x.x x]</span>
+<br>
+	<span class="highlight-blue2" title="Outer function x, alpha-converted to y, equivalent to inner function y">[y.y y]</span>
+
+</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>If the inner function contains a free variable referencing the outer function's variable, the function <b>cannot</b> be eta-reduced.</p>
+
+<div class="scroll">
+<table class="code">
+<thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td><code>
+<!-- Lambda ONE -->
+
+	<span class="highlight-red" title="Outer function x">&lambda;x.</span><span class="highlight-blue" title="Inner functions y and z">(&lambda;yz.yz<span class="highlight-red2" title="Outer variable x, free within function y">x</span>)</span><span class="highlight-red" title="Outer variable x">x</span>
+<br>
+	<span class="highlight-red" title="Outer function x, beta-reduced">&lambda;x.</span><span class="highlight-green" title="Inner function z">(&lambda;z.<span class="highlight-red2" title="Outer variable x">x</span>z<span class="highlight-red2" title="Outer variable x">x</span>)</span>
+<br>
+	<span class="highlight-red" title="Functions x and z, rewritten">&lambda;xz.xzx</span>
+<br>
+	<span title="Inner functions y and z, not equivalent to final expression">&ne;<span class="highlight-blue2">&lambda;yz.yz<span class="highlight-red2">x</span></span></span>
+
+</code></td>
+<td><code>
+<!-- Defunct ONE -->
+	
+	<span class="highlight-red" title="Outer function x">[x.</span><span class="highlight-blue" title="Inner functions y and z">[y z.y z <span class="highlight-red2" title="Outer variable x, free within function y">x</span>]</span><span class="highlight-red" title="Outer variable x">x]</span>
+<br>
+	<span class="highlight-red" title="Outer function x, beta-reduced">[x.<span class="highlight-green" title="Inner function z">[z.<span class="highlight-red2" title="Outer variable x">x</span> z <span class="highlight-red2" title="Outer variable x">x</span>]</span>]</span>
+<br>
+	<span class="highlight-red" title="Functions x and z, rewritten">[x z.x z x]</span>
+<br>
+	<span title="Inner functions y and z, not equivalent to final expression">&ne;<span class="highlight-blue2">&lambda;yz.yz<span class="highlight-red2">x</span></span>
+
+</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<hr/>
+<p>Next up is the brilliant world of logical operators in lambda calculus!</p>
+
+

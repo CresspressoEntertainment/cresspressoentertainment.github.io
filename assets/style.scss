@@ -3,7 +3,7 @@
 
 /* imports */
 
-@import url('https://fonts.googleapis.com/css?family=Khula|Open+Sans|Roboto|Source+Sans+Pro');
+@import url('https://fonts.googleapis.com/css?family=Khula|Open+Sans|Roboto|Source+Sans+Pro|Bilbo+Swash+Caps|Lobster');
 
 
 /* mixins */
@@ -75,6 +75,10 @@ $font-family-h1: 'Roboto', 'Khula', 'Nirmala UI', 'Segoe UI', $font-family-base;
 $font-family-h2: 'Open Sans', 'Calibri', $font-family-h1;
 
 $font-family-hsub: 'Trebuchet MS', "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", 'Tahoma', $font-family-base;
+
+$font-family-code: Consolas, monospace;
+
+$font-family-fancy: 'Times New Roman', 'Lobster', serif;
 
 
 $html-bg: #fff;
@@ -150,6 +154,7 @@ h3, h4, h5, h6 {
 
 h3, h4, h5, h6 {
 	font-family: $font-family-hsub;
+	margin-top: 2em;
 }
 
 
@@ -239,15 +244,28 @@ hr {
 	margin-bottom: 1em;
 }
 
+
 /* code */
-code {
-	font-family: Consolas, monospace;
+
+code,
+span.code {
+	font-family: $font-family-code;
 	font-size: 1em;
 	
-	display: block;
 	padding: 1px 5px;
 	//border: 1px dashed $hr-color;
 	background: $code-bg;
+}
+code {
+	display: block;
+}
+
+.tip {
+	color: rgb(0, 160, 62);
+	padding: 0.4em 0.5em;
+	border-radius: 0.25em;
+	border: 2px solid rgba(0, 255, 78, 0.1);
+	background: rgba(58, 255, 149, 0.2);
 }
 
 /* post date */
@@ -307,23 +325,23 @@ a {
 
 div.scroll {
 	overflow-x: auto;
-	padding-bottom: 0.5em;
+	margin-top: 0.2em;
+	margin-bottom: 0.2em;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+	
+	>code {
+		display: inline-block;
+		min-width: 98%;
+		white-space: nowrap;
+	}
 }
 
 /* tables */
 
-table {
+table.downloads {
 	width: 100%;
 	border-collapse: collapse;
-	
-	td {
-		border-bottom: 2px solid $hr-color;
-		border-top: 2px solid $hr-color;
-		
-		&:first-child {
-			border-left: none;
-		}
-	}
 	
 	th,
 	td {
@@ -335,9 +353,62 @@ table {
 		white-space: nowrap;
 	}
 	
+	td {
+		border-bottom: 2px solid $hr-color;
+		border-top: 2px solid $hr-color;
+		
+		&:first-child {
+			border-left: none;
+		}
+	}
+	
 	th {
 		text-align: left;
 		font-weight: normal;
+	}
+}
+
+table.code {
+	width: 100%;
+	border-collapse: collapse;
+	
+	font-family: $font-family-code;
+	white-space: nowrap;
+	
+	th,
+	td {
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+		padding-top: 0.2em;
+		padding-bottom: 0.2em;
+		
+		white-space: nowrap;
+		
+		width: 50%;
+		
+		vertical-align: top;
+		
+		code {
+			
+		}
+	}
+	
+	th {
+		text-align: left;
+		font-weight: normal;
+	}
+}
+
+div.sidestory {
+	border: 1px dashed #ccc;
+	border-radius: 0.2em;
+	padding: 1em;
+	
+	:first-child {
+		margin-top: 0;
+	}
+	:last-child {
+		margin-bottom: 0;
 	}
 }
 
@@ -616,8 +687,16 @@ main {
 		padding-right: 32px;
 	}
 	
+	ul,
+	ol {
+		li {
+			margin-left: 1em;
+			padding-left: 0.3em;
+		}
+	}
+	
 	p {
-		text-align: justify;
+		text-align: left;
 	}
 	
 	.side img {
@@ -645,6 +724,39 @@ main {
 	color: $grayed-color;
 }
 
+/* lists */
+
+ul,
+ol {
+	&.gaps li {
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+	}
+}
+
+/* quotes */
+
+blockquote {
+	margin-top: 2em;
+	margin-bottom: 2em;
+	margin-left: 1em;
+	margin-right: 1em;
+	
+	padding: 0 0.7em;
+	
+	border: 1px solid rgba(0, 0, 0, 0.02);
+	border-radius: 0.15em;
+	background: $code-bg; //rgba(0, 0, 0, 0.03)
+	@include box-shadow(0px 1px 3px 0px rgba(0,0,0,0.1));
+	
+	@include transform(skewX(5deg));
+	font-style: italic;
+	
+	p.fancy {
+		font-family: $font-family-fancy;
+	}
+}
+
 /* media different screen sizes */
 
 @media only screen and (min-width: 24em) {
@@ -659,6 +771,17 @@ $body-margin: 2em;
 	body>* {
 		padding-left: $body-margin;
 		padding-right: $body-margin;
+	}
+}
+
+@media only screen and (min-width: 36em) {
+	main p {
+		text-align: justify;
+	}
+	
+	blockquote {
+		margin-left: 3em;
+		margin-right: 3em;
 	}
 }
 
@@ -787,6 +910,25 @@ $body-margin: 2em;
 				}
 			}
 		}
+	}
+}
+
+.debug,
+.todo,
+todo {
+	color: red;
+	border: 1px dotted red;
+	border-radius: 0.3em;
+	padding: 0.5em 0.5em;
+	background: rgba(255, 0, 0, 0.1);
+}
+.todo,
+todo {
+	display: block;
+	margin: 1em;
+	&:before {
+		content: "TODO: ";
+		display: inline;
 	}
 }
 

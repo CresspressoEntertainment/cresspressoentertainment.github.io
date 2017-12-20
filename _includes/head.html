@@ -8,6 +8,10 @@
 
 <link rel="stylesheet" type="text/css" href="{{ site.baseurl }}{{ site.stylesheet }}"/>
 
+{% if page.group == "Defunct" %}
+<link rel="stylesheet" type="text/css" href="{{ site.baseurl }}/assets/stylesheets/defunct.css"/>
+{% endif %}
+
 <meta name="description" content="{{ page.description }}"/>
 
 <meta name="keywords" content="{{ page.keywords }}"/>
