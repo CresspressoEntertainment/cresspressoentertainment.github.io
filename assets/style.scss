@@ -150,13 +150,9 @@ h1, h2, h3, h4, h5, h6, .subtitle {
 
 h3, h4, h5, h6 {
 	margin-bottom: $element-padding;
-}
-
-h3, h4, h5, h6 {
-	font-family: $font-family-hsub;
 	margin-top: 2em;
+	font-family: $font-family-hsub;
 }
-
 
 h1 {
 	font-family: $font-family-h1;
@@ -330,10 +326,12 @@ div.scroll {
 	padding-top: 0.2em;
 	padding-bottom: 0.2em;
 	
+	>div,
 	>code {
 		display: inline-block;
-		min-width: 98%;
 		white-space: nowrap;
+		min-width: 95%;
+		min-width: calc(100% - 0.6em);
 	}
 }
 
@@ -604,6 +602,10 @@ $page-icon-size: 2em;
 		}
 	}
 }
+.breadcrumb-parent {
+	border-left: 1px dotted #cbcbcb;
+	border-right: 1px dotted #cbcbcb;
+}
 
 /* nav-link */
 
@@ -825,7 +827,7 @@ $body-margin: 2em;
 		body {
 			margin: 0;
 			display: grid;
-			grid-template-columns: 20em minmax(0, 40em);
+			grid-template-columns: 20em 1fr/*minmax(0, 50em)*/;
 			grid-template-rows: auto auto;
 			grid-template-areas:
 				"header main"
@@ -909,6 +911,13 @@ $body-margin: 2em;
 					}
 				}
 			}
+		}
+	}
+	
+	@supports not (display: grid) {
+		body >* {
+			padding-left: 10%;
+			padding-right: 10%;
 		}
 	}
 }

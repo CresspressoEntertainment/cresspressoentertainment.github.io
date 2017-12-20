@@ -21,16 +21,21 @@ keywords: "Defunct, defunct, lambda, lambda calculus, calculus, LambdaSalt, lamb
 
 	<p>A simple Defunct script, where <span class="code">&lt;expr&gt;</span> is an expression:</p>
 
+<div class="scroll">
 <code>
 def myFunc (&lt;expr&gt;)<br>
 do (print myFunc)
 </code>
+</div>
 
 	<p>Save it as a file (myscript.txt) and use Windows Command Prompt to run defunct.exe with it. <a href="{{page.defunct_install}}">[More help]</a></p>
 
+<div class="scroll">
 <code>
 defunct "myscript.txt"
 </code>
+</div>
+	
 </div>
 
 <blockquote>
@@ -45,7 +50,7 @@ defunct "myscript.txt"
 
 <h3>Functions</h3>
 
-<p>A function takes another function as a parameter (its one and only argument), and always returns (is reduced to) another function or expression. The argument has a name, which can be referenced multiple times within the body of the function. These references are called <b>variables</b>.</p>
+<p>A function takes an expression of functions as a parameter (its one and only argument), and always returns (is reduced to) another expression of functions. The argument has a name, which can be referenced multiple times within the body of the function. These references are called <b>variables</b>.</p>
 
 <p>A function is declared like so:</p>
 
@@ -306,6 +311,7 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <p>Defunct treats all functions as having their own unique variable, so you don't <i>need</i> to do any alpha conversions yourself.</p>
 
 
+
 <h4>Beta Reduction</h4>
 
 <p>A function can be <i>applied</i> to another function, which means the second function is copied into all the places where the first function's variable is being referenced. For example:</p>
@@ -355,22 +361,22 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <td><code>
 <!-- Lambda ONE -->
 
-<span class="highlight-blue" title="Function y">&lambda;y.</span><span class="highlight-red" title="Function x">(&lambda;x.xxx)</span><span class="highlight-blue" title="Function y">y</span>
+<span class="highlight-blue" title="Outer function y">&lambda;y.</span><span class="highlight-red" title="Inner function x">(&lambda;x.xxx)</span><span class="highlight-blue" title="Outer variable y">y</span>
 	<br>
 <!-- Lambda TWO -->
 
-<span class="highlight-blue" title="Function y">&lambda;y.yyy</span>
+<span class="highlight-blue" title="Function y, beta-reduced">&lambda;y.yyy</span>
 
 
 </code></td>
 <td><code>
 <!-- Defunct ONE -->
 	
-<span class="highlight-blue" title="Function y">[y.</span><span class="highlight-red" title="Function x">[x.x x x]</span><span class="highlight-blue" title="Function y">y]</span>
+<span class="highlight-blue" title="Outer function y">[y.</span><span class="highlight-red" title="Inner function x">[x.x x x]</span><span class="highlight-blue" title="Outer variable y">y]</span>
 	<br>
 <!-- Defunct TWO -->
 	
-<span class="highlight-blue" title="Function y">[y.y y y]</span>
+<span class="highlight-blue" title="Function y, beta-reduced">[y.y y y]</span>
 
 </code></td>
 </tr>
@@ -567,7 +573,7 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <br>
 	<span class="highlight-red" title="Functions x and z, rewritten">[x z.x z x]</span>
 <br>
-	<span title="Inner functions y and z, not equivalent to final expression">&ne;<span class="highlight-blue2">&lambda;yz.yz<span class="highlight-red2">x</span></span>
+	<span title="Inner functions y and z, not equivalent to final expression">&ne;<span class="highlight-blue2">[y z.y z <span class="highlight-red2">x</span>]</span>
 
 </code></td>
 </tr>

@@ -20,7 +20,7 @@
 	<div class="foldout">
 		<nav>
 {% for pg in pages %}
-{% unless pg.subhide %}
+{% unless pg.parenthide %}
 <a class="nav-link{% if pg.icon %} aicon{% endif %}" href="{{ site.baseurl }}{{ pg.permalink }}" title="{{ pg.title }}">
 	{% if pg.icon %}
 	<img class="icon{% if pg.icon_square %} icon-square{% endif %}" src="{{ site.baseurl }}{{ site.iconsurl }}{{ pg.icon }}"/>
