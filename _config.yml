@@ -2,11 +2,12 @@ title: Cresspresso
 email: cresspresso@gmail.com
 github_username: Cresspresso
 
+realurl: https://cresspresso.github.io
 baseurl: ''
+permalink: /:categories/:year/:month/:day/:title/
 iconsurl: /assets/images/icons/
 socialiconsurl: /assets/images/socialsites/
 postimagesurl: /assets/images/posts/
-permalink: /:categories/:year/:month/:day/:title/
 
 stylesheet: /assets/style.css
 
