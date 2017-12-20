@@ -818,7 +818,7 @@ $body-margin: 2em;
 	}
 }
 
-@media only screen and (min-width: 60em) {
+@media only screen and (min-width: 66em) {
 	
 	$body-margin-left: 1em;
 	/* CSS GRID */
@@ -827,7 +827,7 @@ $body-margin: 2em;
 		body {
 			margin: 0;
 			display: grid;
-			grid-template-columns: 20em 1fr/*minmax(0, 50em)*/;
+			grid-template-columns: 18em minmax(0, 1fr);
 			grid-template-rows: auto auto;
 			grid-template-areas:
 				"header main"
