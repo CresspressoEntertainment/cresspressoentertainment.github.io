@@ -4,12 +4,13 @@ github_username: Cresspresso
 
 realurl: https://cresspresso.github.io
 baseurl: ''
-permalink: /:categories/:year/:month/:day/:title/
+permalink: /:categories/:title/
 iconsurl: /assets/images/icons/
 socialiconsurl: /assets/images/socialsites/
 postimagesurl: /assets/images/posts/
 
 stylesheet: /assets/style.css
+disqusDebug: false
 
 homepage:
   permalink: /

@@ -193,7 +193,7 @@ h2,
 }
 
 .header-link a {
-	margin-left: -0.3em;
+	margin-left: -0.1em;
 	display: block;
 }
 
@@ -226,16 +226,27 @@ p {
 }
 
 $grayed-color: #888;
-.grayed {
+.grayed,
+.greyed {
 	color: $grayed-color;
 }
 .smalltext {
 	font-size: 0.7em;
 }
+.inline-block {
+	display: inline-block;
+}
 
-#back-link {
-	display: block;
+.post-nav-links {
+	margin-top: 1em;
 	margin-bottom: 1em;
+	
+	text-align: center;
+
+	>* {
+		display: block;
+		vertical-align: top;
+	}
 }
 
 
@@ -274,7 +285,7 @@ code {
 
 /* post date */
 
-#page-date {
+#page-data {
 	font-size: 0.8em;
 	
 	padding-top: 0.6em;
@@ -284,20 +295,18 @@ code {
 }
 .data {
 	font-family: $font-family-data;
-	
-	.spaced {
-		margin-left: 0.3em;
-		word-spacing: 0.1em;
-		letter-spacing: 0.02em;
-	}
-}
-.data {
 	position: relative;
 	display: inline-block;
 	font-size: 0.8em;
 	
 	top: -0.1em;
 	margin-bottom: -1em;
+	
+	.spaced {
+		margin-left: 0.3em;
+		word-spacing: 0.1em;
+		letter-spacing: 0.02em;
+	}
 }
 nav a .data {
 	margin-left: 1em;
@@ -381,6 +390,7 @@ table.code {
 	font-family: $font-family-code;
 	white-space: nowrap;
 	
+	
 	th,
 	td {
 		padding-left: 0.5em;
@@ -390,12 +400,16 @@ table.code {
 		
 		white-space: nowrap;
 		
-		width: 50%;
-		
 		vertical-align: top;
-		
-		code {
-			
+	}
+	&.code-2 {
+		th, td {
+			width: 50%;
+		}
+	}
+	&.code-3 {
+		th, td {
+			width: 33%;
 		}
 	}
 	
@@ -793,6 +807,25 @@ $body-margin: 2em;
 		margin-left: 3em;
 		margin-right: 3em;
 	}
+	
+	.post-nav-links {
+		.pnl-left,
+		.pnl-right,
+		.pnl-center {
+			display: inline-block;
+		}
+		.pnl-center {
+			width: 40%;
+		}
+		.pnl-left {
+			text-align: right;
+			width: 25%;
+		}
+		.pnl-right {
+			text-align: left;
+			width: 25%;
+		}
+	}
 }
 
 @media only screen and (min-width: 30em) {
@@ -855,6 +888,10 @@ $body-margin: 2em;
 			padding-top: $body-margin;
 			padding-right: $body-margin;
 			padding-left: 2em;
+			
+			.post-nav-links {
+				margin-top: -1em;
+			}
 		}
 
 		header {
@@ -930,6 +967,13 @@ $body-margin: 2em;
 	}
 }
 
+{% if site.GH_ENV %}
+.debug,
+.todo,
+todo {
+	display: none;
+}
+{% else %}
 .debug,
 .todo,
 todo {
@@ -948,5 +992,6 @@ todo {
 		display: inline;
 	}
 }
+{% endif %}
 
 

@@ -1,0 +1,130 @@
+---
+layout: post
+_layout: post
+title: "Logical Expressions"
+date: 2017-12-27 14:40:29 +1300
+group: Defunct
+categories:
+  - defunct
+  - posts
+  - lc
+
+series: LC
+seriesindex: 2
+
+description: "Boolean expressions and logical operators in Lambda Calculus."
+keywords: "Defunct, defunct, lambda, lambda calculus, calculus, reduction, beta reduction, alpha reduction, functions, functional programming"
+---
+<p>Boolean values and logical operators are a breeze in lambda calculus! We can even use them to simulate <i>if</i> and <i>else</i> statements.</p>
+
+<todo>new quote
+<blockquote>
+	<p class="fancy">Notwithstanding in thy days I will not do it for David thy father's sake: but I will rend it out of the hand of thy son. <a href="https://www.bible.com/en-GB/bible/1/1KI.11.12.kjv">1 Kings 11:12, KJV</a></p>
+<hr>
+<p>God keeps his promises.</p>
+</blockquote>
+</todo>
+
+
+
+<h3>Booleans</h3>
+
+<div class="scroll">
+<table class="code code-3">
+<thead><tr><th>Name</th><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td>
+	
+	<span class="highlight-green">true</span>
+	
+</td>
+<td><code>
+
+	<span class="highlight-green">T</span> <span class="highlight-gray">&equiv;</span> &lambda;yx.y
+
+</code></td>
+<td><code>
+
+	<span class="highlight-gray">def</span> <span class="highlight-green">true</span> [y x.y]
+
+</code></td>
+</tr>
+<tr>
+<td>
+	
+	<span class="highlight-red">false</span>
+	
+</td>
+<td><code>
+
+	<span class="highlight-red">F</span> <span class="highlight-gray">&equiv;</span> &lambda;yx.x
+
+</code></td>
+<td><code>
+
+	<span class="highlight-gray">def</span> <span class="highlight-red">false</span> [y x.x]
+
+</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p>True takes in two parameters and returns the <b>first</b> one.</p>
+<p>False takes in two parameters and returns the <b>second</b> one.</p>
+
+
+<h3>If Statements</h3>
+
+<div class="scroll">
+<code>
+	<span class="highlight-green">&lt;condition&gt;</span> <span class="highlight-green2">&lt;then&gt;</span> <span class="highlight-red2">&lt;else&gt;</span><br>
+</code>
+</div>
+
+<div class="scroll">
+<table class="code code-2">
+<thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
+<tbody>
+<tr>
+<td><code>
+
+	<span class="whitespace">  </span><span class="highlight-green">T</span><span class="highlight-green2">(&lambda;a.a)</span><span class="highlight-red2">(&lambda;b.b)</span><br>
+	<span class="highlight-gray">= </span><span class="highlight-green">(&lambda;yx.y)</span><span class="highlight-green2">(&lambda;a.a)</span><span class="highlight-red2">(&lambda;b.b)</span><br>
+	<span class="highlight-gray">= </span><span class="highlight-green">(&lambda;x.<span class="highlight-green2">(&lambda;a.a)</span>)</span><span class="highlight-red2">(&lambda;b.b)</span><br>
+	<span class="highlight-gray">= </span><span class="highlight-green2">(&lambda;a.a)</span><br>
+
+</code></td>
+<td><code>
+
+	<span class="whitespace">  </span><span class="highlight-green">true</span> <span class="highlight-green2">[a.a]</span> <span class="highlight-red2">[b.b]</span><br>
+	<span class="highlight-gray">= </span><span class="highlight-green">[y x.y]</span><span class="highlight-green2">[a.a]</span><span class="highlight-red2">[b.b]</span><br>
+	<span class="highlight-gray">= </span><span class="highlight-green">[x.<span class="highlight-green2">[a.a]</span>]</span><span class="highlight-red2">[b.b]</span><br>
+	<span class="highlight-gray">= </span><span class="highlight-green2">[a.a]</span><br>
+
+</code></td>
+</tr>
+<tr>
+<td><code>
+
+	<span class="whitespace">  </span><span class="highlight-red">F</span><span class="highlight-green2">(&lambda;a.a)</span><span class="highlight-red2">(&lambda;b.b)</span><br>
+	<span class="highlight-gray">= </span><span class="highlight-red">(&lambda;yx.x)</span><span class="highlight-green2">(&lambda;a.a)</span><span class="highlight-red2">(&lambda;b.b)</span><br>
+	<span class="highlight-gray">= </span><span class="highlight-red">(&lambda;x.x)</span><span class="highlight-red2">(&lambda;b.b)</span><br>
+	<span class="highlight-gray">= </span><span class="highlight-red2">(&lambda;b.b)</span><br>
+
+</code></td>
+<td><code>
+
+	<span class="whitespace">  </span><span class="highlight-red">false</span> <span class="highlight-green2">[a.a]</span> <span class="highlight-red2">[b.b]</span><br>
+	<span class="highlight-gray">= </span><span class="highlight-red">[y x.x]</span><span class="highlight-green2">[a.a]</span><span class="highlight-red2">[b.b]</span><br>
+	<span class="highlight-gray">= </span><span class="highlight-red">[x.x]</span><span class="highlight-red2">[b.b]</span><br>
+	<span class="highlight-gray">= </span><span class="highlight-red2">[b.b]</span><br>
+
+</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+

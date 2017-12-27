@@ -18,8 +18,24 @@ hide: true
 description: Music, Gaming Videos and Video Games, for your entertainment.
 keywords: music, remix, cover, game, gaming, gaming video, gaming videos, gamer, video game, video games, entertainment
 ---
-<p>Welcome to my website!</p>
 
-<p class="tip">This website is still under development, so think of this as a behind the scenes experience.</p>
+<!--<h2>Products</h2>-->
+<nav>
+{% assign pages = site.pages | where: 'parent', site.homepage.group | sort: 'parentorder' %}
+{% for pg in pages %}
+{% unless pg.parenthide %}
+{% unless pg.group == site.homepage.group %}
+<a class="nav-link{% if pg.icon %} aicon{% endif %}" href="{{ site.baseurl }}{{ pg.permalink }}" title="{{ pg.title }}">
+	{% if pg.icon %}
+	<img class="icon{% if pg.icon_square %} icon-square{% endif %}" src="{{ site.baseurl }}{{ site.iconsurl }}{{ pg.icon }}"/>
+	{% endif %}
+	<span>{{ pg.title }}</span>
+</a>
+{% endunless %}
+{% endunless %}
+{% endfor %}
+</nav>
 
 {% include posts.html %}
+
+<p class="tip">This website is still under development, so think of this as a behind the scenes experience.</p>

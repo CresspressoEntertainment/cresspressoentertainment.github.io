@@ -7,6 +7,10 @@ group: Defunct
 categories:
   - defunct
   - posts
+  - lc
+
+series: LC
+seriesindex: 1
 
 defunct_gh: https://github.com/Cresspresso/Defunct
 defunct_install: https://cresspresso.github.io/defunct/downloads/
@@ -55,7 +59,7 @@ defunct "myscript.txt"
 <p>A function is declared like so:</p>
 
 <div class="scroll">
-<table class="code">
+<table class="code code-2">
 <thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
 <tbody>
 <tr>
@@ -90,7 +94,7 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <p>Here are some examples:</p>
 
 <div class="scroll">
-<table class="code">
+<table class="code code-2">
 <thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
 <tbody>
 <tr>
@@ -190,7 +194,7 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <p>Variables within an expression or sub-expression can either be <i>free</i> or <i>bound</i>.</p>
 
 <div class="scroll">
-<table class="code">
+<table class="code code-2">
 <thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
 <tbody>
 <tr>
@@ -218,7 +222,7 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <p>Here's another example:</p>
 
 <div class="scroll">
-<table class="code">
+<table class="code code-2">
 <thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
 <tbody>
 <tr>
@@ -263,7 +267,7 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <p>Say you have this expression:</p>
 
 <div class="scroll">
-<table class="code">
+<table class="code code-2">
 <thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
 <tbody>
 <tr>
@@ -287,7 +291,7 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <p>The first function has variables <span class="highlight-blue">x</span> and <span class="highlight-blue">y</span>, while the second function has variable <span class="highlight-red">x</span>. But these are two entirely separate functions, with their own bound variables! Therefore, we can change one of the variable names to something different, say <span class="highlight-green">z</span>, and the expression will still be identical.</p>
 
 <div class="scroll">
-<table class="code">
+<table class="code code-2">
 <thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
 <tbody>
 <tr>
@@ -317,7 +321,7 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <p>A function can be <i>applied</i> to another function, which means the second function is copied into all the places where the first function's variable is being referenced. For example:</p>
 
 <div class="scroll">
-<table class="code">
+<table class="code code-2">
 <thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
 <tbody>
 <tr>
@@ -354,7 +358,7 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <p>This example demonstrates that you can apply a function to a variable reference:</p>
 
 <div class="scroll">
-<table class="code">
+<table class="code code-2">
 <thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
 <tbody>
 <tr>
@@ -395,7 +399,7 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <p>Series of expressions are evaluated from <b>left to right</b>. This means these expressions are all identical (equivalent):</p>
 
 <div class="scroll">
-<table class="code">
+<table class="code code-2">
 <thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
 <tbody>
 <tr>
@@ -427,7 +431,7 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <p>And so are these two:</p>
 
 <div class="scroll">
-<table class="code">
+<table class="code code-2">
 <thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
 <tbody>
 <tr>
@@ -460,7 +464,7 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <p>But of these three, none are equivalent:</p>
 
 <div class="scroll">
-<table class="code">
+<table class="code code-2">
 <thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
 <tbody>
 <tr>
@@ -498,7 +502,7 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <p>When a function's sole purpose is to pass its variable into another function, it can be reduced to just that inner function.</p>
 
 <div class="scroll">
-<table class="code">
+<table class="code code-2">
 <thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
 <tbody>
 <tr>
@@ -548,7 +552,7 @@ where <span class="highlight-expr" title="Expression">&lt;expr&gt;</span> <span>
 <p>If the inner function contains a free variable referencing the outer function's variable, the function <b>cannot</b> be eta-reduced.</p>
 
 <div class="scroll">
-<table class="code">
+<table class="code code-2">
 <thead><tr><th>Lambda Calculus</th><th>Defunct</th></tr></thead>
 <tbody>
 <tr>

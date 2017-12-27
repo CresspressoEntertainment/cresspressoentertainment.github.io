@@ -1,15 +1,28 @@
 ---
 layout: master
 ---
-{% include group-back-link.html %}
+{% include post-nav-links.html %}
 <hr/>
 <section>
-	<div id="page-date" class="data grayed">{{ page.date | date: '%-d %B %Y, %R' }} <span class="spaced">({{ page.date }})</span></div>
-	<!--  -->
-
+	<div id="page-data" class="data grayed">
+		<span class="post-date inline-block">{{ page.date | date: '%-d %B %Y, %R' }}</span> <span class="post-date spaced inline-block">({{ page.date }})</span>
+		
+{% if page.series %}
+		<span class="inline-block">
+			&#8226;
+			<span class="series-title">series {{ page.series }}</span>
+			<span class="series-index">part {{ page.seriesindex }}</span>
+		</span>
+{% endif %}
+		
+	</div>
+	
+	
 	<h1>{{ page.title }}</h1>
 </section>
 <article>
 	{{ content }}
 </article>
+<hr/>
+{% include post-nav-links.html %}
 {% include disqus.html %}

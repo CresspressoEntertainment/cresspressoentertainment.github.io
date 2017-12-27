@@ -1,0 +1,54 @@
+{% capture backlink %}
+
+{% if page.group %}
+{% assign parent = site.pages | where: '_layout','posthub' | where: 'group',page.group | first %}
+{% unless parent %}
+{% assign parent = site.pages | where: 'subgroup',true | where: 'group',page.group | first %}
+{% endunless %}
+<a class="pnl-center" href="{{ site.baseurl }}{{ parent.permalink }}" title="{{ parent.title }} - {{ page.group }}">All Posts <span class="smalltext inline-block">// {{ page.group }}</span></a>
+{% else %}
+<a class="pnl-center" href="{{ site.baseurl }}{{ site.homepage.permalink }}" title="{{ site.title }}">Back to {{ site.title }}</a>
+{% endif %}
+
+{% endcapture %}
+
+{% if page.series %}
+
+{% assign temp = page.seriesindex | minus: 1 %}
+{% assign prev = site.posts | where: 'group',page.group | where: 'series',page.series | where:'seriesindex',temp | first %}
+{% assign temp = page.seriesindex | plus: 1 %}
+{% assign next = site.posts | where: 'group',page.group | where: 'series',page.series | where:'seriesindex',temp | first %}
+
+{% if prev %}
+{% capture prevlink %}
+<a class="pnl-left" href="{{ site.baseurl }}{{ prev.url }}">&larr; Previous</a> &#8226;
+{% endcapture %}
+{% endif %}
+	
+{% if next %}
+{% capture nextlink %}
+&#8226; <a class="pnl-right" href="{{ site.baseurl }}{{ next.url }}">Next &rarr;</a>
+{% endcapture %}
+{% endif %}
+
+{% endif %}
+
+
+{% unless prev %}
+{% capture prevlink %}
+<span class="pnl-left"></span>
+{% endcapture %}
+{% endunless %}
+
+{% unless next %}
+{% capture nextlink %}
+<span class="pnl-right"></span>
+{% endcapture %}
+{% endunless %}
+
+
+<div class="post-nav-links">
+	{{ prevlink }}
+	{{ backlink }}
+	{{ nextlink }}
+</div>
