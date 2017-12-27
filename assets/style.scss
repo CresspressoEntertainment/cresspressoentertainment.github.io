@@ -967,13 +967,6 @@ $body-margin: 2em;
 	}
 }
 
-{% if site.GH_ENV %}
-.debug,
-.todo,
-todo {
-	display: none;
-}
-{% else %}
 .debug,
 .todo,
 todo {
@@ -992,6 +985,5 @@ todo {
 		display: inline;
 	}
 }
-{% endif %}
 
 
